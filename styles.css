@@ -143,3 +143,19 @@
 .texto ul{margin:0 0 1rem;padding-left:1.15rem;max-width:64ch}
 .texto li{margin-bottom:.55rem;line-height:1.6}
 .texto .nota{margin-top:2.5rem;padding-top:1.25rem;border-top:1px solid var(--linea)}
+
+/* ── Formulario ────────────────────────────────────────────────────────── */
+.form{max-width:34rem;margin-top:2rem}
+.campo{margin-bottom:1.15rem}
+.campo label{display:block;font-weight:600;font-size:.9375rem;margin-bottom:.35rem}
+.campo .ayuda{font-weight:400;color:var(--muted);font-size:.875rem}
+.campo input,.campo textarea{
+  width:100%;font:inherit;font-size:1rem;color:var(--tinta);background:var(--blanco);
+  border:1px solid #C9C4BC;border-radius:8px;padding:.7rem .8rem;min-height:48px;
+}
+.campo textarea{min-height:7rem;resize:vertical}
+.campo input:focus-visible,.campo textarea:focus-visible{
+  outline:3px solid var(--acento);outline-offset:1px;border-color:var(--acento)
+}
+/* Campo trampa: fuera de la vista y fuera del recorrido de teclado. */
+.trampa{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}

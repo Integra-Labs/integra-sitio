@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es-CR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contacto — Integra Núcleo</title>
+<meta name="description" content="Escríbanos y le mostramos Integra Núcleo con un caso real de su taller.">
+<link rel="canonical" href="https://integranucleo.com/contacto">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header>
+  <div class="env">
+    <div class="barra">
+      <a class="marca" href="/"><b>Integra Núcleo</b><span>Costa Rica</span></a>
+      <nav aria-label="Principal"><a href="/precios">Precios</a></nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="env texto">
+    <h1>Escríbanos</h1>
+    <p class="sub">
+      Le contestamos con una persona, no con un robot. Si quiere, le mostramos
+      el flujo completo con un carro suyo.
+    </p>
+
+    <form class="form" method="POST" action="/api/lead">
+      <div class="campo">
+        <label for="nombre">Su nombre</label>
+        <input id="nombre" name="nombre" type="text" required autocomplete="name" maxlength="120">
+      </div>
+      <div class="campo">
+        <label for="telefono">Teléfono <span class="ayuda">— por acá le contestamos</span></label>
+        <input id="telefono" name="telefono" type="tel" required autocomplete="tel" maxlength="40">
+      </div>
+      <div class="campo">
+        <label for="taller">Nombre del taller <span class="ayuda">— opcional</span></label>
+        <input id="taller" name="taller" type="text" autocomplete="organization" maxlength="160">
+      </div>
+      <div class="campo">
+        <label for="correo">Correo <span class="ayuda">— opcional</span></label>
+        <input id="correo" name="correo" type="email" autocomplete="email" maxlength="160">
+      </div>
+      <div class="campo">
+        <label for="mensaje">¿En qué le ayudamos? <span class="ayuda">— opcional</span></label>
+        <textarea id="mensaje" name="mensaje" maxlength="2000"></textarea>
+      </div>
+
+      <div class="trampa" aria-hidden="true">
+        <label for="sitio_web">No llene este campo</label>
+        <input id="sitio_web" name="sitio_web" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="acciones">
+        <button class="btn btn-1" type="submit">Enviar</button>
+      </div>
+      <p class="nota">
+        Usamos lo que nos escriba solo para contestarle. No se lo damos a nadie.
+        Ver <a href="/privacidad">privacidad</a>.
+      </p>
+    </form>
+  </div>
+</main>
+
+<footer>
+  <div class="env">
+    <p>Integra Núcleo · Integra Labs</p>
+    <p><a href="/privacidad">Privacidad</a> · <a href="/terminos">Términos</a> · <a href="/contacto">Contacto</a></p>
+  </div>
+</footer>
+</body>
+</html>

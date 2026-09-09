@@ -1,0 +1,9 @@
+{
+  "name": "integra-sitio",
+  "private": true,
+  "type": "module",
+  "description": "Sitio público de Integra Núcleo. El HTML es estático; lo único que corre en servidor son las funciones de /api.",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4"
+  }
+}
