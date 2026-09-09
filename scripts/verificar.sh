@@ -52,6 +52,11 @@ for ruta in "${PAGINAS[@]}"; do
   for recurso in $(grep -o 'href="/[^"]*\.\(css\|woff2\)"' /tmp/pagina.html | sed 's/href="//;s/"//'); do
     total=$((total + $(curl -s "${BASE}${recurso}" | wc -c)))
   done
+  # Las imágenes también pesan. Sin esto, el gate deja pasar una foto sin
+  # optimizar y sigue diciendo que todo está bien.
+  for imagen in $(grep -o 'src="/[^"]*\.\(webp\|png\|jpg\|jpeg\|avif\|svg\)"' /tmp/pagina.html | sed 's/src="//;s/"//'); do
+    total=$((total + $(curl -s "${BASE}${imagen}" | wc -c)))
+  done
   if [ "$total" -gt "$TECHO" ]; then
     fallo "pesa ${total} B y el techo es ${TECHO} B"
   else

@@ -250,3 +250,16 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
   .cta-fijo .btn{padding:.6rem 1.1rem;min-height:44px}
   body:has(.cta-fijo) footer{padding-bottom:5.5rem}
 }
+
+/* ── Captura de producto ───────────────────────────────────────────────────
+   La página no tenía una sola imagen: la revisión de diseño lo midió
+   (img 0, svg 0) y era la misma debilidad estructural que el benchmark le
+   había señalado a la competencia. Esta es la pantalla real del producto, con
+   datos de un taller de demostración —ningún cliente real aparece acá—.
+   Ancho y alto explícitos para que no salte la maqueta al cargar. */
+.captura{margin:2.5rem 0 0}
+.captura img{
+  display:block; width:100%; height:auto;
+  border:1px solid var(--linea); border-radius:12px; background:var(--blanco);
+}
+.captura figcaption{margin-top:.7rem;font-size:.9375rem;color:var(--muted);max-width:62ch}
