@@ -263,3 +263,9 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
   border:1px solid var(--linea); border-radius:12px; background:var(--blanco);
 }
 .captura figcaption{margin-top:.7rem;font-size:.9375rem;color:var(--muted);max-width:62ch}
+
+/* La figura dentro del recorrido usa la misma columna que los pasos, sin la
+   hora: es la ilustración del paso anterior, no un paso más. */
+.paso--figura{padding-top:.25rem}
+.captura--interna{margin:0}
+.captura--interna img{border-radius:10px}
