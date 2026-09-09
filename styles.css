@@ -92,7 +92,7 @@
 .plan .precio{font-size:2rem;font-weight:700;letter-spacing:-.03em;margin:.5rem 0 0;line-height:1.1}
 .plan .unidad{font-size:.9375rem;color:var(--muted);margin:.15rem 0 1rem}
 .plan .encabeza{font-size:.9375rem;color:var(--muted);margin:0 0 .5rem}
-.plan ul{list-style:none;padding:0;margin:0;font-size:.9375rem}
+.plan ul{list-style:none;padding:0;margin:0;font-size:1rem}
 .plan li{padding-left:1.4rem;position:relative;margin-bottom:.45rem;line-height:1.5}
 .plan li::before{content:"";position:absolute;left:.25rem;top:.55rem;width:.4rem;height:.4rem;
   border-radius:50%;background:var(--acento)}
@@ -100,7 +100,7 @@
   display:grid;gap:1.25rem;grid-template-columns:1fr}
 @media(min-width:44rem){.letra-chica{grid-template-columns:repeat(2,1fr);gap:1.25rem 2.5rem}}
 .letra-chica h3{font-size:1rem;font-weight:600;margin:0 0 .35rem}
-.letra-chica p{margin:0;color:var(--muted);font-size:.9375rem}
+.letra-chica p{margin:0;color:var(--muted);font-size:1rem}
 
 /* ── Secciones del home ────────────────────────────────────────────────── */
 .seccion{margin-top:clamp(3.5rem,9vw,6rem);padding-top:clamp(2rem,5vw,3rem);border-top:1px solid var(--linea)}
@@ -113,14 +113,14 @@
 .paso{display:grid;grid-template-columns:4.5rem 1fr;gap:1rem;padding:1rem 0;border-top:1px solid var(--linea)}
 .paso:first-child{border-top:0}
 .paso .hora{font-variant-numeric:tabular-nums;font-weight:700;color:var(--acento);font-size:.9375rem;padding-top:.15rem}
-.paso h3{font-size:1.0625rem;font-weight:600;margin:0 0 .25rem;letter-spacing:-.01em}
-.paso p{margin:0;color:var(--muted);font-size:.9375rem}
+.paso h3{font-size:1.1875rem;font-weight:600;margin:0 0 .3rem;letter-spacing:-.012em}
+.paso p{margin:0;color:var(--muted);font-size:1rem}
 
 /* Rejilla de tres */
 .tres{display:grid;gap:1.5rem;grid-template-columns:1fr}
 @media(min-width:44rem){.tres{grid-template-columns:repeat(3,1fr);gap:2.5rem}}
-.tres h3{font-size:1.0625rem;font-weight:600;margin:0 0 .4rem;letter-spacing:-.01em}
-.tres p{margin:0;color:var(--muted);font-size:.9375rem}
+.tres h3{font-size:1.1875rem;font-weight:600;margin:0 0 .4rem;letter-spacing:-.012em}
+.tres p{margin:0;color:var(--muted);font-size:1rem}
 
 /* Resumen de precios */
 .precio-mini{display:grid;gap:1rem;grid-template-columns:1fr;margin-bottom:1.5rem}
@@ -139,7 +139,7 @@
 .faq summary::after{content:"+";color:var(--acento);font-weight:700;flex:none}
 .faq details[open] summary::after{content:"−"}
 .faq summary:focus-visible{outline:3px solid var(--acento);outline-offset:2px}
-.faq details p{margin:0 0 1rem;color:var(--muted);font-size:.9375rem;max-width:62ch}
+.faq details p{margin:0 0 1rem;color:var(--muted);font-size:1rem;max-width:62ch}
 
 /* Cierre */
 .cierre{margin-top:clamp(3.5rem,9vw,6rem);padding:clamp(2rem,5vw,3rem);border-radius:14px;
