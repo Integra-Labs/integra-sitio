@@ -196,3 +196,17 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
    no por persona—, así que se lee como afirmación, no como letra chica. */
 .reaseguro{margin:0;font-size:1rem;color:var(--muted)}
 .reaseguro strong{color:var(--tinta);font-weight:600}
+
+/* ── Corte de ritmo ────────────────────────────────────────────────────────
+   Tres secciones seguidas —integridad, ARIA y Costa Rica— usaban la misma
+   rejilla de tres columnas con tres h3 cada una. Medido: idénticas en
+   estructura. Leídas seguidas se funden en un solo bloque y la página deja de
+   tener escalones.
+   La del medio pasa a una superficie propia. No cambia el contenido: cambia
+   el fondo, que es lo que el ojo usa para separar. A-B-A en vez de A-A-A. */
+.seccion.panel{
+  background:var(--blanco);
+  border:1px solid var(--linea);
+  border-radius:14px;
+  padding:clamp(1.75rem,4vw,2.75rem);
+}
