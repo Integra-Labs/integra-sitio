@@ -233,7 +233,10 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
    fallaba en «¿dónde estoy?». Se marca con aria-current —que es lo que lee un
    lector de pantalla— y se refuerza visualmente, porque la accesibilidad no
    puede depender solo del color ni el color solo de la accesibilidad. */
-.barra nav{display:flex;gap:.25rem}
+/* 1rem, no .25rem: con .25rem «Precios Contacto» se leía como una sola
+   palabra. El alto ya cumple el mínimo táctil por min-height, así que este
+   espacio es por legibilidad, no por accesibilidad. */
+.barra nav{display:flex;gap:1rem}
 .barra nav a[aria-current="page"]{color:var(--tinta);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
 
 /* ── CTA persistente en móvil ──────────────────────────────────────────────
