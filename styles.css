@@ -174,3 +174,17 @@
 }
 /* Campo trampa: fuera de la vista y fuera del recorrido de teclado. */
 .trampa{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* ── Objetivos táctiles ────────────────────────────────────────────────────
+   Los enlaces de navegación y de pie medían 19–29 px de alto. El mínimo es
+   44 px y el producto se diseña mobile-first (DESIGN.md), así que el sitio no
+   puede tener una vara más baja que la aplicación.
+   Se expanden con padding negativo-compensado para no mover la maqueta.
+   Los enlaces DENTRO de un párrafo quedan fuera: WCAG 2.5.8 los exceptúa,
+   y estirarlos rompería el interlineado del texto. */
+.barra a,
+footer a{
+  display:inline-flex; align-items:center; min-height:44px;
+  padding-inline:.4rem; margin-inline:-.4rem;
+}
+footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
