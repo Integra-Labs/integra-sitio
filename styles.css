@@ -188,3 +188,11 @@ footer a{
   padding-inline:.4rem; margin-inline:-.4rem;
 }
 footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
+
+/* ── Reaseguro del hero ────────────────────────────────────────────────────
+   La línea de precio estaba como .nota: 15px y gris de texto secundario, o
+   sea con el aspecto de una advertencia legal. Es el argumento comercial
+   sobre el que descansa toda la estrategia de precio —se cobra por taller y
+   no por persona—, así que se lee como afirmación, no como letra chica. */
+.reaseguro{margin:0;font-size:1rem;color:var(--muted)}
+.reaseguro strong{color:var(--tinta);font-weight:600}
