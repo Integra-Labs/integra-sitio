@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es-CR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integra Núcleo — gestión para talleres automotrices</title>
+<meta name="description" content="Integra Núcleo es el sistema de gestión para talleres automotrices de Costa Rica: recepción, inspección digital, proforma, cobro y cierre en un solo flujo.">
+<link rel="canonical" href="https://integranucleo.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://integranucleo.com/">
+<meta property="og:title" content="Integra Núcleo — gestión para talleres automotrices">
+<meta property="og:description" content="El taller cierra la orden. La caja cuadra sola.">
+<meta property="og:locale" content="es_CR">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Paleta heredada del sistema de diseño del producto. El texto secundario
+     es #5B5B5B y no #727272: sobre este fondo crema, #727272 da 4.42:1 y
+     reprueba AA para texto normal; #5B5B5B da 6.24:1. */
+  :root{
+    --papel:#F7F5F2; --tinta:#111827; --acento:#1B4F72; --acento-hover:#154060;
+    --muted:#5B5B5B; --linea:#E2DED8; --blanco:#FFFFFF;
+    --paso:clamp(1rem,2.5vw,1.5rem);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--papel); color:var(--tinta);
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:1.0625rem; line-height:1.6; -webkit-font-smoothing:antialiased;
+    /* Retícula de plano, muy tenue — la metáfora del papel de trabajo. */
+    background-image:linear-gradient(var(--linea) 1px,transparent 1px),
+                     linear-gradient(90deg,var(--linea) 1px,transparent 1px);
+    background-size:64px 64px; background-position:-1px -1px;
+  }
+  .env{max-width:60rem;margin:0 auto;padding:0 var(--paso)}
+  a{color:var(--acento)}
+  a:focus-visible,.btn:focus-visible{outline:3px solid var(--acento);outline-offset:3px;border-radius:2px}
+
+  header{padding:2rem 0 0}
+  .marca{display:flex;align-items:baseline;gap:.5rem;font-weight:700;letter-spacing:-.01em}
+  .marca b{font-size:1.125rem}
+  .marca span{font-size:.8125rem;color:var(--muted);font-weight:500}
+
+  main{padding:clamp(3rem,9vw,6rem) 0 0}
+  h1{
+    font-size:clamp(2.125rem,6.2vw,4rem); line-height:1.04; letter-spacing:-.035em;
+    font-weight:700; margin:0 0 1.25rem; max-width:16ch;
+  }
+  .sub{font-size:clamp(1.0625rem,2.1vw,1.3125rem);color:var(--muted);max-width:56ch;margin:0 0 2rem}
+
+  .acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-height:48px;padding:.75rem 1.35rem;border-radius:8px;
+    font-weight:600;font-size:1rem;text-decoration:none;border:1px solid transparent;
+    transition:background-color .15s ease,border-color .15s ease;
+  }
+  .btn-1{background:var(--acento);color:var(--blanco)}
+  .btn-1:hover{background:var(--acento-hover)}
+  .btn-2{background:transparent;color:var(--tinta);border-color:var(--tinta)}
+  .btn-2:hover{background:var(--blanco)}
+  .nota{font-size:.9375rem;color:var(--muted);margin:0}
+
+  .puntos{
+    display:grid;gap:1.5rem;margin:clamp(3rem,8vw,5rem) 0 0;
+    grid-template-columns:1fr;border-top:1px solid var(--linea);padding-top:2rem;
+  }
+  @media(min-width:44rem){.puntos{grid-template-columns:repeat(3,1fr);gap:2.5rem}}
+  .punto h2{font-size:1.0625rem;font-weight:600;margin:0 0 .5rem;letter-spacing:-.01em}
+  .punto p{margin:0;color:var(--muted);font-size:.9688rem}
+
+  footer{
+    margin-top:clamp(3.5rem,9vw,6rem);border-top:1px solid var(--linea);
+    padding:1.5rem 0 3rem;color:var(--muted);font-size:.9375rem;
+  }
+  footer p{margin:0}
+</style>
+</head>
+<body>
+<header>
+  <div class="env">
+    <p class="marca"><b>Integra Núcleo</b><span>Costa Rica</span></p>
+  </div>
+</header>
+
+<main>
+  <div class="env">
+    <h1>El taller cierra la orden. La caja cuadra sola.</h1>
+    <p class="sub">
+      Recepción, inspección digital, proforma, cobro y cierre en un solo flujo —
+      donde el estado de la orden y el dinero no se pueden contradecir.
+    </p>
+
+    <div class="acciones">
+      <a class="btn btn-1" href="https://integranucleo.app">Entrar al sistema</a>
+      <a class="btn btn-2" href="https://wa.me/50687482394?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Integra%20N%C3%BAcleo%20para%20mi%20taller."
+         rel="noopener">Escribinos por WhatsApp</a>
+    </div>
+    <p class="nota">Estamos preparando el sitio. Si su taller ya usa Integra, entre por acá.</p>
+
+    <section class="puntos" aria-label="Cómo trabaja Integra Núcleo">
+      <article class="punto">
+        <h2>Cuando la IA no sabe, lo dice</h2>
+        <p>Ante un código de falla que no conoce, ARIA no inventa un diagnóstico ni imprime una confianza falsa. Está auditado y congelado con una prueba propia.</p>
+      </article>
+      <article class="punto">
+        <h2>El flujo no se puede saltar</h2>
+        <p>Las transiciones de una orden se validan en la base de datos, no solo en la pantalla. Una transición inválida se rechaza incluso por SQL directo.</p>
+      </article>
+      <article class="punto">
+        <h2>Hecho para Costa Rica</h2>
+        <p>WhatsApp oficial con plantillas aprobadas por Meta y cobro por SINPE. Su factura electrónica sigue saliendo del sistema que ya usa.</p>
+      </article>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="env">
+    <p>Integra Núcleo · Integra Labs · Sitio en construcción</p>
+    <p>WhatsApp <a href="https://wa.me/50687482394" rel="noopener">+506 8748 2394</a></p>
+  </div>
+</footer>
+</body>
+</html>
