@@ -30,8 +30,28 @@ jobs:
       - name: Comprobaciones deterministas
         run: ./scripts/verificar.sh http://localhost:4173
 
+      # El chromedriver que baja @axe-core/cli sigue al Chrome ESTABLE, y la
+      # imagen del runner va un release atrás. Cuando se desfasan, axe no
+      # evalúa nada: muere al abrir el navegador con «This version of
+      # ChromeDriver only supports Chrome version 153 / Current browser version
+      # is 152». Pasó el 2026-09-09 y tumbó el gate entero, con Lighthouse
+      # saltado en cascada.
+      #
+      # El runner ya trae un chromedriver que SÍ corresponde a su Chrome, y
+      # expone su carpeta en $CHROMEWEBDRIVER. Se usa ese y se acabó la carrera
+      # de versiones. Si algún día deja de existir, el step falla acá con un
+      # mensaje claro en vez de volver a fallar dentro de axe.
       - name: Accesibilidad (axe)
-        run: npx --yes @axe-core/cli@4 --exit http://localhost:4173/ http://localhost:4173/precios
+        run: |
+          if [ ! -x "${CHROMEWEBDRIVER:-}/chromedriver" ]; then
+            echo "::error::No hay chromedriver en \$CHROMEWEBDRIVER (${CHROMEWEBDRIVER:-vacío}). La imagen del runner cambió: hay que revisar cómo se resuelve el driver."
+            exit 1
+          fi
+          "$CHROMEWEBDRIVER/chromedriver" --version
+          npx --yes @axe-core/cli@4 --exit \
+            --chromedriver-path "$CHROMEWEBDRIVER/chromedriver" \
+            http://localhost:4173/ http://localhost:4173/precios http://localhost:4173/aria \
+            http://localhost:4173/contacto http://localhost:4173/privacidad http://localhost:4173/terminos
 
       - name: Lighthouse
         run: npx --yes @lhci/cli@0.14 autorun
