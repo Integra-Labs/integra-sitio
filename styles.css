@@ -152,13 +152,15 @@
 .cierre .btn-2:hover{background:#1F2937}
 
 /* ── Páginas de texto legal ────────────────────────────────────────────── */
-.texto{
-  /* Acota la MEDIDA sin volver a centrar. `.texto` comparte elemento con
-     `.env`, que trae `margin:0 auto`; al pisar el ancho a 44rem la columna se
-     recentraba y quedaba 128 px a la derecha del encabezado y del pie, que
-     siguen en 60rem. Medido en /contacto, /privacidad, /terminos y /gracias:
-     header 160, main 288. Ahora comparten borde izquierdo. */
-  max-width:44rem; margin-inline:0;
+.texto > *{
+  /* Acota la MEDIDA de lectura sin tocar el contenedor.
+     `.texto` comparte elemento con `.env`, que se centra con `margin:0 auto`
+     a 60rem. Pisarle el ancho a 44rem recentraba la columna y la dejaba
+     128 px a la derecha del encabezado; quitarle el margen automático la
+     mandaba al borde del viewport (160 px al otro lado). Las dos veces el
+     error fue tratar al contenedor como si fuera la columna de texto.
+     El contenedor se queda donde está y son los hijos los que se acotan. */
+  max-width:44rem;
 }
 .texto h2{font-size:1.1875rem;font-weight:600;letter-spacing:-.015em;margin:2.25rem 0 .6rem}
 .texto p{margin:0 0 1rem;max-width:64ch}
