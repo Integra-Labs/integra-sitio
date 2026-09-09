@@ -269,3 +269,16 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
 .paso--figura{padding-top:.25rem}
 .captura--interna{margin:0}
 .captura--interna img{border-radius:10px}
+
+/* ── El problema ───────────────────────────────────────────────────────────
+   Va antes del recorrido: el home arrancaba con la solución sin nombrar el
+   dolor. Deliberadamente NO usa la rejilla de tres — ya hay dos secciones con
+   esa forma y la revisión de diseño marcó la repetición. Acá son renglones
+   con la etiqueta a la izquierda, que además se lee más rápido. */
+.males{list-style:none;padding:0;margin:0 0 2rem;border-top:1px solid var(--linea)}
+.males li{display:grid;grid-template-columns:1fr;gap:.15rem;padding:.9rem 0;border-bottom:1px solid var(--linea)}
+@media(min-width:44rem){.males li{grid-template-columns:14rem 1fr;gap:1.5rem;align-items:baseline}}
+.males b{font-weight:600;letter-spacing:-.01em}
+.males span{color:var(--muted);font-size:1rem}
+.remate{font-size:clamp(1.125rem,2.4vw,1.375rem);line-height:1.4;letter-spacing:-.015em;
+  margin:0;max-width:34ch;font-weight:600}

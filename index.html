@@ -54,6 +54,17 @@
       </figcaption>
     </figure>
 
+    <!-- ── El problema ──────────────────────────────────────────────── -->
+    <section class="seccion" aria-labelledby="problema">
+      <h2 id="problema">El taller crece, pero la operación va en papel.</h2>
+      <ul class="males">
+        <li><b>Cuaderno y memoria</b><span>Las órdenes viven en una libreta, o en la cabeza de alguien.</span></li>
+        <li><b>Excel aparte</b><span>El inventario en una hoja que nadie actualiza a tiempo.</span></li>
+        <li><b>WhatsApp suelto</b><span>Repuestos, fotos y avisos dispersos, sin quedar en ningún lado.</span></li>
+      </ul>
+      <p class="remate">Cuando algo se sale del sistema, se pierde la orden — y se pierde el dato.</p>
+    </section>
+
     <!-- ── El recorrido de una orden ─────────────────────────────────── -->
     <section class="seccion" aria-labelledby="recorrido">
       <h2 id="recorrido">Un carro entra a las 8:00. A las 16:30 la caja cuadra.</h2>
@@ -75,16 +86,6 @@
             <h3>Inspección digital</h3>
             <p>El mecánico marca cada punto con foto y video. El cliente aprueba o rechaza <strong>ítem por ítem</strong>, no un documento entero.</p>
           </div>
-        </li>
-        <li class="paso paso--figura">
-          <span class="hora"></span>
-          <figure class="captura captura--interna">
-            <img src="/imagenes/inspecciones.webp" width="1400" height="491" loading="lazy" decoding="async"
-                 alt="Historial de inspecciones digitales del taller. Cada fila
-                      muestra la placa, el vehículo, el cliente, la fecha, si el
-                      cliente ya la revisó y cuántos ítems aprobó.">
-            <figcaption>El historial de inspecciones: quién revisó, cuándo, y cuántos ítems aprobó el cliente.</figcaption>
-          </figure>
         </li>
         <li class="paso">
           <span class="hora">9:40</span>
@@ -108,6 +109,39 @@
           </div>
         </li>
       </ol>
+    </section>
+
+    <!-- ── La inspección como venta ─────────────────────────────────── -->
+    <section class="seccion" aria-labelledby="inspeccion">
+      <h2 id="inspeccion">Cobre la inspección, aunque no haya orden.</h2>
+      <p class="entrada">
+        El cliente que llega «solo a que se lo revisen» hoy se va sin dejar nada.
+        La inspección digital lo convierte en un trabajo cobrable por sí mismo —
+        y en la evidencia que después vende la reparación.
+      </p>
+      <ol class="recorrido">
+        <li class="paso"><span class="hora">1</span><div>
+          <h3>Se inspecciona con el teléfono</h3>
+          <p>Punto por punto, con foto y video solo donde hay un hallazgo. No hay que abrir una orden para empezar.</p>
+        </div></li>
+        <li class="paso"><span class="hora">2</span><div>
+          <h3>El cliente recibe un enlace</h3>
+          <p>Un reporte limpio, con la evidencia a la vista. No hay que explicarle por teléfono lo que ya puede ver.</p>
+        </div></li>
+        <li class="paso"><span class="hora">3</span><div>
+          <h3>Aprueba ítem por ítem</h3>
+          <p>Marca qué autoriza y qué no, desde su teléfono. Lo aprobado entra al flujo del taller con todo el historial.</p>
+        </div></li>
+      </ol>
+      <p class="remate" style="margin-top:1.75rem">El que vio la evidencia aprueba más rápido y discute menos el precio.</p>
+
+      <figure class="captura">
+        <img src="/imagenes/inspecciones.webp" width="1400" height="491" loading="lazy" decoding="async"
+             alt="Historial de inspecciones digitales del taller. Cada fila muestra
+                  la placa, el vehículo, el cliente, la fecha, si el cliente ya la
+                  revisó y cuántos ítems aprobó.">
+        <figcaption>El historial: quién revisó, cuándo, y cuántos ítems aprobó el cliente.</figcaption>
+      </figure>
     </section>
 
     <!-- ── Integridad ─────────────────────────────────────────────────── -->
@@ -179,7 +213,7 @@
         </div>
         <div>
           <h3>Su factura sigue donde está</h3>
-          <p>La factura electrónica la sigue emitiendo el sistema que ya usa. No la reemplazamos ni le cobramos por ella.</p>
+          <p>La sigue emitiendo el sistema que ya usa. Y el cobro nunca se bloquea: si Hacienda se cae, usted cobra igual y la factura sale después.</p>
         </div>
       </div>
     </section>
