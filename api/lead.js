@@ -25,18 +25,68 @@ function redirigir(res, destino) {
   res.end()
 }
 
-/** Página de error mínima, servida desde la función porque no hay build. */
-function error(res, codigo, mensaje) {
+/** Escapa para interpolar en HTML. Los valores vienen del POST de quien
+ *  envía el formulario y se le devuelven en la página: sin esto, un `<script>`
+ *  en el campo del nombre se ejecutaría en su propio navegador. */
+function esc(v) {
+  return String(v ?? '').replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+}
+
+/**
+ * Página de error CON EL FORMULARIO YA LLENO.
+ *
+ * Antes esto devolvía 515 bytes sin encabezado ni pie y, sobre todo, tiraba a
+ * la basura lo que la persona había escrito. La validación del navegador
+ * atrapa el caso común, así que esta página se alcanza justo cuando algo
+ * nuestro falló —la base dormida, por ejemplo— y ahí perder el mensaje es
+ * exactamente lo contrario de lo que corresponde.
+ *
+ * Los valores NO viajan por la URL: se re-imprimen en el cuerpo de la
+ * respuesta. Un dato personal en un query string queda en el historial, en los
+ * registros del servidor y en el Referer.
+ *
+ * Duplica el marcado de `contacto.html`. Es deliberado y acotado a cinco
+ * campos: la alternativa era un paso de build, y el sitio no tiene ninguno.
+ * Si cambian los campos, cambian los dos lados.
+ */
+function error(res, codigo, mensaje, datos = {}) {
+  const v = k => esc(datos[k])
   res.statusCode = codigo
   res.setHeader('Content-Type', 'text/html; charset=utf-8')
   res.end(`<!doctype html><html lang="es-CR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>No se pudo enviar — Integra Núcleo</title>
+<title>No se pudo enviar — Integra Núcleo</title><meta name="robots" content="noindex">
+<link rel="preload" href="/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css"></head><body>
-<main><div class="env texto" style="padding-top:4rem">
-<h1>No se pudo enviar</h1><p class="sub">${mensaje}</p>
-<div class="acciones"><a class="btn btn-1" href="/contacto">Volver al formulario</a></div>
-</div></main></body></html>`)
+<header><div class="env"><div class="barra">
+<a class="marca" href="/"><b>Integra Núcleo</b><span>Costa Rica</span></a>
+<nav aria-label="Principal"><a href="/precios">Precios</a><a href="/contacto" aria-current="page">Contacto</a></nav>
+</div></div></header>
+<main><div class="env texto">
+<h1>No se pudo enviar</h1>
+<p class="sub">${esc(mensaje)}</p>
+<p class="nota">No perdimos nada de lo que escribió: está acá abajo, tal como lo dejó.</p>
+<form class="form" method="POST" action="/api/lead">
+  <div class="campo"><label for="nombre">Su nombre</label>
+    <input id="nombre" name="nombre" type="text" required autocomplete="name" maxlength="120" value="${v('nombre')}"></div>
+  <div class="campo"><label for="telefono">Teléfono <span class="ayuda">— por acá le contestamos</span></label>
+    <input id="telefono" name="telefono" type="tel" required autocomplete="tel" maxlength="40" value="${v('telefono')}"></div>
+  <div class="campo"><label for="taller">Nombre del taller <span class="ayuda">— opcional</span></label>
+    <input id="taller" name="taller" type="text" autocomplete="organization" maxlength="160" value="${v('taller')}"></div>
+  <div class="campo"><label for="correo">Correo <span class="ayuda">— opcional</span></label>
+    <input id="correo" name="correo" type="email" autocomplete="email" maxlength="160" value="${v('correo')}"></div>
+  <div class="campo"><label for="mensaje">¿En qué le ayudamos? <span class="ayuda">— opcional</span></label>
+    <textarea id="mensaje" name="mensaje" maxlength="2000">${v('mensaje')}</textarea></div>
+  <div class="trampa" aria-hidden="true"><label for="sitio_web">No llene este campo</label>
+    <input id="sitio_web" name="sitio_web" type="text" tabindex="-1" autocomplete="off"></div>
+  <div class="acciones"><button class="btn btn-1" type="submit">Enviar de nuevo</button></div>
+</form>
+</div></main>
+<footer><div class="env">
+<p>Integra Núcleo · Integra Labs</p>
+<p><a href="/privacidad">Privacidad</a> · <a href="/terminos">Términos</a> · <a href="/contacto">Contacto</a> · <a href="https://integranucleo.app">Entrar al sistema</a></p>
+</div></footer></body></html>`)
 }
 
 export default async function handler(req, res) {
@@ -52,7 +102,7 @@ export default async function handler(req, res) {
   const nombre   = limpiar(cuerpo.nombre,   LIMITES.nombre)
   const telefono = limpiar(cuerpo.telefono, LIMITES.telefono)
   if (!nombre || !telefono) {
-    return error(res, 400, 'Hacen falta el nombre y el teléfono para poder contestarle.')
+    return error(res, 400, 'Hacen falta el nombre y el teléfono para poder contestarle.', cuerpo)
   }
 
   try {
@@ -74,6 +124,6 @@ export default async function handler(req, res) {
     // Nunca se pierde en silencio: queda en los registros de la función con el
     // dato suficiente para recuperar el contacto a mano si hiciera falta.
     console.error('lead: falló la inserción', { nombre, telefono, error: String(e) })
-    return error(res, 500, 'Algo falló de nuestro lado. Intente de nuevo en un momento.')
+    return error(res, 500, 'Algo falló de nuestro lado. Intente de nuevo en un momento.', cuerpo)
   }
 }
