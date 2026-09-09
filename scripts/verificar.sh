@@ -49,7 +49,7 @@ for ruta in "${PAGINAS[@]}"; do
 
   # ── Presupuesto de peso ──────────────────────────────────────────────────
   total=$(wc -c < /tmp/pagina.html)
-  for recurso in $(grep -o 'href="/[^"]*\.css"' /tmp/pagina.html | sed 's/href="//;s/"//'); do
+  for recurso in $(grep -o 'href="/[^"]*\.\(css\|woff2\)"' /tmp/pagina.html | sed 's/href="//;s/"//'); do
     total=$((total + $(curl -s "${BASE}${recurso}" | wc -c)))
   done
   if [ "$total" -gt "$TECHO" ]; then

@@ -1,3 +1,18 @@
+/* Inter, alojada por nosotros. Antes venía de Google Fonts, lo que costaba dos
+   cosas: una petición a un tercero que recibía la IP de cada visitante, y una
+   hoja de estilo bloqueante que hundió el rendimiento de /privacidad a 0.84.
+   Un solo archivo variable cubre los cuatro pesos. */
+@font-face{
+  font-family:'Inter';
+  font-style:normal;
+  font-weight:400 700;
+  font-display:swap;
+  src:url('/fonts/inter-latin-var.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,
+    U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,
+    U+FEFF,U+FFFD;
+}
+
 /* Paleta heredada del sistema de diseño del producto. El texto secundario
      es #5B5B5B y no #727272: sobre este fondo crema, #727272 da 4.42:1 y
      reprueba AA para texto normal; #5B5B5B da 6.24:1. */
