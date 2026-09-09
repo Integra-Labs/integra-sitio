@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Integra Núcleo — gestión para talleres automotrices</title>
-<meta name="description" content="Integra Núcleo es el sistema de gestión para talleres automotrices de Costa Rica: recepción, inspección digital, proforma, cobro y cierre en un solo flujo.">
+<meta name="description" content="El sistema de gestión para talleres automotrices de Costa Rica: recepción, inspección digital, proforma, cobro y cierre en un solo flujo, donde el estado de la orden y el dinero no se pueden contradecir.">
 <link rel="canonical" href="https://integranucleo.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://integranucleo.com/">
@@ -29,40 +29,215 @@
 
 <main>
   <div class="env">
+
     <h1>El taller cierra la orden. La caja cuadra sola.</h1>
     <p class="sub">
       Recepción, inspección digital, proforma, cobro y cierre en un solo flujo —
       donde el estado de la orden y el dinero no se pueden contradecir.
     </p>
-
     <div class="acciones">
-      <a class="btn btn-1" href="https://integranucleo.app">Entrar al sistema</a>
+      <a class="btn btn-1" href="/precios">Ver precios</a>
       <a class="btn btn-2" href="https://wa.me/50687482394?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Integra%20N%C3%BAcleo%20para%20mi%20taller."
          rel="noopener">Escribinos por WhatsApp</a>
     </div>
-    <p class="nota">Estamos preparando el sitio. Si su taller ya usa Integra, entre por acá.</p>
+    <p class="nota">Desde ₡25.000 al mes por sucursal. Mecánicos ilimitados.</p>
 
-    <section class="puntos" aria-label="Cómo trabaja Integra Núcleo">
-      <article class="punto">
-        <h2>Cuando la IA no sabe, lo dice</h2>
-        <p>Ante un código de falla que no conoce, ARIA no inventa un diagnóstico ni imprime una confianza falsa. Está auditado y congelado con una prueba propia.</p>
-      </article>
-      <article class="punto">
-        <h2>El flujo no se puede saltar</h2>
-        <p>Las transiciones de una orden se validan en la base de datos, no solo en la pantalla. Una transición inválida se rechaza incluso por SQL directo.</p>
-      </article>
-      <article class="punto">
-        <h2>Hecho para Costa Rica</h2>
-        <p>WhatsApp oficial con plantillas aprobadas por Meta y cobro por SINPE. Su factura electrónica sigue saliendo del sistema que ya usa.</p>
-      </article>
+    <!-- ── El recorrido de una orden ─────────────────────────────────── -->
+    <section class="seccion" aria-labelledby="recorrido">
+      <h2 id="recorrido">Un carro entra a las 8:00. A las 16:30 la caja cuadra.</h2>
+      <p class="entrada">
+        No es una lista de módulos: es la jornada. Cada paso deja escrito quién
+        lo hizo y cuándo, y ninguno se puede saltar.
+      </p>
+      <ol class="recorrido">
+        <li class="paso">
+          <span class="hora">8:00</span>
+          <div>
+            <h3>Recepción</h3>
+            <p>Se abre la orden con la placa. El vehículo y el cliente ya tienen historial: lo que se capturó la visita pasada no se vuelve a preguntar.</p>
+          </div>
+        </li>
+        <li class="paso">
+          <span class="hora">8:20</span>
+          <div>
+            <h3>Inspección digital</h3>
+            <p>El mecánico marca cada punto con foto y video. El cliente aprueba o rechaza <strong>ítem por ítem</strong>, no un documento entero.</p>
+          </div>
+        </li>
+        <li class="paso">
+          <span class="hora">9:40</span>
+          <div>
+            <h3>Diagnóstico</h3>
+            <p>Ante un código de falla, ARIA sugiere a partir de lo confirmado en este taller. Si no conoce el código, lo dice.</p>
+          </div>
+        </li>
+        <li class="paso">
+          <span class="hora">10:15</span>
+          <div>
+            <h3>Proforma y autorización</h3>
+            <p>Sale por WhatsApp con plantilla aprobada. El cliente autoriza sin instalar nada ni crear una cuenta.</p>
+          </div>
+        </li>
+        <li class="paso">
+          <span class="hora">16:30</span>
+          <div>
+            <h3>Cobro y cierre</h3>
+            <p>Efectivo, transferencia o SINPE, incluso partido entre varios. El monto cobrado y el estado de la orden salen del mismo registro: no hay dos versiones de lo que se pagó.</p>
+          </div>
+        </li>
+      </ol>
     </section>
+
+    <!-- ── Integridad ─────────────────────────────────────────────────── -->
+    <section class="seccion" aria-labelledby="integridad">
+      <h2 id="integridad">El sistema no deja saltarse pasos. Ni desde la base de datos.</h2>
+      <p class="entrada">
+        La mayoría de los programas de taller validan en la pantalla. Cuando la
+        pantalla se equivoca —o alguien entra por otro lado— el dato queda mal y
+        nadie se entera hasta que la caja no cuadra.
+      </p>
+      <div class="tres">
+        <div>
+          <h3>Las transiciones se validan en la base</h3>
+          <p>Una orden no puede pasar a un estado que no corresponde, aunque el intento venga por SQL directo y no por la aplicación.</p>
+        </div>
+        <div>
+          <h3>El inventario no puede quedar negativo</h3>
+          <p>Es una restricción de la base de datos, no una advertencia. Vender lo que no existe es imposible, no improbable.</p>
+        </div>
+        <div>
+          <h3>La comisión queda congelada</h3>
+          <p>Se guarda como estaba el día que se cerró la orden. Cambiar un porcentaje hoy no reescribe lo que ya se liquidó.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ARIA ───────────────────────────────────────────────────────── -->
+    <section class="seccion" aria-labelledby="aria">
+      <h2 id="aria">Cuando nuestra IA no sabe, lo dice.</h2>
+      <p class="entrada">
+        ARIA aprende de los diagnósticos confirmados <strong>en su taller</strong>:
+        no es un texto genérico ni un modelo entrenado con la operación de otros.
+        Y tiene una propiedad que suena menor y no lo es.
+      </p>
+      <div class="tres">
+        <div>
+          <h3>No inventa para rellenar</h3>
+          <p>Ante un código que no conoce devuelve que no lo conoce. No fabrica un diagnóstico plausible ni imprime un porcentaje de confianza inventado.</p>
+        </div>
+        <div>
+          <h3>Aprende de lo confirmado</h3>
+          <p>Cada diagnóstico que el técnico confirma ajusta las sugerencias de ese taller. Mientras más se usa, más se parece a cómo trabaja usted.</p>
+        </div>
+        <div>
+          <h3>Asiste, no reemplaza</h3>
+          <p>La sugerencia llega al paso donde el técnico ya está trabajando. La decisión sigue siendo suya y queda registrada como suya.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Costa Rica ─────────────────────────────────────────────────── -->
+    <section class="seccion" aria-labelledby="cr">
+      <h2 id="cr">Hecho para cómo se trabaja acá.</h2>
+      <p class="entrada">
+        No es un producto gringo traducido. Los rieles que usa su taller todos
+        los días son los que están integrados.
+      </p>
+      <div class="tres">
+        <div>
+          <h3>WhatsApp oficial</h3>
+          <p>Con plantillas aprobadas por Meta, no un enlace suelto. El cliente recibe la proforma donde ya lee sus mensajes.</p>
+        </div>
+        <div>
+          <h3>SINPE</h3>
+          <p>Se registra junto al efectivo y la transferencia, y se puede partir un cobro entre varios métodos en una sola orden.</p>
+        </div>
+        <div>
+          <h3>Su factura sigue donde está</h3>
+          <p>La factura electrónica la sigue emitiendo el sistema que ya usa. No la reemplazamos ni le cobramos por ella.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Precios ────────────────────────────────────────────────────── -->
+    <section class="seccion" aria-labelledby="precios">
+      <h2 id="precios">Se cobra por taller, no por persona.</h2>
+      <p class="entrada">
+        Mecánicos, cajeros, órdenes y vehículos ilimitados en los tres planes.
+        El precio va por sucursal y por mes, en colones.
+      </p>
+      <div class="precio-mini">
+        <div><strong>Taller</strong><b>₡25.000</b><span>el flujo completo + ARIA básico</span></div>
+        <div><strong>Taller Pro</strong><b>₡35.000</b><span>+ inventario, WhatsApp y CRM</span></div>
+        <div><strong>Grupo</strong><b>₡50.000</b><span>+ ARIA completo y varias sucursales</span></div>
+      </div>
+      <div class="acciones">
+        <a class="btn btn-2" href="/precios">Ver qué trae cada plan</a>
+      </div>
+    </section>
+
+    <!-- ── FAQ ────────────────────────────────────────────────────────── -->
+    <section class="seccion faq" aria-labelledby="faq">
+      <h2 id="faq">Preguntas que nos hacen</h2>
+      <p class="entrada">Las que aparecen antes de decidir, contestadas sin rodeos.</p>
+
+      <details>
+        <summary>¿Qué pasa con los datos que ya tengo?</summary>
+        <p>Se traen en el arranque. Lo revisamos con usted antes de empezar, con lo que tenga —cuaderno, Excel u otro sistema— y no se cobra aparte.</p>
+      </details>
+      <details>
+        <summary>¿Cobran por cada mecánico?</summary>
+        <p>No. Se cobra por sucursal. Dentro de una sucursal no hay límite de personas, ni de órdenes, ni de vehículos.</p>
+      </details>
+      <details>
+        <summary>¿Puedo probarlo antes?</summary>
+        <p>Sí, pero no hay registro automático todavía: el alta la hacemos con usted, configurando su catálogo de servicios y sus usuarios antes de que empiece a operar. Escríbanos y lo coordinamos.</p>
+      </details>
+      <details>
+        <summary>¿Tengo que cambiar mi factura electrónica?</summary>
+        <p>No. Es una decisión deliberada: la factura fiscal cambia cada vez que Hacienda cambia, y preferimos que la resuelva el sistema que ya la resuelve bien.</p>
+      </details>
+      <details>
+        <summary>¿Funciona en el teléfono del taller?</summary>
+        <p>Se instala como aplicación desde el navegador, sin bajar nada de una tienda. Y está pensada para el internet real de un taller: si la red se pone lenta, la pantalla no se queda colgada esperando — a los seis segundos muestra lo que tiene en caché.</p>
+      </details>
+      <details>
+        <summary>¿Quién puede ver qué?</summary>
+        <p>Los permisos se definen por persona, no solo por cargo. Un mecánico no ve la caja, y usted decide caso por caso quién sí.</p>
+      </details>
+      <details>
+        <summary>¿Venden repuestos?</summary>
+        <p>No, y es a propósito. Cuando el sistema dice que hace falta una pieza, nadie está ganando una comisión por esa recomendación.</p>
+      </details>
+      <details>
+        <summary>¿Sirve para llantera o para taller de eléctricos?</summary>
+        <p>Sí. El catálogo de servicios y la inspección se adaptan al tipo de taller, sin cambiar de producto ni pagar un módulo aparte.</p>
+      </details>
+
+      <p class="nota" style="margin-top:1.5rem">
+        ¿Prefiere preguntarlo por WhatsApp?
+        <a href="https://wa.me/50687482394?text=Hola%2C%20tengo%20una%20consulta%20sobre%20Integra%20N%C3%BAcleo." rel="noopener">Escríbanos al +506 8748 2394</a>.
+      </p>
+    </section>
+
+    <!-- ── Cierre ─────────────────────────────────────────────────────── -->
+    <section class="cierre" aria-labelledby="cierre">
+      <h2 id="cierre">Vea si le calza a su taller.</h2>
+      <p>Le mostramos el flujo completo con un carro suyo, no con una demo de mentira.</p>
+      <div class="acciones">
+        <a class="btn btn-1" href="https://wa.me/50687482394?text=Hola%2C%20quiero%20ver%20Integra%20N%C3%BAcleo%20para%20mi%20taller."
+           rel="noopener">Escribinos por WhatsApp</a>
+        <a class="btn btn-2" href="/precios">Ver precios</a>
+      </div>
+    </section>
+
   </div>
 </main>
 
 <footer>
   <div class="env">
-    <p>Integra Núcleo · Integra Labs · Sitio en construcción</p>
-    <p>WhatsApp <a href="https://wa.me/50687482394" rel="noopener">+506 8748 2394</a></p>
+    <p>Integra Núcleo · Integra Labs</p>
+    <p>WhatsApp <a href="https://wa.me/50687482394" rel="noopener">+506 8748 2394</a> · <a href="https://integranucleo.app">Entrar al sistema</a></p>
   </div>
 </footer>
 </body>
