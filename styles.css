@@ -194,8 +194,16 @@
 .barra a,
 footer a{
   display:inline-flex; align-items:center; min-height:44px;
-  padding-inline:.4rem; margin-inline:-.4rem;
 }
+/* Sin padding horizontal, y esa ausencia es el arreglo.
+   La primera versión agregaba .4rem a cada lado compensados con margen
+   negativo, para subir el alto de toque sin mover la maqueta. Pero eso ensancha
+   la CAJA sin ensanchar el hueco entre enlaces: medido en producción, el nav
+   quedó con −9 px de separación y el pie con −3 y −4. O sea que las áreas de
+   toque se SUPERPONÍAN y tocar cerca del borde activaba el enlace equivocado.
+   Un arreglo de accesibilidad que empeoró la accesibilidad.
+   El requisito era el ALTO. `min-height` solo ya lo cumple, y los anchos nunca
+   estuvieron por debajo del mínimo: el más angosto es «Precios», con 54 px. */
 footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
 
 /* ── Reaseguro del hero ────────────────────────────────────────────────────
