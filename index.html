@@ -15,74 +15,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  /* Paleta heredada del sistema de diseño del producto. El texto secundario
-     es #5B5B5B y no #727272: sobre este fondo crema, #727272 da 4.42:1 y
-     reprueba AA para texto normal; #5B5B5B da 6.24:1. */
-  :root{
-    --papel:#F7F5F2; --tinta:#111827; --acento:#1B4F72; --acento-hover:#154060;
-    --muted:#5B5B5B; --linea:#E2DED8; --blanco:#FFFFFF;
-    --paso:clamp(1rem,2.5vw,1.5rem);
-  }
-  *,*::before,*::after{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0; background:var(--papel); color:var(--tinta);
-    font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
-    font-size:1.0625rem; line-height:1.6; -webkit-font-smoothing:antialiased;
-    /* Retícula de plano, muy tenue — la metáfora del papel de trabajo. */
-    background-image:linear-gradient(var(--linea) 1px,transparent 1px),
-                     linear-gradient(90deg,var(--linea) 1px,transparent 1px);
-    background-size:64px 64px; background-position:-1px -1px;
-  }
-  .env{max-width:60rem;margin:0 auto;padding:0 var(--paso)}
-  a{color:var(--acento)}
-  a:focus-visible,.btn:focus-visible{outline:3px solid var(--acento);outline-offset:3px;border-radius:2px}
-
-  header{padding:2rem 0 0}
-  .marca{display:flex;align-items:baseline;gap:.5rem;font-weight:700;letter-spacing:-.01em}
-  .marca b{font-size:1.125rem}
-  .marca span{font-size:.8125rem;color:var(--muted);font-weight:500}
-
-  main{padding:clamp(3rem,9vw,6rem) 0 0}
-  h1{
-    font-size:clamp(2.125rem,6.2vw,4rem); line-height:1.04; letter-spacing:-.035em;
-    font-weight:700; margin:0 0 1.25rem; max-width:16ch;
-  }
-  .sub{font-size:clamp(1.0625rem,2.1vw,1.3125rem);color:var(--muted);max-width:56ch;margin:0 0 2rem}
-
-  .acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem}
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;
-    min-height:48px;padding:.75rem 1.35rem;border-radius:8px;
-    font-weight:600;font-size:1rem;text-decoration:none;border:1px solid transparent;
-    transition:background-color .15s ease,border-color .15s ease;
-  }
-  .btn-1{background:var(--acento);color:var(--blanco)}
-  .btn-1:hover{background:var(--acento-hover)}
-  .btn-2{background:transparent;color:var(--tinta);border-color:var(--tinta)}
-  .btn-2:hover{background:var(--blanco)}
-  .nota{font-size:.9375rem;color:var(--muted);margin:0}
-
-  .puntos{
-    display:grid;gap:1.5rem;margin:clamp(3rem,8vw,5rem) 0 0;
-    grid-template-columns:1fr;border-top:1px solid var(--linea);padding-top:2rem;
-  }
-  @media(min-width:44rem){.puntos{grid-template-columns:repeat(3,1fr);gap:2.5rem}}
-  .punto h2{font-size:1.0625rem;font-weight:600;margin:0 0 .5rem;letter-spacing:-.01em}
-  .punto p{margin:0;color:var(--muted);font-size:.9688rem}
-
-  footer{
-    margin-top:clamp(3.5rem,9vw,6rem);border-top:1px solid var(--linea);
-    padding:1.5rem 0 3rem;color:var(--muted);font-size:.9375rem;
-  }
-  footer p{margin:0}
-</style>
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <header>
   <div class="env">
-    <p class="marca"><b>Integra Núcleo</b><span>Costa Rica</span></p>
+    <div class="barra">
+      <a class="marca" href="/"><b>Integra Núcleo</b><span>Costa Rica</span></a>
+      <nav aria-label="Principal"><a href="/precios">Precios</a></nav>
+    </div>
   </div>
 </header>
 
