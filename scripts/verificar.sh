@@ -9,7 +9,7 @@
 set -uo pipefail
 
 BASE="${1:?falta la URL base}"
-PAGINAS=(/ /precios)
+PAGINAS=(/ /precios /privacidad /terminos)
 
 # Presupuesto de peso, en bytes: HTML de la página más todo lo que cuelga de
 # ella y sirve nuestro propio dominio. El techo del plan es 500 KB; el sitio

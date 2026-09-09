@@ -135,3 +135,11 @@
 .cierre .btn-1:hover{background:#FFFFFF}
 .cierre .btn-2{color:var(--papel);border-color:#4A5568}
 .cierre .btn-2:hover{background:#1F2937}
+
+/* ── Páginas de texto legal ────────────────────────────────────────────── */
+.texto{max-width:44rem}
+.texto h2{font-size:1.1875rem;font-weight:600;letter-spacing:-.015em;margin:2.25rem 0 .6rem}
+.texto p{margin:0 0 1rem;max-width:64ch}
+.texto ul{margin:0 0 1rem;padding-left:1.15rem;max-width:64ch}
+.texto li{margin-bottom:.55rem;line-height:1.6}
+.texto .nota{margin-top:2.5rem;padding-top:1.25rem;border-top:1px solid var(--linea)}
