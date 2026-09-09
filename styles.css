@@ -152,7 +152,14 @@
 .cierre .btn-2:hover{background:#1F2937}
 
 /* ── Páginas de texto legal ────────────────────────────────────────────── */
-.texto{max-width:44rem}
+.texto{
+  /* Acota la MEDIDA sin volver a centrar. `.texto` comparte elemento con
+     `.env`, que trae `margin:0 auto`; al pisar el ancho a 44rem la columna se
+     recentraba y quedaba 128 px a la derecha del encabezado y del pie, que
+     siguen en 60rem. Medido en /contacto, /privacidad, /terminos y /gracias:
+     header 160, main 288. Ahora comparten borde izquierdo. */
+  max-width:44rem; margin-inline:0;
+}
 .texto h2{font-size:1.1875rem;font-weight:600;letter-spacing:-.015em;margin:2.25rem 0 .6rem}
 .texto p{margin:0 0 1rem;max-width:64ch}
 .texto ul{margin:0 0 1rem;padding-left:1.15rem;max-width:64ch}
