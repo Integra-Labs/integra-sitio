@@ -1,0 +1,37 @@
+name: Calidad
+
+# El sitio no tiene build, así que lo que hay que vigilar no es que compile:
+# es que siga siendo liviano, legible sin JavaScript y accesible. Los tres se
+# rompen en silencio —nadie ve un error— y por eso son gate duro, no aviso.
+#
+# Medido el 2026-09-09 sobre /precios: rendimiento 99, accesibilidad 100,
+# buenas prácticas 96, SEO 100. El umbral está en 90 para dejar margen.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  calidad:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Levantar el sitio
+        run: |
+          npx --yes serve@14 -l 4173 . &
+          npx --yes wait-on@7 --timeout 60000 http://localhost:4173/
+
+      - name: Comprobaciones deterministas
+        run: ./scripts/verificar.sh http://localhost:4173
+
+      - name: Accesibilidad (axe)
+        run: npx --yes @axe-core/cli@4 --exit http://localhost:4173/ http://localhost:4173/precios
+
+      - name: Lighthouse
+        run: npx --yes @lhci/cli@0.14 autorun

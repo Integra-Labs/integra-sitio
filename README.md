@@ -32,6 +32,25 @@ despliega. Para verlo local basta con abrir el archivo en el navegador.
 - **Accesibilidad:** un `<h1>` real por página, foco visible, objetivo de toque
   de al menos 44 px y contraste mínimo AA verificado por cálculo.
 
+## Calidad
+
+Cada push y cada PR corren `.github/workflows/calidad.yml`, con tres gates duros:
+
+- `scripts/verificar.sh` — un solo `<h1>` con texto **en el HTML crudo**, título
+  y descripción presentes, presupuesto de peso, y ningún `aggregateRating`.
+- **axe** — cero violaciones de accesibilidad.
+- **Lighthouse** — mínimo 90 en rendimiento, accesibilidad, buenas prácticas y SEO.
+
+El primero se comprueba sobre el HTML sin ejecutar scripts a propósito: si un
+título o un número lo pinta JavaScript, el gate tiene que verlo vacío.
+
+Para correrlos en local:
+
+```
+npx serve -l 4173 .
+./scripts/verificar.sh http://localhost:4173
+```
+
 ## Dominios
 
 | Host | Rol |
