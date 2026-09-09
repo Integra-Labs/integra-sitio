@@ -70,8 +70,8 @@
     <section class="seccion" aria-labelledby="recorrido">
       <h2 id="recorrido">Un carro entra a las 8:00. A las 16:30 la caja cuadra.</h2>
       <p class="entrada">
-        No es una lista de módulos: es la jornada. Cada paso deja escrito quién
-        lo hizo y cuándo, y ninguno se puede saltar.
+        No es una lista de funciones: es el día. Cada paso deja escrito quién lo
+        hizo y cuándo.
       </p>
       <ol class="recorrido">
         <li class="paso">
@@ -99,17 +99,18 @@
           <span class="hora">10:15</span>
           <div>
             <h3>Proforma y autorización</h3>
-            <p>Sale por WhatsApp con plantilla aprobada. El cliente autoriza sin instalar nada ni crear una cuenta.</p>
+            <p>Le llega al cliente por WhatsApp. Autoriza desde ahí, sin instalar nada ni crear una cuenta.</p>
           </div>
         </li>
         <li class="paso">
           <span class="hora">16:30</span>
           <div>
             <h3>Cobro y cierre</h3>
-            <p>Efectivo, transferencia o SINPE, incluso partido entre varios. El monto cobrado y el estado de la orden salen del mismo registro: no hay dos versiones de lo que se pagó.</p>
+            <p>Efectivo, transferencia o SINPE, incluso partido entre varios. Lo que se cobró y el estado de la orden son el mismo dato: no hay dos versiones de lo que entró.</p>
           </div>
         </li>
       </ol>
+      <p class="remate" style="margin-top:1.75rem">Al cerrar el día, cada carro que entró está cobrado — o se ve por qué no.</p>
     </section>
 
     <!-- ── La inspección como venta ─────────────────────────────────── -->
@@ -149,18 +150,18 @@
     <section class="seccion" aria-labelledby="aria">
       <h2 id="aria">Cuando nuestra IA no sabe, lo dice.</h2>
       <p class="entrada">
-        ARIA aprende de los diagnósticos confirmados <strong>en su taller</strong>:
-        no es un texto genérico ni un modelo entrenado con la operación de otros.
-        Y tiene una propiedad que suena menor y no lo es.
+        ARIA aprende de los diagnósticos que su técnico confirma
+        <strong>en su taller</strong>. Mientras más se usa, más se parece a cómo
+        trabaja su gente.
       </p>
       <div class="tres">
         <div>
           <h3>No inventa para rellenar</h3>
-          <p>Ante un código que no conoce devuelve que no lo conoce. No fabrica un diagnóstico plausible ni imprime un porcentaje de confianza inventado.</p>
+          <p>Ante una falla que no conoce, dice que no la conoce. No se inventa una causa para llenar la pantalla y mandar al técnico a perder la mañana.</p>
         </div>
         <div>
           <h3>Aprende de lo confirmado</h3>
-          <p>Cada diagnóstico que el técnico confirma ajusta las sugerencias de ese taller. Mientras más se usa, más se parece a cómo trabaja usted.</p>
+          <p>Lo que hoy sabe su mecánico de más experiencia queda en el taller. Cada diagnóstico confirmado ajusta lo que ARIA le sugiere al siguiente.</p>
         </div>
         <div>
           <h3>Asiste, no reemplaza</h3>
@@ -174,24 +175,25 @@
 
     <!-- ── Integridad ─────────────────────────────────────────────────── -->
     <section class="seccion panel" aria-labelledby="integridad">
-      <h2 id="integridad">El sistema no deja saltarse pasos. Ni desde la base de datos.</h2>
+      <h2 id="integridad">Lo que entró a la caja y lo que dice el sistema son el mismo número.</h2>
       <p class="entrada">
-        La mayoría de los programas de taller validan en la pantalla. Cuando la
-        pantalla se equivoca —o alguien entra por otro lado— el dato queda mal y
-        nadie se entera hasta que la caja no cuadra.
+        En un taller el dinero no se pierde de golpe: se escapa de a poco. Una
+        orden que se cerró sin cobrar. Un repuesto que salió de bodega y nadie
+        anotó. Una comisión que se recalculó después. Acá nada de eso depende de
+        que alguien se acuerde.
       </p>
       <div class="tres">
         <div>
-          <h3>Las transiciones se validan en la base</h3>
-          <p>Una orden no puede pasar a un estado que no corresponde, aunque el intento venga por SQL directo y no por la aplicación.</p>
+          <h3>Una orden no se cierra sin cobrarse</h3>
+          <p>No es un aviso que se pueda saltar apurado. El sistema simplemente no la deja pasar a cerrada.</p>
         </div>
         <div>
-          <h3>El inventario no puede quedar negativo</h3>
-          <p>Es una restricción de la base de datos, no una advertencia. Vender lo que no existe es imposible, no improbable.</p>
+          <h3>No sale de bodega lo que no está en bodega</h3>
+          <p>Si la pieza no está, no se puede montar en la orden. Su inventario en pantalla es el que hay en el estante.</p>
         </div>
         <div>
-          <h3>La comisión queda congelada</h3>
-          <p>Se guarda como estaba el día que se cerró la orden. Cambiar un porcentaje hoy no reescribe lo que ya se liquidó.</p>
+          <h3>La comisión queda como quedó</h3>
+          <p>Se guarda tal cual el día que se cerró la orden. Cambiar un porcentaje hoy no le mueve a nadie la liquidación de la semana pasada.</p>
         </div>
       </div>
     </section>
@@ -200,13 +202,13 @@
     <section class="seccion" aria-labelledby="cr">
       <h2 id="cr">Hecho para cómo se trabaja acá.</h2>
       <p class="entrada">
-        No es un producto gringo traducido. Los rieles que usa su taller todos
-        los días son los que están integrados.
+        Lo que su taller ya usa todos los días viene integrado: no hay que
+        cambiar de forma de trabajar para que le sirva.
       </p>
       <div class="tres">
         <div>
-          <h3>WhatsApp oficial</h3>
-          <p>Con plantillas aprobadas por Meta, no un enlace suelto. El cliente recibe la proforma donde ya lee sus mensajes.</p>
+          <h3>WhatsApp</h3>
+          <p>La proforma le llega al cliente por WhatsApp, donde ya lee todo lo demás. No es un enlace suelto: sale del taller y queda registrado en la orden.</p>
         </div>
         <div>
           <h3>SINPE</h3>
@@ -259,7 +261,7 @@
       </details>
       <details>
         <summary>¿Funciona en el teléfono del taller?</summary>
-        <p>Se instala como aplicación desde el navegador, sin bajar nada de una tienda. Y está pensada para el internet real de un taller: si la red se pone lenta, la pantalla no se queda colgada esperando — a los seis segundos muestra lo que tiene en caché.</p>
+        <p>Sí, y se instala sin bajar nada de una tienda de aplicaciones. Está hecha para el internet real de un taller: si la señal se pone lenta, la pantalla no se queda pegada esperando — le muestra lo último que tenía y usted sigue trabajando.</p>
       </details>
       <details>
         <summary>¿Quién puede ver qué?</summary>
@@ -271,7 +273,7 @@
       </details>
       <details>
         <summary>¿Sirve para llantera o para taller de eléctricos?</summary>
-        <p>Sí. El catálogo de servicios y la inspección se adaptan al tipo de taller, sin cambiar de producto ni pagar un módulo aparte.</p>
+        <p>Sí. El catálogo de servicios y la inspección se adaptan al tipo de taller, sin cambiar de producto ni pagar un extra.</p>
       </details>
 
       <p class="nota" style="margin-top:1.5rem">
@@ -286,7 +288,7 @@
       <h2 id="norte">Que su taller pueda tomar el trabajo que hoy rechaza.</h2>
       <p class="entrada">
         Hoy hay trabajo que su taller devuelve, o que subcontrata a ciegas y con
-        él pierde el control del cliente. Cada módulo nuevo apunta a lo mismo:
+        él pierde el control del cliente. Cada cosa nueva que construimos apunta a lo mismo:
         que pueda capturarlo sin comprar equipo ni certificar a nadie — el
         cliente se queda con usted, la orden se abre en su taller y el
         especialista entra dentro de su flujo.
@@ -301,7 +303,7 @@
     <!-- ── Cierre ─────────────────────────────────────────────────────── -->
     <section class="cierre" aria-labelledby="cierre">
       <h2 id="cierre">Vea si le calza a su taller.</h2>
-      <p>Le mostramos el flujo completo con un carro suyo, no con una demo de mentira.</p>
+      <p>Le mostramos el recorrido completo con un carro suyo y sus propios precios.</p>
       <div class="acciones">
         <a class="btn btn-1" href="/contacto">Escríbanos</a>
         <a class="btn btn-2" href="/precios">Ver precios</a>
