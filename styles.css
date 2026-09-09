@@ -293,3 +293,14 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
 .males span{color:var(--muted);font-size:1rem}
 .remate{font-size:clamp(1.125rem,2.4vw,1.375rem);line-height:1.4;letter-spacing:-.015em;
   margin:0;max-width:34ch;font-weight:600}
+
+/* Antetítulo del hero: carga la categoría —«gestión de taller con IA»— para
+   que el titular no tenga que gastarse en decir qué es esto. */
+.antetitulo{
+  font-size:.875rem; font-weight:600; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--acento); margin:0 0 1rem;
+}
+
+/* El antetítulo también sirve dentro de una sección, para etiquetar una que
+   habla de futuro. Que se lea distinto es parte del mensaje. */
+.seccion .antetitulo{margin-bottom:.5rem}

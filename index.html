@@ -31,10 +31,11 @@
 <main>
   <div class="env">
 
-    <h1>El taller cierra la orden. La caja cuadra sola.</h1>
+    <p class="antetitulo">Gestión del taller formal, de punta a punta</p>
+    <h1>Su taller aprende. Que no se vaya cuando se va el mecánico.</h1>
     <p class="sub">
-      Recepción, inspección digital, proforma, cobro y cierre en un solo flujo —
-      donde el estado de la orden y el dinero no se pueden contradecir.
+      Ordena su taller desde el primer día —recepción, inspección, proforma y
+      cobro en un solo flujo— y cada semana sabe más de él.
     </p>
     <div class="acciones">
       <a class="btn btn-1" href="/precios">Ver precios</a>
@@ -144,32 +145,8 @@
       </figure>
     </section>
 
-    <!-- ── Integridad ─────────────────────────────────────────────────── -->
-    <section class="seccion" aria-labelledby="integridad">
-      <h2 id="integridad">El sistema no deja saltarse pasos. Ni desde la base de datos.</h2>
-      <p class="entrada">
-        La mayoría de los programas de taller validan en la pantalla. Cuando la
-        pantalla se equivoca —o alguien entra por otro lado— el dato queda mal y
-        nadie se entera hasta que la caja no cuadra.
-      </p>
-      <div class="tres">
-        <div>
-          <h3>Las transiciones se validan en la base</h3>
-          <p>Una orden no puede pasar a un estado que no corresponde, aunque el intento venga por SQL directo y no por la aplicación.</p>
-        </div>
-        <div>
-          <h3>El inventario no puede quedar negativo</h3>
-          <p>Es una restricción de la base de datos, no una advertencia. Vender lo que no existe es imposible, no improbable.</p>
-        </div>
-        <div>
-          <h3>La comisión queda congelada</h3>
-          <p>Se guarda como estaba el día que se cerró la orden. Cambiar un porcentaje hoy no reescribe lo que ya se liquidó.</p>
-        </div>
-      </div>
-    </section>
-
     <!-- ── ARIA ───────────────────────────────────────────────────────── -->
-    <section class="seccion panel" aria-labelledby="aria">
+    <section class="seccion" aria-labelledby="aria">
       <h2 id="aria">Cuando nuestra IA no sabe, lo dice.</h2>
       <p class="entrada">
         ARIA aprende de los diagnósticos confirmados <strong>en su taller</strong>:
@@ -192,6 +169,30 @@
       </div>
       <div class="acciones" style="margin-top:1.75rem">
         <a class="btn btn-2" href="/aria">Cómo se mide su precisión</a>
+      </div>
+    </section>
+
+    <!-- ── Integridad ─────────────────────────────────────────────────── -->
+    <section class="seccion panel" aria-labelledby="integridad">
+      <h2 id="integridad">El sistema no deja saltarse pasos. Ni desde la base de datos.</h2>
+      <p class="entrada">
+        La mayoría de los programas de taller validan en la pantalla. Cuando la
+        pantalla se equivoca —o alguien entra por otro lado— el dato queda mal y
+        nadie se entera hasta que la caja no cuadra.
+      </p>
+      <div class="tres">
+        <div>
+          <h3>Las transiciones se validan en la base</h3>
+          <p>Una orden no puede pasar a un estado que no corresponde, aunque el intento venga por SQL directo y no por la aplicación.</p>
+        </div>
+        <div>
+          <h3>El inventario no puede quedar negativo</h3>
+          <p>Es una restricción de la base de datos, no una advertencia. Vender lo que no existe es imposible, no improbable.</p>
+        </div>
+        <div>
+          <h3>La comisión queda congelada</h3>
+          <p>Se guarda como estaba el día que se cerró la orden. Cambiar un porcentaje hoy no reescribe lo que ya se liquidó.</p>
+        </div>
       </div>
     </section>
 
@@ -276,6 +277,24 @@
       <p class="nota" style="margin-top:1.5rem">
         ¿Le quedó una duda que no está acá?
         <a href="/contacto">Escríbanos</a> y le contestamos.
+      </p>
+    </section>
+
+    <!-- ── Hacia dónde va ───────────────────────────────────────────── -->
+    <section class="seccion" aria-labelledby="norte">
+      <p class="antetitulo">Hacia dónde va</p>
+      <h2 id="norte">Que su taller pueda tomar el trabajo que hoy rechaza.</h2>
+      <p class="entrada">
+        Hoy hay trabajo que su taller devuelve, o que subcontrata a ciegas y con
+        él pierde el control del cliente. Cada módulo nuevo apunta a lo mismo:
+        que pueda capturarlo sin comprar equipo ni certificar a nadie — el
+        cliente se queda con usted, la orden se abre en su taller y el
+        especialista entra dentro de su flujo.
+      </p>
+      <p class="nota">
+        <strong>Vehículos eléctricos y electrónica automotriz están en camino, y
+        hoy no están disponibles.</strong> Cuando lo estén, lo va a leer acá — y
+        mientras tanto no se lo vamos a cobrar en un plan.
       </p>
     </section>
 
