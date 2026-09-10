@@ -335,7 +335,11 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
   clip-path:inset(50%);white-space:nowrap;border:0}
 .comparativa{overflow-x:auto;margin-top:clamp(2rem,5vw,3rem)}
 .comparativa table{border-collapse:collapse;width:100%;min-width:34rem;font-size:.9375rem}
-.comparativa caption{text-align:left;color:var(--muted);font-size:.9375rem;margin-bottom:.75rem}
+/* /precios era la única página con el titular de sección a la izquierda
+   mientras las otras siete lo centran. El estilo estaba además en un atributo
+   `style` dentro del HTML, o sea fuera del sistema. */
+.comparativa > h2{font-size:1.375rem;margin:0 auto .5rem;text-align:center;max-width:24ch}
+.comparativa caption{text-align:center;color:var(--muted);font-size:.9375rem;margin-bottom:.75rem}
 .comparativa th,.comparativa td{padding:.6rem .75rem;border-bottom:1px solid var(--linea);text-align:left}
 .comparativa thead th{font-size:.875rem;letter-spacing:.02em;text-transform:uppercase;color:var(--muted)}
 .comparativa tbody th{font-weight:400}
