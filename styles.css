@@ -95,6 +95,10 @@
 .planes{display:grid;gap:1.25rem;grid-template-columns:1fr;margin:2.5rem 0 0;align-items:start}
 @media(min-width:56rem){.planes{grid-template-columns:repeat(3,1fr);gap:1.5rem}}
 .plan{background:var(--blanco);border:1px solid var(--linea);border-radius:12px;padding:1.5rem}
+/* Apiladas —por debajo de 56rem— las tarjetas ocupaban todo el ancho y a 768 px
+   los renglones llegaban a 85 caracteres. Se acotan y se centran: una tarjeta
+   de plan no gana nada por ser más ancha que su texto. */
+@media(max-width:55.99rem){.plan{max-width:34rem;margin-inline:auto}}
 .plan.destacado{border-color:var(--acento);border-width:2px}
 .plan .etiqueta{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.06em;
   text-transform:uppercase;color:var(--acento);margin:0 0 .5rem}
@@ -496,3 +500,53 @@ main > .env:not(.texto) > .nota,
    ~0.63em, bastante más que el ancho medio de una letra minúscula (~0.5em).
    Por eso 64ch daba 80 caracteres por línea y no 64. Los topes de arriba están
    calculados con esa relación para caer en el rango legible de 45-75. */
+
+/* ── Desplegables del menú ─────────────────────────────────────────────────
+   Con `<details>`, no con `:hover`. Un menú por hover sin JavaScript es una
+   trampa: no existe hover en pantalla táctil, y al tocarlo se abre y se navega
+   a la vez. `<details>` se abre con clic, funciona con teclado sin una línea de
+   script, y el navegador ya le da el rol y el estado a los lectores de pantalla.
+   Es el mismo mecanismo que el FAQ.
+
+   Cada lista incluye su propia página índice como primer ítem, para que abrir
+   el desplegable no le quite al visitante el destino que el rótulo prometía. */
+.desplegable{position:relative}
+.desplegable > summary{
+  display:inline-flex;align-items:center;gap:.3rem;min-height:44px;
+  cursor:pointer;list-style:none;color:var(--acento);font-weight:inherit;
+}
+.desplegable > summary::-webkit-details-marker{display:none}
+.desplegable > summary::after{
+  content:"";width:.42em;height:.42em;border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor;transform:rotate(45deg) translate(-.1em,-.1em);
+  transition:transform .15s ease;
+}
+.desplegable[open] > summary::after{transform:rotate(225deg) translate(-.06em,-.06em)}
+.desplegable > summary:focus-visible{outline:3px solid var(--acento);outline-offset:3px;border-radius:2px}
+.desplegable > summary[aria-current="true"]{text-decoration:underline;text-underline-offset:6px}
+
+.desplegable-lista{
+  position:absolute;top:calc(100% + .35rem);left:-.75rem;z-index:20;
+  min-width:14rem;display:flex;flex-direction:column;
+  background:var(--blanco);border:1px solid var(--linea);border-radius:12px;
+  padding:.4rem;box-shadow:var(--sombra-alta);
+}
+.desplegable-lista a{
+  display:flex;align-items:center;min-height:44px;padding:0 .75rem;
+  border-radius:8px;text-decoration:none;font-size:.9375rem;
+}
+.desplegable-lista a:hover{background:var(--fondo-alt)}
+.desplegable-lista a:first-child{color:var(--muted);font-weight:600}
+
+/* En angosto el panel se ancla al NAV, no al ítem: un panel de 14rem colgado
+   de «Recursos», que queda a media fila, se sale por la derecha.
+   Y sigue flotando en vez de empujar: la primera versión le daba ancho completo
+   a cada desplegable y la barra pasaba de 166 px a 265 —cuatro filas y un tercio
+   de la pantalla gastado en el menú, antes del titular—. */
+@media(max-width:40rem){
+  .barra nav{position:relative}
+  /* El ítem deja de ser el bloque contenedor para que el panel se ancle al
+     nav. Sin esto el panel medía 77 px, el ancho del rótulo. */
+  .desplegable{position:static}
+  .desplegable-lista{left:0;right:0;min-width:0;top:calc(100% + .5rem)}
+}
