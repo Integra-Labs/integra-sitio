@@ -56,7 +56,7 @@
     font-size:clamp(2.125rem,6.2vw,4rem); line-height:1.04; letter-spacing:-.035em;
     font-weight:700; margin:0 0 1.25rem; max-width:16ch;
   }
-  .sub{font-size:clamp(1.0625rem,2.1vw,1.3125rem);color:var(--muted);max-width:56ch;margin:0 0 2rem}
+  .sub{font-size:clamp(1.0625rem,2.1vw,1.3125rem);color:var(--muted);max-width:50ch;margin:0 0 2rem}
 
   .acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem}
   .btn{
@@ -333,7 +333,22 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
    cambia el mapa, acá hay que cambiarlo: es copia, y una copia envejece sola. */
 .vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
   clip-path:inset(50%);white-space:nowrap;border:0}
-.comparativa{overflow-x:auto;margin-top:clamp(2rem,5vw,3rem)}
+/* El desplazamiento vive en un envoltorio propio de la tabla, no en la sección.
+   Con `overflow-x:auto` sobre la <section>, a 375 px la PÁGINA ENTERA se
+   deslizaba 136 px —comprobado moviendo la vista y viendo correrse la sección—
+   aunque el contenedor reportara que desplazaba por dentro. Y de paso el
+   titular ya no se va con la tabla al deslizarla. */
+.comparativa{margin-top:clamp(2rem,5vw,3rem)}
+.tabla-desplaza{
+  overflow-x:auto;
+  /* `contain:paint` es lo que de verdad lo arregla. Con solo `overflow-x:auto`
+     la tabla de 544 px seguía sumando al ancho desplazable del DOCUMENTO
+     —comprobado: la página se corría 136 px a 375 px, con 136 px en blanco a la
+     derecha— aunque el contenedor la recortara bien por dentro. `contain:paint`
+     le dice al navegador que nada de adentro pinta fuera de esta caja, y con eso
+     deja de contar para el desbordamiento de la página. */
+  contain:paint;
+}
 .comparativa table{border-collapse:collapse;width:100%;min-width:34rem;font-size:.9375rem}
 /* /precios era la única página con el titular de sección a la izquierda
    mientras las otras siete lo centran. El estilo estaba además en un atributo
