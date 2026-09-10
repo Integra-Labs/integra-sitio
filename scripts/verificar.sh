@@ -21,6 +21,27 @@ fallas=0
 fallo() { echo "  ✗ $1"; fallas=$((fallas+1)); }
 ok()    { echo "  ✓ $1"; }
 
+# ── Cada ruta tiene su archivo .html ──────────────────────────────────────
+#
+# Existe porque el 2026-09-10 /plantillas dio 404 EN PRODUCCIÓN mientras pasaba
+# en verde acá y en CI. La página vivía en `plantillas/index.html`, y ante un
+# `.html` y un directorio con el mismo nombre cada servidor decide distinto:
+# `serve` y SimpleHTTPRequestHandler sirven el índice del directorio, y Vercel
+# con `cleanUrls` resuelve `/x` a `x.html` y nada más. O sea: los dos
+# servidores de prueba tapaban el error justamente porque son más permisivos
+# que el real.
+#
+# Esto no consulta al servidor: mira el disco. Una ruta cuyo `.html` no existe
+# está viva solo por la permisividad de quien la sirva.
+echo "── Archivos en disco"
+raiz="$(cd "$(dirname "$0")/.." && pwd)"
+for ruta in "${PAGINAS[@]}"; do
+  if [ "$ruta" = "/" ]; then archivo="$raiz/index.html"; else archivo="$raiz${ruta}.html"; fi
+  if [ -f "$archivo" ]; then ok "${ruta} → ${archivo#$raiz/}"
+  else fallo "${ruta} no tiene archivo propio (${archivo#$raiz/}). Si vive en un index.html de directorio, Vercel le va a dar 404."
+  fi
+done
+
 for ruta in "${PAGINAS[@]}"; do
   url="${BASE}${ruta}"
   echo "── ${ruta}"
