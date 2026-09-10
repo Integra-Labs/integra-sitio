@@ -416,3 +416,15 @@ main > .env:not(.texto) > .acciones{justify-content:center}
   color:var(--tinta); font-weight:600;
 }
 .entrar:hover{border-color:var(--acento);color:var(--acento)}
+
+/* Seis entradas a 375 px se parten en dos líneas y dejaban la barra en 200 px:
+   un tercio de la primera pantalla gastado en el menú, antes del titular.
+   Se aprieta solo en angosto — en escritorio no hace falta y perjudicaría el
+   objetivo de toque. El alto mínimo de 44 px se conserva, que es el requisito
+   real de accesibilidad. */
+@media(max-width:40rem){
+  .barra{gap:.5rem}
+  .barra nav{gap:.35rem .85rem;font-size:.9375rem}
+  .entrar{padding:.3rem .7rem;margin-left:0}
+  header{padding:1.25rem 0 0}
+}

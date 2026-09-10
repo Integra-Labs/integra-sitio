@@ -6,5 +6,12 @@
       "path": "/api/mantener-viva",
       "schedule": "0 13 * * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/para/llantera",
+      "destination": "/para/centro-de-servicio",
+      "permanent": true
+    }
   ]
 }
