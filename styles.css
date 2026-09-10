@@ -398,3 +398,9 @@ main > .env:not(.texto) > .acciones{justify-content:center}
 .cierre{text-align:center}
 .cierre h2,.cierre p{margin-inline:auto}
 .cierre .acciones{justify-content:center}
+
+/* La captura del reporte del cliente es una pantalla de teléfono: a todo el
+   ancho se vería como un cartel y no como lo que es. Se limita y se centra. */
+.captura--telefono{max-width:22rem;margin-inline:auto}
+.captura--telefono img{border-radius:16px}
+.captura--telefono figcaption{text-align:center}
