@@ -67,7 +67,7 @@ function error(res, codigo, mensaje, datos = {}) {
 <link rel="stylesheet" href="/styles.css"></head><body>
 <header><div class="env"><div class="barra">
 <a class="marca" href="/"><b>Integra Núcleo</b><span>Costa Rica</span></a>
-<nav aria-label="Principal"><a href="/precios">Precios</a><a href="/contacto" aria-current="page">Contacto</a></nav>
+<nav aria-label="Principal"><a href="/precios">Precios</a><a href="/plantillas">Plantillas</a><a href="/contacto" aria-current="page">Contacto</a><a class="entrar" href="https://integranucleo.app">Entrar</a></nav>
 </div></div></header>
 <main><div class="env texto">
 <h1>No se pudo enviar</h1>

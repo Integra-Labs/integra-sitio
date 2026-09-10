@@ -404,3 +404,15 @@ main > .env:not(.texto) > .acciones{justify-content:center}
 .captura--telefono{max-width:22rem;margin-inline:auto}
 .captura--telefono img{border-radius:16px}
 .captura--telefono figcaption{text-align:center}
+
+/* «Entrar» no es un enlace más del menú: es la puerta del taller que ya nos
+   paga. Estaba solo en el pie, o sea que un cliente tenía que recorrer la
+   página entera para encontrar dónde entrar. Se separa del resto con un borde
+   y un margen, como hace cualquier producto con sesión. */
+.barra nav{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+.entrar{
+  border:1px solid var(--linea); border-radius:8px;
+  padding:.4rem .85rem; margin-left:.35rem; text-decoration:none;
+  color:var(--tinta); font-weight:600;
+}
+.entrar:hover{border-color:var(--acento);color:var(--acento)}
