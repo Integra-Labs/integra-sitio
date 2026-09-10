@@ -443,3 +443,24 @@ main > .env:not(.texto) > .acciones{justify-content:center}
 .dos-listas li::before{content:"";position:absolute;left:0;top:.6em;width:.4rem;height:.4rem;
   border-radius:50%;background:var(--acento)}
 .dos-listas li:last-child{margin-bottom:0}
+
+/* ── HALLAZGO 1 · medida de línea ─────────────────────────────────────────
+   Medido a 1280 px: `.nota` llegaba a 122 caracteres por línea y los pasos
+   del recorrido a 103. El rango legible es 45-75; pasado eso el ojo pierde
+   el renglón al volver a la izquierda. `.entrada` ya estaba acotada a 58ch
+   y estas dos se habían quedado sin tope. */
+/* 56ch y no 70ch: `ch` mide el ancho del cero, que en Inter es ~0.63em,
+   bastante más que el promedio real de un texto en minúsculas (~0.5em). Con
+   70ch la línea llegaba a 88 caracteres medidos. 56ch la deja en ~72. */
+.nota{max-width:56ch}
+main > .env:not(.texto) > .nota,
+.seccion > .nota{margin-inline:auto}
+.paso p,.paso h3{max-width:56ch}
+
+/* La franja a todo el ancho ponía `max-width:60rem` a TODOS sus hijos y con eso
+   pisaba el tope de 58ch de la entrada: en /funciones la línea se iba a 102
+   caracteres. El tope de ancho de ventana se reasigna solo a los bloques de
+   maqueta, no al texto. */
+.seccion.panel > h2{max-width:24ch}
+.seccion.panel > .entrada{max-width:58ch}
+.seccion.panel > .remate{max-width:44ch}
