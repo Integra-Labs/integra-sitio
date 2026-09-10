@@ -56,7 +56,7 @@
     font-size:clamp(2.125rem,6.2vw,4rem); line-height:1.04; letter-spacing:-.035em;
     font-weight:700; margin:0 0 1.25rem; max-width:16ch;
   }
-  .sub{font-size:clamp(1.0625rem,2.1vw,1.3125rem);color:var(--muted);max-width:50ch;margin:0 0 2rem}
+  .sub{font-size:clamp(1.0625rem,2.1vw,1.3125rem);color:var(--muted);max-width:34em;margin:0 0 2rem}
 
   .acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem}
   .btn{
@@ -157,7 +157,7 @@
 .faq summary::after{content:"+";color:var(--acento);font-weight:700;flex:none}
 .faq details[open] summary::after{content:"−"}
 .faq summary:focus-visible{outline:3px solid var(--acento);outline-offset:2px}
-.faq details p{margin:0 0 1rem;color:var(--muted);font-size:1rem;max-width:62ch}
+.faq details p{margin:0 0 1rem;color:var(--muted);font-size:1rem;max-width:56ch}
 
 /* Cierre */
 .cierre{margin-top:clamp(3.5rem,9vw,6rem);padding:clamp(2rem,5vw,3rem);border-radius:14px;
@@ -181,8 +181,8 @@
   max-width:44rem;
 }
 .texto h2{font-size:1.1875rem;font-weight:600;letter-spacing:-.015em;margin:2.25rem 0 .6rem}
-.texto p{margin:0 0 1rem;max-width:64ch}
-.texto ul{margin:0 0 1rem;padding-left:1.15rem;max-width:64ch}
+.texto p{margin:0 0 1rem;max-width:52ch}
+.texto ul{margin:0 0 1rem;padding-left:1.15rem;max-width:52ch}
 .texto li{margin-bottom:.55rem;line-height:1.6}
 .texto .nota{margin-top:2.5rem;padding-top:1.25rem;border-top:1px solid var(--linea)}
 
@@ -491,3 +491,8 @@ main > .env:not(.texto) > .nota,
    Solo alto: agregar relleno horizontal ensancharía la caja sin ensanchar el
    hueco entre enlaces, que es el error que ya se cometió una vez en el pie. */
 .tres h3 a{display:inline-flex;align-items:center;min-height:44px}
+
+/* Medida de lectura, con el dato que costó encontrar: en Inter `1ch` vale
+   ~0.63em, bastante más que el ancho medio de una letra minúscula (~0.5em).
+   Por eso 64ch daba 80 caracteres por línea y no 64. Los topes de arriba están
+   calculados con esa relación para caer en el rango legible de 45-75. */
