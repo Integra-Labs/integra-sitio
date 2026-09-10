@@ -13,12 +13,22 @@
     U+FEFF,U+FFFD;
 }
 
-/* Paleta heredada del sistema de diseño del producto. El texto secundario
-     es #5B5B5B y no #727272: sobre este fondo crema, #727272 da 4.42:1 y
-     reprueba AA para texto normal; #5B5B5B da 6.24:1. */
+/* Paleta. Rediseño del 2026-09-10 a convención SaaS: fondo blanco, bandas
+   alternas en gris muy claro y un acento más saturado.
+   Todos los contrastes están MEDIDOS, no elegidos a ojo, porque axe y
+   Lighthouse ≥ 90 son candados duros:
+     tinta  #111827 sobre blanco → 17.74:1
+     muted  #5B5B5B sobre blanco → 6.79:1 · sobre la banda → 6.49:1
+     acento #0E5AA0 con blanco encima → 7.03:1 · sobre la banda → 6.72:1
+   Sigue habiendo UN solo color de acción y sigue siendo sólido: el degradado
+   azul→morado está en los anti-patrones del plan y es lo que vuelve
+   intercambiables a mil landings. */
   :root{
-    --papel:#F7F5F2; --tinta:#111827; --acento:#1B4F72; --acento-hover:#154060;
-    --muted:#5B5B5B; --linea:#E2DED8; --blanco:#FFFFFF;
+    --papel:#FFFFFF; --fondo-alt:#F8FAFC; --tinta:#111827;
+    --acento:#0E5AA0; --acento-hover:#0B4880;
+    --muted:#5B5B5B; --linea:#E5E7EB; --blanco:#FFFFFF;
+    --sombra:0 1px 2px rgba(16,24,40,.04), 0 4px 12px rgba(16,24,40,.06);
+    --sombra-alta:0 2px 4px rgba(16,24,40,.05), 0 12px 28px rgba(16,24,40,.09);
     --paso:clamp(1rem,2.5vw,1.5rem);
   }
   *,*::before,*::after{box-sizing:border-box}
@@ -27,11 +37,11 @@
     margin:0; background:var(--papel); color:var(--tinta);
     font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
     font-size:1.0625rem; line-height:1.6; -webkit-font-smoothing:antialiased;
-    /* Retícula de plano, muy tenue — la metáfora del papel de trabajo. */
-    background-image:linear-gradient(var(--linea) 1px,transparent 1px),
-                     linear-gradient(90deg,var(--linea) 1px,transparent 1px);
-    background-size:64px 64px; background-position:-1px -1px;
   }
+  /* Las bandas alternas se salen del contenedor con margen negativo. `clip`
+     y no `hidden`: `hidden` en el elemento raíz crea un contenedor de scroll
+     y rompe el desplazamiento suave a un ancla. */
+  html{overflow-x:clip}
   .env{max-width:60rem;margin:0 auto;padding:0 var(--paso)}
   a{color:var(--acento)}
   a:focus-visible,.btn:focus-visible{outline:3px solid var(--acento);outline-offset:3px;border-radius:2px}
@@ -103,10 +113,14 @@
 .letra-chica p{margin:0;color:var(--muted);font-size:1rem}
 
 /* ── Secciones del home ────────────────────────────────────────────────── */
-.seccion{margin-top:clamp(3.5rem,9vw,6rem);padding-top:clamp(2rem,5vw,4.5rem);border-top:1px solid var(--linea)}
-.seccion > h2{font-size:clamp(1.5rem,3.4vw,2.125rem);line-height:1.15;letter-spacing:-.025em;
-  margin:0 0 .75rem;max-width:22ch}
-.seccion > .entrada{color:var(--muted);max-width:58ch;margin:0 0 1.75rem}
+/* La separación entre secciones ya no la hace una línea: la hacen el aire y el
+   cambio de fondo de las bandas. Una regla sobre blanco, con secciones
+   centradas, se lee como recorte. */
+.seccion{margin-top:clamp(3.5rem,9vw,6rem);padding-top:clamp(2rem,5vw,4.5rem)}
+.seccion > h2{font-size:clamp(1.625rem,3.6vw,2.375rem);line-height:1.15;letter-spacing:-.028em;
+  margin:0 auto .75rem;max-width:24ch;text-align:center}
+.seccion > .entrada{color:var(--muted);max-width:58ch;margin:0 auto 2.25rem;text-align:center}
+.seccion > .remate{margin-left:auto;margin-right:auto;text-align:center;max-width:44ch}
 
 /* Recorrido de una orden */
 .recorrido{list-style:none;padding:0;margin:0;display:grid;gap:0}
@@ -117,15 +131,19 @@
 .paso p{margin:0;color:var(--muted);font-size:1rem}
 
 /* Rejilla de tres */
-.tres{display:grid;gap:1.5rem;grid-template-columns:1fr}
-@media(min-width:44rem){.tres{grid-template-columns:repeat(3,1fr);gap:2.5rem}}
-.tres h3{font-size:1.1875rem;font-weight:600;margin:0 0 .4rem;letter-spacing:-.012em}
+.tres{display:grid;gap:1.25rem;grid-template-columns:1fr}
+@media(min-width:44rem){.tres{grid-template-columns:repeat(3,1fr);gap:1.5rem}}
+.tres > div{
+  background:var(--blanco); border:1px solid var(--linea); border-radius:12px;
+  padding:1.5rem 1.4rem; box-shadow:var(--sombra);
+}
+.tres h3{font-size:1.125rem;font-weight:600;margin:0 0 .45rem;letter-spacing:-.012em}
 .tres p{margin:0;color:var(--muted);font-size:1rem}
 
 /* Resumen de precios */
 .precio-mini{display:grid;gap:1rem;grid-template-columns:1fr;margin-bottom:1.5rem}
 @media(min-width:44rem){.precio-mini{grid-template-columns:repeat(3,1fr)}}
-.precio-mini div{background:var(--blanco);border:1px solid var(--linea);border-radius:10px;padding:1rem 1.15rem}
+.precio-mini div{background:var(--blanco);border:1px solid var(--linea);border-radius:12px;padding:1.15rem 1.25rem;box-shadow:var(--sombra);text-align:center}
 .precio-mini strong{display:block;font-size:.9375rem;font-weight:600}
 .precio-mini b{display:block;font-size:1.5rem;letter-spacing:-.02em;margin:.2rem 0 .1rem}
 .precio-mini span{font-size:.8125rem;color:var(--muted)}
@@ -222,11 +240,15 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
    La del medio pasa a una superficie propia. No cambia el contenido: cambia
    el fondo, que es lo que el ojo usa para separar. A-B-A en vez de A-A-A. */
 .seccion.panel{
-  background:var(--blanco);
-  border:1px solid var(--linea);
-  border-radius:14px;
-  padding:clamp(1.75rem,4vw,2.75rem);
+  background:var(--fondo-alt);
+  border-top:1px solid var(--linea);
+  border-bottom:1px solid var(--linea);
+  /* A todo el ancho de la ventana sin salirse del flujo: el margen negativo
+     compensa el contenedor y el relleno devuelve el margen lateral. */
+  margin-inline:calc(50% - 50vw);
+  padding:clamp(2.5rem,6vw,5rem) calc(50vw - 50% + var(--paso));
 }
+.seccion.panel > *{max-width:60rem;margin-inline:auto}
 
 /* ── Página actual ─────────────────────────────────────────────────────────
    El nav tenía un solo ítem y ningún indicador, así que el test del tronco
@@ -272,6 +294,7 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
 .captura img{
   display:block; width:100%; height:auto;
   border:1px solid var(--linea); border-radius:12px; background:var(--blanco);
+  box-shadow:var(--sombra-alta);
 }
 .captura figcaption{margin-top:.7rem;font-size:.9375rem;color:var(--muted);max-width:62ch}
 
@@ -355,3 +378,23 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
   h1{font-size:16pt;margin:0 0 .4rem;letter-spacing:-.01em}
   @page{size:A4;margin:14mm}
 }
+
+/* ── Hero centrado ─────────────────────────────────────────────────────────
+   Rediseño del 2026-09-10. Si cada h2 de sección está centrado y el titular
+   de la página no, la primera pantalla contradice a las diez siguientes.
+   Se excluyen las páginas `.texto` —privacidad, términos, contacto— donde el
+   contenido es prosa o un formulario y centrar el encabezado lo desalinea de
+   lo que viene abajo. */
+main > .env:not(.texto) > .antetitulo,
+main > .env:not(.texto) > h1,
+main > .env:not(.texto) > .sub,
+main > .env:not(.texto) > .reaseguro,
+main > .env:not(.texto) > .imprimir{
+  text-align:center; margin-inline:auto;
+}
+main > .env:not(.texto) > .acciones{justify-content:center}
+
+/* El cierre oscuro sigue la misma regla que las secciones. */
+.cierre{text-align:center}
+.cierre h2,.cierre p{margin-inline:auto}
+.cierre .acciones{justify-content:center}
