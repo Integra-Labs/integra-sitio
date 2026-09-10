@@ -19,6 +19,12 @@ function limpiar(valor, tope) {
   return v ? v.slice(0, tope) : null
 }
 
+// Adónde puede mandar el formulario después de guardar. Es una LISTA BLANCA y
+// no un valor libre: un `destino` que se acepte tal cual convierte este
+// endpoint en un redirector abierto — cualquiera publica un enlace a nuestro
+// dominio que termina en el suyo.
+const DESTINOS = new Set(['/gracias', '/plantillas/listas'])
+
 function redirigir(res, destino) {
   res.statusCode = 303
   res.setHeader('Location', destino)
@@ -70,8 +76,8 @@ function error(res, codigo, mensaje, datos = {}) {
 <form class="form" method="POST" action="/api/lead">
   <div class="campo"><label for="nombre">Su nombre</label>
     <input id="nombre" name="nombre" type="text" required autocomplete="name" maxlength="120" value="${v('nombre')}"></div>
-  <div class="campo"><label for="telefono">Teléfono <span class="ayuda">— por acá le contestamos</span></label>
-    <input id="telefono" name="telefono" type="tel" required autocomplete="tel" maxlength="40" value="${v('telefono')}"></div>
+  <div class="campo"><label for="telefono">Teléfono <span class="ayuda">— teléfono o correo, hace falta uno</span></label>
+    <input id="telefono" name="telefono" type="tel" autocomplete="tel" maxlength="40" value="${v('telefono')}"></div>
   <div class="campo"><label for="taller">Nombre del taller <span class="ayuda">— opcional</span></label>
     <input id="taller" name="taller" type="text" autocomplete="organization" maxlength="160" value="${v('taller')}"></div>
   <div class="campo"><label for="correo">Correo <span class="ayuda">— opcional</span></label>
@@ -80,6 +86,7 @@ function error(res, codigo, mensaje, datos = {}) {
     <textarea id="mensaje" name="mensaje" maxlength="2000">${v('mensaje')}</textarea></div>
   <div class="trampa" aria-hidden="true"><label for="sitio_web">No llene este campo</label>
     <input id="sitio_web" name="sitio_web" type="text" tabindex="-1" autocomplete="off"></div>
+  <input type="hidden" name="destino" value="${v('destino')}">
   <div class="acciones"><button class="btn btn-1" type="submit">Enviar de nuevo</button></div>
 </form>
 </div></main>
@@ -97,12 +104,16 @@ export default async function handler(req, res) {
   // Campo trampa: está oculto por CSS, así que una persona nunca lo llena.
   // Si viene con algo, es un bot. Se responde como si todo hubiera salido
   // bien —no se le avisa al bot que fue detectado— y no se guarda nada.
-  if (limpiar(cuerpo.sitio_web, 100)) return redirigir(res, '/gracias')
+  const pedido  = limpiar(cuerpo.destino, 60)
+  const destino = DESTINOS.has(pedido) ? pedido : '/gracias'
+
+  if (limpiar(cuerpo.sitio_web, 100)) return redirigir(res, destino)
 
   const nombre   = limpiar(cuerpo.nombre,   LIMITES.nombre)
   const telefono = limpiar(cuerpo.telefono, LIMITES.telefono)
-  if (!nombre || !telefono) {
-    return error(res, 400, 'Hacen falta el nombre y el teléfono para poder contestarle.', cuerpo)
+  const correo   = limpiar(cuerpo.correo,   LIMITES.correo)
+  if (!nombre || (!telefono && !correo)) {
+    return error(res, 400, 'Hace falta su nombre y una forma de contactarlo: teléfono o correo.', { ...cuerpo, destino })
   }
 
   try {
@@ -114,16 +125,16 @@ export default async function handler(req, res) {
         ${nombre},
         ${telefono},
         ${limpiar(cuerpo.taller,  LIMITES.taller)},
-        ${limpiar(cuerpo.correo,  LIMITES.correo)},
+        ${correo},
         ${limpiar(cuerpo.mensaje, LIMITES.mensaje)},
         ${limpiar(req.headers.referer, 300)},
         ${limpiar(req.headers['user-agent'], 300)}
       )`
-    return redirigir(res, '/gracias')
+    return redirigir(res, destino)
   } catch (e) {
     // Nunca se pierde en silencio: queda en los registros de la función con el
     // dato suficiente para recuperar el contacto a mano si hiciera falta.
     console.error('lead: falló la inserción', { nombre, telefono, error: String(e) })
-    return error(res, 500, 'Algo falló de nuestro lado. Intente de nuevo en un momento.', cuerpo)
+    return error(res, 500, 'Algo falló de nuestro lado. Intente de nuevo en un momento.', { ...cuerpo, destino })
   }
 }

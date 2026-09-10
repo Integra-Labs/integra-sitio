@@ -21,6 +21,11 @@ export const ESQUEMA = [
      user_agent  text
    )`,
   `create index if not exists leads_creado_en_idx on leads (creado_en desc)`,
+  // El formulario de descarga de plantillas pide nombre y correo, no teléfono:
+  // exigir un número para bajar una hoja imprimible ahuyenta justo al taller
+  // que todavía no quiere hablar con nadie. El handler exige que venga UNO de
+  // los dos, así que un lead nunca queda sin forma de contacto.
+  `alter table leads alter column telefono drop not null`,
 ]
 
 /** Deja la base lista. Idempotente: se puede llamar siempre sin efecto extra. */

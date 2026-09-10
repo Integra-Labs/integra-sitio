@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es-CR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plantillas gratis para taller: orden de trabajo e inspección de 12 puntos</title>
+<meta name="description" content="Dos hojas imprimibles para taller automotriz: una orden de trabajo con los campos que hacen falta al recibir el carro, y la inspección de 12 puntos que usa Integra Núcleo.">
+<link rel="canonical" href="https://integranucleo.com/plantillas">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://integranucleo.com/plantillas">
+<meta property="og:title" content="Plantillas gratis para taller: orden de trabajo e inspección de 12 puntos">
+<meta property="og:description" content="Dos hojas imprimibles para taller automotriz: una orden de trabajo con los campos que hacen falta al recibir el carro, y la inspección de 12 puntos que usa Integra Núcleo.">
+<meta property="og:locale" content="es_CR">
+<meta name="robots" content="index,follow">
+<link rel="preload" href="/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header>
+  <div class="env">
+    <div class="barra">
+      <a class="marca" href="/"><b>Integra Núcleo</b><span>Costa Rica</span></a>
+      <nav aria-label="Principal">
+        <a href="/precios">Precios</a>
+        <a href="/contacto">Contacto</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="env">
+    <p class="antetitulo">Gratis, para imprimir</p>
+    <h1>La orden de trabajo y el checklist que su taller necesita hoy.</h1>
+    <p class="sub">Aunque todavía lo lleve en cuaderno. Son las dos hojas que usamos adentro del sistema, en papel y sin costo.</p>
+
+    <section class="seccion" aria-labelledby="que">
+      <h2 id="que">Dos hojas que puede usar mañana.</h2>
+      <div class="tres">
+        <div>
+          <h3>Orden de trabajo</h3>
+          <p>Los campos que de verdad hacen falta al recibir un carro: kilometraje, nivel de combustible, accesorios, daños al ingreso y la autorización firmada del cliente.</p>
+        </div>
+        <div>
+          <h3>Inspección de 12 puntos</h3>
+          <p>Frenos, llantas, suspensión, dirección, luces, fluidos, batería, correas, escape, aire, limpiaparabrisas y repuesto. Cada uno con OK, Atención o Crítico.</p>
+        </div>
+        <div>
+          <h3>Es la lista real del producto</h3>
+          <p>No es una lista genérica: es la misma «Revisión Completa» que trae Integra Núcleo. En papel funciona; adentro lleva foto, video y la aprobación del cliente.</p>
+        </div>
+      </div>
+      <p class="remate">Se imprimen desde el navegador o se guardan como PDF. No hay que instalar nada.</p>
+    </section>
+
+    <section class="seccion panel" aria-labelledby="bajar">
+      <h2 id="bajar">¿A dónde se las mandamos?</h2>
+      <p class="entrada">
+        Déjenos su nombre y su correo y le abrimos las dos hojas enseguida. No
+        hace falta teléfono, y no lo vamos a llamar por esto.
+      </p>
+      <form class="form" method="POST" action="/api/lead">
+        <input type="hidden" name="destino" value="/plantillas/listas">
+        <div class="campo">
+          <label for="nombre">Su nombre</label>
+          <input id="nombre" name="nombre" type="text" required autocomplete="name" maxlength="120">
+        </div>
+        <div class="campo">
+          <label for="correo">Correo</label>
+          <input id="correo" name="correo" type="email" required autocomplete="email" maxlength="160">
+        </div>
+        <div class="campo">
+          <label for="taller">Nombre del taller <span class="ayuda">— opcional</span></label>
+          <input id="taller" name="taller" type="text" autocomplete="organization" maxlength="160">
+        </div>
+        <div class="trampa" aria-hidden="true">
+          <label for="sitio_web">No llene este campo</label>
+          <input id="sitio_web" name="sitio_web" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="acciones">
+          <button class="btn btn-1" type="submit">Ver las plantillas</button>
+        </div>
+        <p class="nota">
+          Usamos su correo solo para mandarle esto y contestarle si escribe.
+          No se lo damos a nadie. Ver <a href="/privacidad">privacidad</a>.
+        </p>
+      </form>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="env">
+    <p>Integra Núcleo · Integra Labs</p>
+    <p><a href="/privacidad">Privacidad</a> · <a href="/terminos">Términos</a> · <a href="/contacto">Contacto</a> · <a href="https://integranucleo.app">Entrar al sistema</a></p>
+  </div>
+</footer>
+</body>
+</html>

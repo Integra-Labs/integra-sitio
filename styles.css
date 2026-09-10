@@ -324,3 +324,34 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
 /* El remate necesita aire cuando cierra una rejilla; sin esto se pega a la
    última columna y se lee como un cuarto ítem. */
 .tres + .remate,.recorrido + .remate,.pasos + .remate{margin-top:1.75rem}
+
+/* ── Hojas imprimibles ─────────────────────────────────────────────────────
+   Las plantillas que el taller descarga son páginas, no PDF: pesan cero,
+   funcionan desde el teléfono y el navegador las guarda como PDF solo. Todo
+   lo que no es la hoja desaparece al imprimir. */
+.hoja{background:var(--blanco);border:1px solid var(--linea);border-radius:10px;
+  padding:clamp(1.25rem,4vw,2.25rem);margin-top:1.5rem}
+.hoja h2{font-size:1.0625rem;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--muted);margin:1.75rem 0 .6rem}
+.hoja > h2:first-child{margin-top:0}
+.hoja table{border-collapse:collapse;width:100%;font-size:.9375rem}
+.hoja th,.hoja td{border:1px solid var(--linea);padding:.45rem .55rem;text-align:left;vertical-align:top}
+.hoja thead th{font-size:.8125rem;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+.hoja .marca-col{width:3.2rem;text-align:center}
+.hoja .linea-larga{height:2.1rem}
+.hoja .rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.4rem .9rem;margin-bottom:.5rem}
+.hoja .dato{border-bottom:1px solid var(--linea);padding:.9rem 0 .3rem;font-size:.8125rem;color:var(--muted)}
+.hoja .pie-legal{font-size:.8125rem;color:var(--muted);margin-top:1rem}
+.hoja .firma{margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.hoja .firma div{border-top:1px solid var(--tinta);padding-top:.4rem;font-size:.8125rem;color:var(--muted)}
+.imprimir{margin-top:1.5rem}
+
+@media print{
+  header,footer,.imprimir,.antetitulo,.sub,.no-imprimir{display:none !important}
+  body{background:#fff;font-size:11pt}
+  .env{max-width:none;padding:0}
+  .hoja{border:0;border-radius:0;padding:0;margin:0}
+  .hoja table{font-size:9.5pt}
+  h1{font-size:16pt;margin:0 0 .4rem;letter-spacing:-.01em}
+  @page{size:A4;margin:14mm}
+}
