@@ -91,6 +91,23 @@ for ruta in "${PAGINAS[@]}"; do
     fallo "declara aggregateRating — prohibido mientras no haya reseñas reales"
   else
     ok "sin aggregateRating"
+
+  # ── Sin restos del generador ────────────────────────────────────────────
+  #
+  # Existe porque el 2026-09-10 /funciones salió a producción con la
+  # representación literal de una tupla de Python dentro del HTML: comillas,
+  # comas y secuencias `\n` visibles como texto en la página. Al armarla
+  # separé los bloques con comas en vez de concatenarlos.
+  #
+  # Ni este candado ni la revisión de diseño lo vieron: el <h1> estaba, el
+  # título estaba, el peso daba, y axe no se queja de un texto feo. Todos
+  # miraban propiedades de la página y ninguno si el HTML era el que se quiso
+  # escribir. Lo encontró una persona abriéndola.
+  if grep -q '\\n' /tmp/pagina.html; then
+    fallo "hay secuencias \\n literales en el HTML — resto del generador"
+  else
+    ok "sin restos del generador"
+  fi
   fi
 done
 
