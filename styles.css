@@ -428,3 +428,18 @@ main > .env:not(.texto) > .acciones{justify-content:center}
   .entrar{padding:.3rem .7rem;margin-left:0}
   header{padding:1.25rem 0 0}
 }
+
+/* Dos columnas: lo que el taller hace y lo que el sistema le da. Es el bloque
+   más claro de las páginas por tipo de taller de la competencia, y funciona
+   porque pone lado a lado el trabajo y la herramienta en vez de describirlos
+   en dos secciones separadas. */
+.dos-listas{display:grid;gap:1.25rem;grid-template-columns:1fr;text-align:left}
+@media(min-width:44rem){.dos-listas{grid-template-columns:1fr 1fr;gap:1.5rem}}
+.dos-listas > div{background:var(--blanco);border:1px solid var(--linea);
+  border-radius:12px;padding:1.5rem 1.4rem;box-shadow:var(--sombra)}
+.dos-listas h3{font-size:1.0625rem;font-weight:700;margin:0 0 .85rem;letter-spacing:-.012em}
+.dos-listas ul{list-style:none;margin:0;padding:0}
+.dos-listas li{position:relative;padding-left:1.15rem;margin-bottom:.55rem;color:var(--muted)}
+.dos-listas li::before{content:"";position:absolute;left:0;top:.6em;width:.4rem;height:.4rem;
+  border-radius:50%;background:var(--acento)}
+.dos-listas li:last-child{margin-bottom:0}
