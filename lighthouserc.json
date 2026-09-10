@@ -9,6 +9,8 @@
         "http://localhost:4173/para/centro-de-servicio",
         "http://localhost:4173/para/vehiculos-electricos",
         "http://localhost:4173/recursos",
+        "http://localhost:4173/recursos/recepcion-sin-reclamos",
+        "http://localhost:4173/recursos/cobrar-la-inspeccion",
         "http://localhost:4173/plantillas",
         "http://localhost:4173/plantillas/orden-de-trabajo",
         "http://localhost:4173/plantillas/inspeccion-12-puntos",

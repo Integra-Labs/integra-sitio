@@ -550,3 +550,15 @@ main > .env:not(.texto) > .nota,
   .desplegable{position:static}
   .desplegable-lista{left:0;right:0;min-width:0;top:calc(100% + .5rem)}
 }
+
+/* ── Guías ─────────────────────────────────────────────────────────────────
+   Los titulares siguen centrados, como en el resto del sitio, pero la PROSA
+   se alinea a la izquierda. Un párrafo centrado de tres o cuatro líneas obliga
+   a buscar dónde empieza cada renglón; en una página de venta con entradas de
+   una línea no se nota, en material de lectura sí. Acá la claridad manda sobre
+   la coherencia. */
+.guia .seccion > .entrada,
+.guia .seccion > .remate{text-align:left;margin-inline:0}
+.guia .seccion > .remate{max-width:52ch}
+.guia .seccion > .entrada{max-width:56ch}
+.guia .nota{text-align:left;margin-inline:0;max-width:56ch}

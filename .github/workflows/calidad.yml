@@ -52,9 +52,10 @@ jobs:
             --chromedriver-path "$CHROMEWEBDRIVER/chromedriver" \
             http://localhost:4173/ http://localhost:4173/funciones http://localhost:4173/para \
             http://localhost:4173/para/taller-general http://localhost:4173/para/centro-de-servicio http://localhost:4173/para/vehiculos-electricos \
-            http://localhost:4173/recursos http://localhost:4173/plantillas http://localhost:4173/plantillas/orden-de-trabajo \
-            http://localhost:4173/plantillas/inspeccion-12-puntos http://localhost:4173/precios http://localhost:4173/aria \
-            http://localhost:4173/contacto http://localhost:4173/privacidad http://localhost:4173/terminos
+            http://localhost:4173/recursos http://localhost:4173/recursos/recepcion-sin-reclamos http://localhost:4173/recursos/cobrar-la-inspeccion \
+            http://localhost:4173/plantillas http://localhost:4173/plantillas/orden-de-trabajo http://localhost:4173/plantillas/inspeccion-12-puntos \
+            http://localhost:4173/precios http://localhost:4173/aria http://localhost:4173/contacto \
+            http://localhost:4173/privacidad http://localhost:4173/terminos
 
       - name: Lighthouse
         run: npx --yes @lhci/cli@0.14 autorun
