@@ -464,3 +464,11 @@ main > .env:not(.texto) > .nota,
 .seccion.panel > h2{max-width:24ch}
 .seccion.panel > .entrada{max-width:58ch}
 .seccion.panel > .remate{max-width:44ch}
+
+/* ── HALLAZGO 2 · objetivos de toque en los títulos de tarjeta ────────────
+   En /para y /recursos el enlace ES el título de la tarjeta, o sea el destino
+   principal de la página, y medía 21 px de alto. No es un enlace dentro de una
+   frase —esos WCAG 2.5.8 los exceptúa— así que necesita los 44 px.
+   Solo alto: agregar relleno horizontal ensancharía la caja sin ensanchar el
+   hueco entre enlaces, que es el error que ya se cometió una vez en el pie. */
+.tres h3 a{display:inline-flex;align-items:center;min-height:44px}
