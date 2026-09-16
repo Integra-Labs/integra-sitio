@@ -271,21 +271,25 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
    scroll: quien se convence a mitad de página tenía que seguir bajando o
    volver a subir.
    Solo por debajo de 44rem, y solo en las páginas donde hay algo que pedir.
-   El pie recibe espacio extra para que la barra no lo tape. */
+   El pie recibe espacio extra para que la barra no lo tape.
+   El fondo es OPACO: con 92 % + desenfoque el texto de la página se
+   transparentaba detrás y se leía como un defecto de render, no como una
+   barra. El botón va con nowrap porque al partirse subía la barra de 67 a
+   93 px en el home. */
 .cta-fijo{display:none}
 @media(max-width:43.99rem){
   .cta-fijo{
     display:flex; align-items:center; justify-content:space-between; gap:1rem;
     position:fixed; left:0; right:0; bottom:0; z-index:10;
     padding:.6rem var(--paso) calc(.6rem + env(safe-area-inset-bottom));
-    background:color-mix(in srgb, var(--papel) 92%, transparent);
-    backdrop-filter:blur(8px);
+    background:var(--papel);
     border-top:1px solid var(--linea);
+    box-shadow:0 -2px 12px rgba(16,24,40,.06);
   }
-  .cta-fijo .precio-desde{font-size:.9375rem;color:var(--muted);margin:0}
+  .cta-fijo .precio-desde{font-size:.875rem;color:var(--muted);margin:0;min-width:0}
   .cta-fijo .precio-desde b{color:var(--tinta);font-weight:600}
-  .cta-fijo .btn{padding:.6rem 1.1rem;min-height:44px}
-  body:has(.cta-fijo) footer{padding-bottom:5.5rem}
+  .cta-fijo .btn{padding:.6rem 1.1rem;min-height:44px;white-space:nowrap;flex:none}
+  body:has(.cta-fijo) footer{padding-bottom:7rem}
 }
 
 /* ── Captura de producto ───────────────────────────────────────────────────
