@@ -447,6 +447,9 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
 .imprimir{margin-top:1.5rem}
 
 @media print{
+  /* El envoltorio existe para que la tabla no empuje la página en
+     teléfono. En papel estorba: la hoja se imprime completa. */
+  .tabla-desplaza{overflow:visible;contain:none}
   header,footer,.imprimir,.antetitulo,.sub,.no-imprimir{display:none !important}
   body{background:#fff;font-size:11pt}
   .env{max-width:none;padding:0}
