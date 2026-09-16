@@ -53,18 +53,6 @@
       </figcaption>
     </figure>
 
-    <!-- ── El problema ──────────────────────────────────────────────── -->
-    <section class="seccion" aria-labelledby="problema">
-      <h2 id="problema">El taller crece, pero la operación va en papel.</h2>
-      <ul class="males">
-        <li><b>Cuaderno y memoria</b><span>Las órdenes viven en una libreta, o en la cabeza de alguien.</span></li>
-        <li><b>Excel aparte</b><span>El inventario en una hoja que nadie actualiza a tiempo.</span></li>
-        <li><b>WhatsApp suelto</b><span>Repuestos, fotos y avisos dispersos, sin quedar en ningún lado.</span></li>
-      </ul>
-      <p class="remate">Cuando algo se sale del sistema, se pierde la orden — y se pierde el dato.</p>
-      <p class="nota" style="margin-top:1rem">¿Todavía en papel? <a href="/plantillas">Llévese gratis la orden de trabajo y la hoja de inspección de 12 puntos</a> que usamos adentro.</p>
-    </section>
-
     <!-- ── El recorrido de una orden ─────────────────────────────────── -->
     <section class="seccion" aria-labelledby="recorrido">
       <h2 id="recorrido">Un carro entra a las 8:00. A las 16:30 la caja cuadra.</h2>
@@ -114,13 +102,15 @@
 
     <!-- ── La inspección como venta ─────────────────────────────────── -->
     <section class="seccion" aria-labelledby="inspeccion">
-      <h2 id="inspeccion">Cobre la inspección, aunque no haya orden.</h2>
+      <div class="par par--texto">
+      <div>
+        <h2 id="inspeccion">Cobre la inspección, aunque no haya orden.</h2>
       <p class="entrada">
         El cliente que llega «solo a que se lo revisen» hoy se va sin dejar nada.
         La inspección digital lo convierte en un trabajo cobrable por sí mismo —
         y en la evidencia que después vende la reparación.
       </p>
-      <ol class="recorrido">
+        <ol class="recorrido">
         <li class="paso"><span class="hora">1</span><div>
           <h3>Se inspecciona con el teléfono</h3>
           <p>Punto por punto, con foto y video solo donde hay un hallazgo. No hay que abrir una orden para empezar.</p>
@@ -134,25 +124,18 @@
           <p>Marca qué autoriza y qué no, desde su teléfono. Lo aprobado entra al flujo del taller con todo el historial.</p>
         </div></li>
       </ol>
-      <p class="remate" style="margin-top:1.75rem">El que vio la evidencia aprueba más rápido y discute menos el precio.</p>
-
+        <p class="remate">El que vio la evidencia aprueba más rápido y discute menos el precio.</p>
+      </div>
       <figure class="captura captura--telefono">
         <img src="/imagenes/reporte-cliente.webp" width="420" height="1307" loading="lazy" decoding="async"
-             alt="Reporte de inspección abierto en un teléfono. Cada sistema revisado
-                  muestra su severidad —frenos en amarillo, llantas en rojo—, la
+             alt="Reporte de inspección abierto en un teléfono. Cada punto revisado muestra su severidad —frenos en amarillo, llantas en rojo—, la
                   evidencia del hallazgo y debajo la decisión que tomó el cliente:
                   «Para después» en un caso y «Se cotizará» en el otro.">
-        <figcaption>Lo que le llega al cliente: el hallazgo, la evidencia y su decisión, sistema por sistema. Datos e ilustraciones de un taller de demostración.</figcaption>
+        <figcaption>Lo que le llega al cliente: el hallazgo, la evidencia y su decisión, punto por punto. Datos e ilustraciones de un taller de demostración.</figcaption>
       </figure>
-
-      <figure class="captura">
-        <img src="/imagenes/inspecciones.webp" width="1400" height="491" loading="lazy" decoding="async"
-             alt="Historial de inspecciones digitales del taller. Cada fila muestra
-                  la placa, el vehículo, el cliente, la fecha, si el cliente ya la
-                  revisó y cuántos ítems aprobó.">
-        <figcaption>El historial: quién revisó, cuándo, y cuántos ítems aprobó el cliente.</figcaption>
-      </figure>
-    </section>
+    </div>
+  </section>
+    
 
     <!-- ── ARIA ───────────────────────────────────────────────────────── -->
     <section class="seccion" aria-labelledby="aria">
@@ -162,20 +145,9 @@
         <strong>en su taller</strong>. Mientras más se usa, más se parece a cómo
         trabaja su gente.
       </p>
-      <div class="tres">
-        <div>
-          <h3>No inventa para rellenar</h3>
-          <p>Ante una falla que no conoce, dice que no la conoce. No se inventa una causa para llenar la pantalla y mandar al técnico a perder la mañana.</p>
-        </div>
-        <div>
-          <h3>Aprende de lo confirmado</h3>
-          <p>Lo que hoy sabe su mecánico de más experiencia queda en el taller. Cada diagnóstico confirmado ajusta lo que ARIA le sugiere al siguiente.</p>
-        </div>
-        <div>
-          <h3>Asiste, no reemplaza</h3>
-          <p>La sugerencia llega al paso donde el técnico ya está trabajando. La decisión sigue siendo suya y queda registrada como suya.</p>
-        </div>
-      </div>
+      <p class="remate">Ante una falla que no conoce, dice que no la conoce — no se
+        inventa una causa para mandar al técnico a perder la mañana. La decisión
+        sigue siendo del técnico y queda registrada como suya.</p>
       <div class="acciones" style="margin-top:1.75rem">
         <a class="btn btn-2" href="/aria">Cómo se mide su precisión</a>
       </div>
@@ -213,20 +185,12 @@
         Lo que su taller ya usa todos los días viene integrado: no hay que
         cambiar de forma de trabajar para que le sirva.
       </p>
-      <div class="tres">
-        <div>
-          <h3>WhatsApp</h3>
-          <p>La proforma le llega al cliente por WhatsApp, donde ya lee todo lo demás. No es un enlace suelto: sale del taller y queda registrado en la orden.</p>
-        </div>
-        <div>
-          <h3>SINPE</h3>
-          <p>Se registra junto al efectivo y la transferencia, y se puede partir un cobro entre varios métodos en una sola orden.</p>
-        </div>
-        <div>
-          <h3>Su factura sigue donde está</h3>
-          <p>La sigue emitiendo el sistema que ya usa. Y el cobro nunca se bloquea: si Hacienda se cae, usted cobra igual y la factura sale después.</p>
-        </div>
-      </div>
+      <ul class="corrida">
+        <li><b>WhatsApp</b> — la proforma le llega por donde el cliente ya lee todo lo demás, y queda registrada en la orden.</li>
+        <li><b>SINPE</b> — se registra junto al efectivo y la transferencia, y un cobro se puede partir entre varios métodos.</li>
+        <li><b>Su factura sigue donde está</b> — la emite su facturador electrónico, y si Hacienda se cae usted cobra igual.</li>
+      </ul>
+    
     </section>
 
     <!-- ── Migración ──────────────────────────────────────────────────── -->
@@ -239,7 +203,7 @@
       <div class="tres">
         <div>
           <h3>Traemos lo que tenga</h3>
-          <p>Cuaderno, Excel o el sistema que use hoy. Clientes, vehículos y su historial entran al arranque — nadie se sienta a retipear nada.</p>
+          <p>Cuaderno, Excel o el programa que use hoy. Clientes, vehículos y su historial entran al arranque — nadie se sienta a retipear nada.</p>
         </div>
         <div>
           <h3>Queda configurado a su taller</h3>
@@ -250,6 +214,7 @@
           <p>El día que empieza a operar no está solo. Se corre un carro real de punta a punta con su gente, y ahí se ajusta lo que haga falta.</p>
         </div>
       </div>
+      <p class="nota" style="margin-top:1.25rem">¿Todavía en papel? <a href="/plantillas">Llévese gratis la orden de trabajo y la hoja de inspección de 12 puntos</a> que usamos adentro.</p>
       <p class="remate">Lo que no le vamos a decir es en cuántos días. Depende de qué tan ordenado esté lo que tiene, y prometerle una fecha sin verlo sería mentirle.</p>
     </section>
 
@@ -277,7 +242,7 @@
 
       <details>
         <summary>¿Qué pasa con los datos que ya tengo?</summary>
-        <p>Se traen en el arranque. Lo revisamos con usted antes de empezar, con lo que tenga —cuaderno, Excel u otro sistema— y no se cobra aparte.</p>
+        <p>Se traen en el arranque. Lo revisamos con usted antes de empezar, con lo que tenga —cuaderno, Excel u otro programa— y no se cobra aparte.</p>
       </details>
       <details>
         <summary>¿Cobran por cada mecánico?</summary>
@@ -289,7 +254,7 @@
       </details>
       <details>
         <summary>¿Tengo que cambiar mi factura electrónica?</summary>
-        <p>No. Es una decisión deliberada: la factura fiscal cambia cada vez que Hacienda cambia, y preferimos que la resuelva el sistema que ya la resuelve bien.</p>
+        <p>No. Es una decisión deliberada: la factura fiscal cambia cada vez que Hacienda cambia, y preferimos que la resuelva su facturador electrónico, que ya la resuelve bien.</p>
       </details>
       <details>
         <summary>¿Funciona en el teléfono del taller?</summary>
@@ -303,29 +268,12 @@
         <summary>¿Venden repuestos?</summary>
         <p>No, y es a propósito. Cuando el sistema dice que hace falta una pieza, nadie está ganando una comisión por esa recomendación.</p>
       </details>
-      <details>
-        <summary>¿Sirve para llantera o para taller de eléctricos?</summary>
-        <p>Sí. El catálogo de servicios y la inspección se adaptan al tipo de taller, sin cambiar de producto ni pagar un extra. Vea cómo se ve para <a href="/para/taller-general">un taller de mecánica general</a> o para <a href="/para/llantera">una llantera</a>.</p>
-      </details>
+      
 
       <p class="nota" style="margin-top:1.5rem">
         ¿Le quedó una duda que no está acá?
         <a href="/contacto">Escríbanos</a> y le contestamos.
       </p>
-    </section>
-
-    <!-- ── Hacia dónde va ───────────────────────────────────────────── -->
-    <section class="seccion" aria-labelledby="norte">
-      <p class="antetitulo">Hacia dónde va</p>
-      <h2 id="norte">Que su taller pueda tomar el trabajo que hoy rechaza.</h2>
-      <p class="entrada">
-        Hoy hay trabajo que su taller devuelve, o que subcontrata a ciegas y con
-        él pierde el control del cliente. Cada cosa nueva que construimos apunta a lo mismo:
-        que pueda capturarlo sin comprar equipo ni certificar a nadie — el
-        cliente se queda con usted, la orden se abre en su taller y el
-        especialista entra dentro de su flujo.
-      </p>
-      <p class="nota">Vehículos eléctricos y electrónica automotriz son los dos primeros. Cada uno que se suma se lo vamos a contar acá.</p>
     </section>
 
     <!-- ── Cierre ─────────────────────────────────────────────────────── -->
@@ -344,7 +292,7 @@
 <footer>
   <div class="env">
     <p>Integra Núcleo · Integra Labs</p>
-    <p><a href="/privacidad">Privacidad</a> · <a href="/terminos">Términos</a> · <a href="/contacto">Contacto</a> · <a href="https://integranucleo.app">Entrar al sistema</a></p>
+    <p><a href="/privacidad">Privacidad</a> · <a href="/terminos">Términos</a> · <a href="/contacto">Contacto</a> · <a href="https://integranucleo.app">Entrar</a></p>
   </div>
 </footer>
 <div class="cta-fijo">
