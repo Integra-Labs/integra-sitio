@@ -236,6 +236,12 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
 .reaseguro{margin:0;font-size:1rem;color:var(--muted)}
 .reaseguro strong{color:var(--tinta);font-weight:600}
 
+/* Donde la competencia pone «7.000+ talleres · 99,9 % uptime · 24/7», nosotros
+   no tenemos ese número y no lo vamos a inventar. Lo que sí es cierto —y a un
+   dueño costarricense le pesa más que un uptime— es que esto habla su moneda y
+   sus canales. Va más liviana que el reaseguro: es contexto, no argumento. */
+.prueba{margin:.4rem 0 0;font-size:.875rem;color:var(--muted)}
+
 /* ── Corte de ritmo ────────────────────────────────────────────────────────
    Tres secciones seguidas —integridad, ARIA y Costa Rica— usaban la misma
    rejilla de tres columnas con tres h3 cada una. Medido: idénticas en
@@ -464,11 +470,16 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
    de la página no, la primera pantalla contradice a las diez siguientes.
    Se excluyen las páginas `.texto` —privacidad, términos, contacto— donde el
    contenido es prosa o un formulario y centrar el encabezado lo desalinea de
-   lo que viene abajo. */
+   lo que viene abajo.
+
+   OJO: esta regla ENUMERA clases, así que cada elemento nuevo del hero nace
+   alineado a la izquierda mientras todo lo demás va centrado. Pasó con
+   `.prueba`: se veía en la captura antes de publicar. Si agregás uno, va acá. */
 main > .env:not(.texto) > .antetitulo,
 main > .env:not(.texto) > h1,
 main > .env:not(.texto) > .sub,
 main > .env:not(.texto) > .reaseguro,
+main > .env:not(.texto) > .prueba,
 main > .env:not(.texto) > .imprimir{
   text-align:center; margin-inline:auto;
 }
