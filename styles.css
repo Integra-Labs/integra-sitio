@@ -292,6 +292,32 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
   body:has(.cta-fijo) footer{padding-bottom:7rem}
 }
 
+/* ── Par: texto y captura al lado ──────────────────────────────────────────
+   El reporte del teléfono mide 1.091 px de alto. Apilado bajo los tres pasos
+   sumaba 1.174 px a la página para decir lo mismo. Al lado, la fila mide lo
+   que mide la figura y los pasos caben dentro. Debajo de 60rem vuelve a
+   apilarse, que en teléfono es lo correcto. */
+.par{display:grid;gap:var(--paso)}
+@media(min-width:60rem){
+  .par{grid-template-columns:1fr auto;align-items:center;gap:clamp(2rem,5vw,4rem)}
+  .par > *{margin-top:0}
+  .par .captura{margin:0}
+  /* Cuando el título y la entrada entran en la columna, dejan de ir
+     centrados: el eje de lectura es el borde izquierdo de la columna. */
+  .par--texto > div > h2,
+  .par--texto > div > .entrada,
+  .par--texto > div > .remate{text-align:left;margin-inline:0;max-width:none}
+  .par--texto .recorrido{margin-top:2rem}
+  .par--texto .remate{margin-top:1.75rem}
+}
+
+/* ── Lista corrida ─────────────────────────────────────────────────────────
+   Una alternativa a las tres tarjetas, para cuando el bloque no aguanta tres
+   secciones seguidas con la misma forma. */
+.corrida{list-style:none;padding:0;margin:2rem auto 0;max-width:58ch;display:grid;gap:.85rem}
+.corrida li{padding-left:1.1rem;border-left:2px solid var(--linea);line-height:1.6}
+.corrida b{color:var(--tinta)}
+
 /* ── Captura de producto ───────────────────────────────────────────────────
    La página no tenía una sola imagen: la revisión de diseño lo midió
    (img 0, svg 0) y era la misma debilidad estructural que el benchmark le
@@ -428,7 +454,7 @@ main > .env:not(.texto) > .acciones{justify-content:center}
 
 /* La captura del reporte del cliente es una pantalla de teléfono: a todo el
    ancho se vería como un cartel y no como lo que es. Se limita y se centra. */
-.captura--telefono{max-width:22rem;margin-inline:auto}
+.captura--telefono{max-width:18rem;margin-inline:auto}
 .captura--telefono img{border-radius:16px}
 .captura--telefono figcaption{text-align:center}
 

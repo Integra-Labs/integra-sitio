@@ -108,6 +108,28 @@ for ruta in "${PAGINAS[@]}"; do
   else
     ok "sin restos del generador"
   fi
+
+  # Etiquetas de bloque balanceadas.
+  #
+  # Reestructurando el home perdí un </section> al reemplazar un tramo del
+  # archivo. El navegador no se queja: anida lo que sigue adentro, y la
+  # sección pasó de 1.300 a 5.500 px con todas las que venían después
+  # colgando de ella. Las demás comprobaciones daban verde —el <h1> estaba,
+  # el peso daba, axe no ve nada— porque ninguna mira si la estructura cierra.
+  # Es el mismo hueco que dejó pasar el HTML con \n literales.
+  desbalance=""
+  for eti in section div figure ol ul details; do
+    abre=$(grep -o "<$eti[ >]" /tmp/pagina.html | wc -l | tr -d ' ')
+    cierra=$(grep -o "</$eti>" /tmp/pagina.html | wc -l | tr -d ' ')
+    if [ "$abre" != "$cierra" ]; then
+      desbalance="$desbalance $eti($abre/$cierra)"
+    fi
+  done
+  if [ -n "$desbalance" ]; then
+    fallo "etiquetas sin cerrar —$desbalance (abre/cierra)"
+  else
+    ok "etiquetas de bloque balanceadas"
+  fi
   fi
 done
 
