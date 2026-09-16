@@ -41,6 +41,16 @@ jobs:
       # expone su carpeta en $CHROMEWEBDRIVER. Se usa ese y se acabó la carrera
       # de versiones. Si algún día deja de existir, el step falla acá con un
       # mensaje claro en vez de volver a fallar dentro de axe.
+      # Dos veces una tabla ancha empujó la página de lado: /precios 136 px y
+      # /plantillas/inspeccion-12-puntos 93 px a 390 y 163 a 320. Las dos
+      # pasaron todos los candados —axe no mira el desborde horizontal y
+      # Lighthouse no lo falla—. El ancho de 320 caza lo que 390 deja pasar.
+      - name: Sin desborde horizontal en teléfono
+        run: |
+          npm i --no-save playwright
+          npx playwright install --with-deps chromium
+          node scripts/sin-desborde.mjs http://localhost:4173
+
       - name: Accesibilidad (axe)
         run: |
           if [ ! -x "${CHROMEWEBDRIVER:-}/chromedriver" ]; then
