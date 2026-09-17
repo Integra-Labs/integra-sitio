@@ -6,10 +6,16 @@
 // el peso daba, axe no ve un desborde horizontal y Lighthouse tampoco lo falla.
 //
 // El ancho angosto (320) es el que caza lo que 390 deja pasar.
+//
+// Y los anchos de escritorio están acá porque el candado nació mirando solo
+// teléfono, y el héroe a dos columnas se corrió 88 px a 1280 sin que este
+// archivo se enterara: usaba `min(74rem, calc(100vw - ...))` y `100vw` cuenta
+// la barra de desplazamiento. Un candado que solo mide teléfono no defiende el
+// escritorio.
 import { chromium } from 'playwright'
 
 const BASE = process.argv[2] || 'http://localhost:4173'
-const ANCHOS = [320, 390]
+const ANCHOS = [320, 390, 1024, 1440]
 const RUTAS = ['/', '/funciones', '/para', '/para/taller-general', '/para/centro-de-servicio',
   '/para/vehiculos-electricos', '/recursos', '/recursos/recepcion-sin-reclamos',
   '/recursos/cobrar-la-inspeccion', '/recursos/que-preguntar-antes-de-comprar',

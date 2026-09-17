@@ -316,6 +316,55 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
   .corrida .ico{position:static; margin-bottom:.35rem}
 }
 
+/* ── Héroe a dos columnas (solo el home) ───────────────────────────────────
+   La captura del producto empezaba en y=725 de una pantalla de 900: entraba a
+   medias, y en un portátil no entraba. Garage360 la pone completa en la
+   primera pantalla, a la derecha del texto — y su imagen es una maqueta
+   dibujada, mientras la nuestra es el producto. Era la ventaja peor colocada
+   del sitio.
+
+   Esto ROMPE a propósito la regla del hero centrado del 2026-09-10: en el home
+   el h1 queda a la izquierda mientras sus ocho h2 siguen centrados. Se acepta
+   solo acá, y por eso la clase vive en `.hero` y no en la regla general —
+   las otras ocho páginas no se tocan.
+
+   Debajo de 64rem vuelve a una columna y al centrado de siempre, que en
+   teléfono es lo correcto: ahí no hay espacio para dos columnas y el texto
+   centrado es lo que ya estaba probado. */
+.hero{display:grid;gap:var(--paso)}
+/* Al anidar el titular dentro de `.hero-texto` dejó de alcanzarlo la regla del
+   hero centrado, que exige ser HIJO DIRECTO de `.env` — y en teléfono el h1
+   salió a la izquierda. Se restaura acá como base, y el escritorio la pisa.
+   Tercer caso del mismo patrón en el día: una regla que enumera hijos directos
+   deja de aplicar en cuanto se mete un contenedor. */
+.hero-texto > *{text-align:center;margin-inline:auto}
+.hero-texto .acciones{justify-content:center}
+
+@media(min-width:64rem){
+  /* `.env` mide 60rem, así que dos columnas dejaban la captura en 438 px y el
+     tablero no se leía. La imagen se queda con la columna mayor. */
+  .hero{
+    grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);
+    align-items:center; gap:clamp(2rem,4vw,3.5rem);
+  }
+  .hero-texto > *{text-align:left;margin-inline:0}
+  .hero-texto h1{max-width:none;text-wrap:balance}
+  .hero-texto .sub{max-width:44ch}
+  .hero-texto .acciones{justify-content:flex-start}
+  .hero .captura{margin:0}
+  .hero .captura figcaption{text-align:left}
+}
+
+/* A partir de 82rem (1312 px) sobran 128 px para sacar el héroe a 74rem sin
+   tocar los bordes, barra de desplazamiento incluida. Debajo de ese umbral se
+   queda dentro de `.env` y la captura simplemente sale más chica.
+   El intento anterior usaba `min(74rem, calc(100vw - 2*--paso))` y la página
+   se corría de lado: 88 px a 1280, 46 a 1100, 8 a 1024 y a 1440. `100vw`
+   cuenta la barra de desplazamiento; el ancho visible es menor. */
+@media(min-width:82rem){
+  .hero{margin-inline:-7rem}
+}
+
 /* ── Par: texto y captura al lado ──────────────────────────────────────────
    El reporte del teléfono mide 1.091 px de alto. Apilado bajo los tres pasos
    sumaba 1.174 px a la página para decir lo mismo. Al lado, la fila mide lo
