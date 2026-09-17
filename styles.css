@@ -298,6 +298,24 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
   body:has(.cta-fijo) footer{padding-bottom:7rem}
 }
 
+/* ── Íconos de tarjeta ─────────────────────────────────────────────────────
+   Medido el 2026-09-16: Garage360 tiene 76 íconos en su home y nosotros cero.
+   No es cosmética — es lo que le da ritmo a una columna de tarjetas que si no
+   se lee como un muro. Van en línea (sin red, sin peso de descarga), heredan
+   `currentColor` y son decorativos: el <h3> de al lado ya dice lo que dicen.
+   No van en `.recorrido`: esos pasos ya tienen la hora o el número de marcador
+   y un ícono competiría con él. */
+.ico{
+  display:block; width:24px; height:24px; margin-bottom:.7rem;
+  color:var(--acento); flex:none;
+}
+.corrida li{position:relative}
+.corrida .ico{position:absolute; left:-2.35rem; top:.15rem; margin:0; width:20px; height:20px}
+@media(max-width:34rem){
+  /* Sin sangría que sostenga el ícono, vuelve al flujo arriba del texto. */
+  .corrida .ico{position:static; margin-bottom:.35rem}
+}
+
 /* ── Par: texto y captura al lado ──────────────────────────────────────────
    El reporte del teléfono mide 1.091 px de alto. Apilado bajo los tres pasos
    sumaba 1.174 px a la página para decir lo mismo. Al lado, la fila mide lo
