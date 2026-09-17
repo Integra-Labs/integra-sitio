@@ -51,6 +51,11 @@ jobs:
           npx playwright install --with-deps chromium
           node scripts/sin-desborde.mjs http://localhost:4173
 
+      # Lo único del sitio cuyo defecto solo se ve en el papel: las dos
+      # plantillas salían en dos páginas A4 y nadie se enteraba.
+      - name: Las plantillas caben en una A4
+        run: node scripts/hojas-en-una-pagina.mjs http://localhost:4173
+
       - name: Accesibilidad (axe)
         run: |
           if [ ! -x "${CHROMEWEBDRIVER:-}/chromedriver" ]; then
