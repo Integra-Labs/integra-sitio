@@ -524,12 +524,23 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
      teléfono. En papel estorba: la hoja se imprime completa. */
   .tabla-desplaza{overflow:visible;contain:none}
   header,footer,.imprimir,.antetitulo,.sub,.no-imprimir{display:none !important}
-  body{background:#fff;font-size:11pt}
+  body{background:#fff;font-size:10.5pt}
   .env{max-width:none;padding:0}
   .hoja{border:0;border-radius:0;padding:0;margin:0}
   .hoja table{font-size:9.5pt}
-  h1{font-size:16pt;margin:0 0 .4rem;letter-spacing:-.01em}
-  @page{size:A4;margin:14mm}
+  h1{font-size:13pt;margin:0 0 .2rem;letter-spacing:-.01em}
+
+  /* Las dos hojas se imprimían en DOS páginas: a la orden le sobraban 383 px
+     sobre el área útil de una A4 y a la de 12 puntos, 48. Para algo que un
+     taller imprime por pilas, esa segunda página es media resma tirada — y
+     peor, la firma podía caer sola en ella.
+     Se aprieta solo en papel; en pantalla la hoja no se toca. */
+  .hoja h2{font-size:9.5pt;margin:.26rem 0 .14rem}
+  .hoja .rejilla{gap:.26rem .9rem}
+  .hoja th,.hoja td{padding:.2rem .38rem}
+  .hoja .firma{margin-top:.45rem}
+  .hoja .pie-legal{font-size:8pt;margin:.25rem 0 0}
+  @page{size:A4;margin:8mm}
 }
 
 /* ── Hero centrado ─────────────────────────────────────────────────────────
