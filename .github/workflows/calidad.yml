@@ -56,6 +56,11 @@ jobs:
       - name: Las plantillas caben en una A4
         run: node scripts/hojas-en-una-pagina.mjs http://localhost:4173
 
+      # Cuatro veces en dos días una regla con `>` dejó de aplicar al meter un
+      # contenedor. Se mide el síntoma: títulos de sección que no miden igual.
+      - name: Los títulos de sección miden lo mismo
+        run: node scripts/h2-mismo-tamano.mjs http://localhost:4173
+
       - name: Accesibilidad (axe)
         run: |
           if [ ! -x "${CHROMEWEBDRIVER:-}/chromedriver" ]; then
