@@ -121,7 +121,16 @@
    cambio de fondo de las bandas. Una regla sobre blanco, con secciones
    centradas, se lee como recorte. */
 .seccion{margin-top:clamp(3.5rem,9vw,6rem);padding-top:clamp(2rem,5vw,4.5rem)}
-.seccion > h2{font-size:clamp(1.625rem,3.6vw,2.375rem);line-height:1.15;letter-spacing:-.028em;
+/* El `>` es deliberado —no queremos alcanzar los h2 de dentro de una tarjeta—
+   pero por eso mismo el título de «Cobre la inspección» perdió su tamaño al
+   anidarlo en `.par--texto` para las dos columnas: se quedó en 26 px mientras
+   las otras siete secciones iban a 38. En escritorio se leía como subsección
+   la que lleva el argumento de cobrar la inspección.
+   Cuarta vez en el día que una regla con `>` deja de aplicar al meter un
+   contenedor; las otras tres fueron `.prueba`, los botones de `/recursos` y el
+   titular del héroe. Si volvés a anidar un h2 de sección, sumalo acá. */
+.seccion > h2,
+.seccion .par--texto > div > h2{font-size:clamp(1.625rem,3.6vw,2.375rem);line-height:1.15;letter-spacing:-.028em;
   margin:0 auto .75rem;max-width:24ch;text-align:center}
 .seccion > .entrada{color:var(--muted);max-width:58ch;margin:0 auto 2.25rem;text-align:center}
 .seccion > .remate{margin-left:auto;margin-right:auto;text-align:center;max-width:44ch}
@@ -372,16 +381,26 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
    apilarse, que en teléfono es lo correcto. */
 .par{display:grid;gap:var(--paso)}
 @media(min-width:60rem){
-  .par{grid-template-columns:1fr auto;align-items:center;gap:clamp(2rem,5vw,4rem)}
+  /* `center` dejaba 356 px de vacío repartidos arriba y abajo de la columna
+     corta. Con `start` las dos arrancan juntas y el desnivel queda al pie de
+     la imagen, donde no se lee como un hueco. */
+  .par{grid-template-columns:1fr auto;align-items:start;gap:clamp(2rem,5vw,4rem)}
   .par > *{margin-top:0}
   .par .captura{margin:0}
   /* Cuando el título y la entrada entran en la columna, dejan de ir
      centrados: el eje de lectura es el borde izquierdo de la columna. */
-  .par--texto > div > h2,
-  .par--texto > div > .entrada,
-  .par--texto > div > .remate{text-align:left;margin-inline:0;max-width:none}
+  /* `.seccion` al frente para igualar la especificidad de la regla que les
+     devuelve el tamaño; sin eso el título se centraba sobre una columna
+     alineada a la izquierda. */
+  .seccion .par--texto > div > h2,
+  .seccion .par--texto > div > .entrada,
+  .seccion .par--texto > div > .remate{text-align:left;margin-inline:0;max-width:none}
   .par--texto .recorrido{margin-top:2rem}
   .par--texto .remate{margin-top:1.75rem}
+  /* El teléfono a 18rem medía 890 px contra 555 de texto: 335 px de vacío al
+     pie de la columna. A 15rem la diferencia baja y el reporte se sigue
+     leyendo —severidades, hallazgo y decisión—. */
+  .par--texto .captura--telefono{max-width:15rem}
 }
 
 /* ── Lista corrida ─────────────────────────────────────────────────────────
