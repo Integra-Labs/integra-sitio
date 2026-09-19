@@ -52,9 +52,13 @@
   .marca span{font-size:.8125rem;color:var(--muted);font-weight:500}
 
   main{padding:clamp(3rem,9vw,6rem) 0 0}
+  /* Medido el 2026-09-18: nuestro h1 estaba en 64 px y el de Stripe en 48.
+     Un titular más chico y mejor modulado se lee más caro que uno grande; el
+     de 64 gritaba y en el hero a dos columnas partía en cinco líneas.
+     El tope baja de 4rem a 3.125rem (50 px). El piso de móvil no se toca. */
   h1{
-    font-size:clamp(2.125rem,6.2vw,4rem); line-height:1.04; letter-spacing:-.035em;
-    font-weight:700; margin:0 0 1.25rem; max-width:16ch;
+    font-size:clamp(2.125rem,4.6vw,3.125rem); line-height:1.08; letter-spacing:-.03em;
+    font-weight:700; margin:0 0 1.25rem; max-width:18ch;
   }
   .sub{font-size:clamp(1.0625rem,2.1vw,1.3125rem);color:var(--muted);max-width:34em;margin:0 0 2rem}
 
@@ -561,6 +565,40 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
   .hoja .pie-legal{font-size:8pt;margin:.25rem 0 0}
   @page{size:A4;margin:8mm}
 }
+
+/* ── El campo de marca ─────────────────────────────────────────────────────
+   Medido el 2026-09-18: las 19 páginas abrían idénticas —antetítulo, h1 de
+   64 px centrado, subtítulo, blanco— y 18 de 19 no tenían NI UN elemento
+   visual en la primera pantalla. En /funciones son 760 px de alto con solo
+   texto centrado. Eso es lo que hace que el sitio se lea como folleto y no
+   como empresa.
+
+   Stripe resuelve lo mismo con un degradado generativo que NO es una captura:
+   es marca. El suyo va en WebGL. El nuestro va en CSS puro y a propósito —el
+   sitio sirve 0 bytes de JavaScript y eso está registrado como la ventaja más
+   medida que tenemos (§8.6 del plan). Un campo de gradientes cuesta CERO
+   bytes: ni una petición, ni un archivo.
+
+   Va igual en las 19. La consistencia es lo que señala empresa; la variación
+   por página, si hace falta, viene después. */
+main{position:relative}
+main::before{
+  content:''; position:absolute; inset:0 0 auto; height:min(46rem, 68vh);
+  z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(52rem 30rem at 88% -10%, color-mix(in srgb, var(--acento) 52%, transparent), transparent 58%),
+    radial-gradient(40rem 26rem at 108% 26%, color-mix(in srgb, #22A8CE 42%, transparent), transparent 56%),
+    radial-gradient(34rem 24rem at 96% 46%,  color-mix(in srgb, #7C5CD6 22%, transparent), transparent 55%),
+    radial-gradient(30rem 22rem at 2% -14%,  color-mix(in srgb, var(--acento) 16%, transparent), transparent 56%);
+  -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 34%, transparent 92%);
+          mask-image:linear-gradient(to bottom, #000 0%, #000 34%, transparent 92%);
+}
+@media(max-width:60rem){
+  /* En teléfono el campo se achica y se aclara: el texto va encima, centrado,
+     y ahí cualquier saturación le come el contraste. */
+  main::before{height:min(26rem, 46vh); opacity:.6}
+}
+@media print{ main::before{display:none} }
 
 /* ── Hero centrado ─────────────────────────────────────────────────────────
    Rediseño del 2026-09-10. Si cada h2 de sección está centrado y el titular
