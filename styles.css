@@ -584,6 +584,21 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
   @page{size:A4;margin:8mm}
 }
 
+/* ── El puente entre las dos capas ─────────────────────────────────────────
+   El titular promete una secuencia —orden el primer día, más inteligente cada
+   semana— y sin esto no dice POR QUÉ mejora. La arquitectura es la respuesta y
+   está en ADR-055: los insights se apoyan sobre datos que el reporte ya
+   calcula. La gestión captura; la inteligencia lee.
+
+   No dice «IA en todo el proceso» a propósito. `SeccionAlertas.tsx` lo deja
+   escrito: las alertas son reglas deterministas y «presentar reglas como IA
+   sería deshonesto». Acá se nombra cada cosa por lo que es. */
+.puente{
+  margin:0 0 1.75rem; max-width:52ch; font-size:.9375rem; line-height:1.6;
+  color:var(--muted); border-left:2px solid var(--linea); padding-left:1rem;
+}
+.puente strong{color:var(--tinta);font-weight:600}
+
 /* ── El campo de marca ─────────────────────────────────────────────────────
    Medido el 2026-09-18: las 19 páginas abrían idénticas —antetítulo, h1 de
    64 px centrado, subtítulo, blanco— y 18 de 19 no tenían NI UN elemento
