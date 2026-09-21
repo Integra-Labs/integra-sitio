@@ -452,6 +452,18 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
 .captura--interna{margin:0}
 .captura--interna img{border-radius:10px}
 
+/* Una captura de UNA tarjeta, no de una pantalla entera. Las otras capturas son
+   apaisadas (1400×491) y llenan la columna sin problema; esta es casi cuadrada,
+   así que a ancho completo se comía la pantalla del lector. */
+/* 40rem = 640px = el ancho exacto al que la tarjeta se renderiza en el producto
+   (la pantalla del mecánico está topada ahí). A ese tamaño la captura se ve 1:1
+   y el texto de adentro se lee; más angosta, la letra de 12px no se lee.
+   El selector nombra a `.seccion.panel` porque `.seccion.panel > *` fija
+   max-width:60rem y le gana por especificidad — el mismo tropiezo de siempre. */
+.captura--tarjeta,
+.seccion.panel > .captura--tarjeta{max-width:40rem;margin-inline:auto}
+.captura--tarjeta img{border-radius:14px}
+
 /* ── El problema ───────────────────────────────────────────────────────────
    Va antes del recorrido: el home arrancaba con la solución sin nombrar el
    dolor. Deliberadamente NO usa la rejilla de tres — ya hay dos secciones con
