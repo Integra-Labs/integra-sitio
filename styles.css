@@ -599,6 +599,22 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
 }
 .puente strong{color:var(--tinta);font-weight:600}
 
+/* ── Las cifras de /aria ───────────────────────────────────────────────────
+   «37 casos reales», «85 % es el mínimo» y «48 de 48» son la prueba más fuerte
+   del sitio, y estaban tipografiadas como el título de cualquier otra tarjeta:
+   en una página cuya tesis es «medimos si acierta», los números no dominaban
+   nada. Se leían igual que «No presume con una sola muestra».
+
+   El número sale del flujo del texto y se agranda, pero el <h3> conserva su
+   texto COMPLETO —«37 casos reales»— para quien lo escucha con lector de
+   pantalla. El tamaño es presentación, no contenido. */
+.cifra{display:block}
+.cifra b{
+  display:block; font-weight:700; line-height:1;
+  font-size:clamp(2.5rem,5vw,3.25rem); letter-spacing:-.03em;
+  color:var(--acento); margin-bottom:.15rem;
+}
+
 /* ── El campo de marca ─────────────────────────────────────────────────────
    Medido el 2026-09-18: las 19 páginas abrían idénticas —antetítulo, h1 de
    64 px centrado, subtítulo, blanco— y 18 de 19 no tenían NI UN elemento
