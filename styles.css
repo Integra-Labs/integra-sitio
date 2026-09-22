@@ -93,6 +93,15 @@
   .btn-2:hover{background:var(--blanco)}
   .nota{font-size:.9375rem;color:var(--muted);margin:0}
 
+  /* El canal instantáneo. Va como renglón de texto y no como tercer botón: en
+     /contacto compite con el formulario que está justo debajo, y tres botones
+     iguales obligan a elegir sin decir en qué se diferencian. Acá la frase
+     dice para quién es —«¿prefiere no llenar nada?»— y el enlace es la salida.
+     En los cierres de las demás páginas sí va como botón: ahí no hay
+     formulario con el que competir. */
+  .atajo{font-size:1rem;color:var(--muted);margin:0 0 2rem}
+  .atajo a{color:var(--tinta);font-weight:600}
+
   .puntos{
     display:grid;gap:1.5rem;margin:clamp(3rem,8vw,5rem) 0 0;
     grid-template-columns:1fr;border-top:1px solid var(--linea);padding-top:2rem;

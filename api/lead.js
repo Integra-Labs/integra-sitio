@@ -96,6 +96,72 @@ function error(res, codigo, mensaje, datos = {}) {
 </div></footer></body></html>`)
 }
 
+// ── El aviso ────────────────────────────────────────────────────────────────
+//
+// Por qué existe: hasta hoy este endpoint guardaba la fila y no le avisaba a
+// NADIE. La única forma de enterarse de que alguien pidió una demostración era
+// que una persona se acordara de abrir la consola de la base — mientras
+// `/gracias` le prometía al taller «le contestamos al teléfono que nos dejó».
+// Una promesa cuyo único disparador es la memoria de alguien.
+//
+// Reglas de la casa, en orden:
+//   1. El lead se guarda ANTES de intentar el aviso. Si el correo falla, el
+//      contacto ya está en la base; al revés se perdería.
+//   2. El fallo del aviso NUNCA le rebota al taller. Él hizo su parte.
+//   3. El fallo no se esconde: se marca por AUSENCIA de `notificado_en`, que
+//      se puede contar. Un `console.error` solo se ve si alguien lo busca.
+//
+// `RESEND_API_KEY` y `LEADS_CORREO_DESTINO` se inyectan por variable de
+// entorno en Vercel. Sin ellas el aviso no se intenta y se dice en el registro:
+// es una omisión de configuración, no un error del visitante.
+const AVISO_TIMEOUT_MS = 5000
+
+export async function avisar(lead) {
+  const clave   = process.env.RESEND_API_KEY
+  const destino = process.env.LEADS_CORREO_DESTINO
+  const remite  = process.env.LEADS_CORREO_REMITENTE || 'Integra Núcleo <onboarding@resend.dev>'
+
+  if (!clave || !destino) {
+    console.warn('lead: no se avisó — falta RESEND_API_KEY o LEADS_CORREO_DESTINO')
+    return false
+  }
+
+  // Un lead que entra mientras el proveedor de correo está caído no puede
+  // dejar al visitante esperando: se corta a los 5 s y se sigue.
+  const corte = AbortSignal.timeout(AVISO_TIMEOUT_MS)
+  const linea = (etiqueta, valor) => (valor ? `${etiqueta}: ${valor}\n` : '')
+
+  try {
+    const r = await fetch('https://api.resend.com/emails', {
+      method:  'POST',
+      signal:  corte,
+      headers: { Authorization: `Bearer ${clave}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from:     remite,
+        to:       destino.split(',').map(x => x.trim()).filter(Boolean),
+        reply_to: lead.correo || undefined,
+        subject:  `Demostración pedida — ${lead.nombre}${lead.taller ? ' · ' + lead.taller : ''}`,
+        text:
+          linea('Nombre',   lead.nombre) +
+          linea('Teléfono', lead.telefono) +
+          linea('Taller',   lead.taller) +
+          linea('Correo',   lead.correo) +
+          linea('Mensaje',  lead.mensaje) +
+          linea('Vino de',  lead.origen) +
+          '\nLe prometimos contestarle hoy.\n',
+      }),
+    })
+    if (!r.ok) {
+      console.error('lead: el proveedor rechazó el aviso', r.status, (await r.text()).slice(0, 300))
+      return false
+    }
+    return true
+  } catch (e) {
+    console.error('lead: falló el aviso', String(e))
+    return false
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return error(res, 405, 'Este formulario solo acepta envíos.')
 
@@ -119,17 +185,32 @@ export default async function handler(req, res) {
   try {
     const sql = neon(process.env.DATABASE_URL)
     await asegurarEsquema(sql)
-    await sql`
+    const taller  = limpiar(cuerpo.taller,  LIMITES.taller)
+    const mensaje = limpiar(cuerpo.mensaje, LIMITES.mensaje)
+    const origen  = limpiar(req.headers.referer, 300)
+    const filas = await sql`
       insert into leads (nombre, telefono, taller, correo, mensaje, origen, user_agent)
       values (
         ${nombre},
         ${telefono},
-        ${limpiar(cuerpo.taller,  LIMITES.taller)},
+        ${taller},
         ${correo},
-        ${limpiar(cuerpo.mensaje, LIMITES.mensaje)},
-        ${limpiar(req.headers.referer, 300)},
+        ${mensaje},
+        ${origen},
         ${limpiar(req.headers['user-agent'], 300)}
-      )`
+      )
+      returning id`
+
+    // El lead ya está a salvo. De acá en adelante nada puede hacerle perder el
+    // contacto al taller, así que todo va dentro de su propio try.
+    try {
+      if (await avisar({ nombre, telefono, taller, correo, mensaje, origen })) {
+        await sql`update leads set notificado_en = now() where id = ${filas[0].id}`
+      }
+    } catch (e) {
+      console.error('lead: guardado pero sin avisar', filas[0]?.id, String(e))
+    }
+
     return redirigir(res, destino)
   } catch (e) {
     // Nunca se pierde en silencio: queda en los registros de la función con el
