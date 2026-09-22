@@ -26,6 +26,12 @@ export const ESQUEMA = [
   // que todavía no quiere hablar con nadie. El handler exige que venga UNO de
   // los dos, así que un lead nunca queda sin forma de contacto.
   `alter table leads alter column telefono drop not null`,
+  // Cuándo se le avisó a una persona de que este lead existe. Es una COLUMNA y
+  // no un `console.log` a propósito: un aviso que falla en silencio deja el
+  // lead exactamente igual que antes —guardado y sin que nadie lo sepa— y esa
+  // es justo la falla que esto viene a cerrar. Con la columna, `where
+  // notificado_en is null` enumera los leads de los que nadie se enteró.
+  `alter table leads add column if not exists notificado_en timestamptz`,
 ]
 
 /** Deja la base lista. Idempotente: se puede llamar siempre sin efecto extra. */
