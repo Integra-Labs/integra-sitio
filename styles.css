@@ -101,6 +101,14 @@
      formulario con el que competir. */
   .atajo{font-size:1rem;color:var(--muted);margin:0 0 2rem}
   .atajo a{color:var(--tinta);font-weight:600}
+  /* Pegado a un formulario, el atajo se leía como parte de la letra chica de
+     privacidad que va justo encima. */
+  form + .atajo{margin-top:1.25rem}
+  /* La vuelta al índice NO es una acción: es navegación. Con el peso del
+     atajo competía con los dos botones que tiene encima. */
+  .atajo--volver{margin-top:.9rem}
+  .atajo--volver a{font-weight:400;color:var(--muted)}
+  .atajo--volver a:hover{color:var(--tinta)}
 
   .puntos{
     display:grid;gap:1.5rem;margin:clamp(3rem,8vw,5rem) 0 0;
