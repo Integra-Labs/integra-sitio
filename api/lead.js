@@ -111,18 +111,43 @@ function error(res, codigo, mensaje, datos = {}) {
 //   3. El fallo no se esconde: se marca por AUSENCIA de `notificado_en`, que
 //      se puede contar. Un `console.error` solo se ve si alguien lo busca.
 //
-// `RESEND_API_KEY` y `LEADS_CORREO_DESTINO` se inyectan por variable de
-// entorno en Vercel. Sin ellas el aviso no se intenta y se dice en el registro:
-// es una omisión de configuración, no un error del visitante.
+// ── Las TRES variables son obligatorias, y el remitente también ─────────────
+//
+// `LEADS_CORREO_REMITENTE` tenía un valor por defecto —`onboarding@resend.dev`—
+// y estaba mal. Los propios documentos de Resend ponen como prerrequisito de
+// envío «A Resend API key» **y** «A verified domain»: ese remitente es el del
+// ejemplo del quickstart, contra los buzones de prueba `@resend.dev`, no un
+// remitente con el que se le pueda escribir a una persona.
+//
+// Un valor por defecto que no puede funcionar es peor que no tenerlo: la
+// petición sale, Resend la rechaza, `notificado_en` queda en NULL, y el cron
+// reintenta todos los días una llamada condenada. Parece un problema de red y
+// es de configuración. Sin remitente **no se intenta**, y el registro dice
+// exactamente cuál de las tres falta.
+//
+// Y hay un paso que no es de Vercel: verificar el dominio. Medido el
+// 2026-09-25, `integranucleo.com` no tiene MX ni SPF y sí tiene DMARC en
+// `p=quarantine` — o sea que hoy un correo que diga venir de ahí falla las dos
+// comprobaciones contra una política que lo manda a cuarentena. El DNS está en
+// GoDaddy (`ns15/ns16.domaincontrol.com`), no en Vercel.
 const AVISO_TIMEOUT_MS = 5000
 
 export async function avisar(lead) {
   const clave   = process.env.RESEND_API_KEY
   const destino = process.env.LEADS_CORREO_DESTINO
-  const remite  = process.env.LEADS_CORREO_REMITENTE || 'Integra Núcleo <onboarding@resend.dev>'
+  const remite  = process.env.LEADS_CORREO_REMITENTE
 
-  if (!clave || !destino) {
-    console.warn('lead: no se avisó — falta RESEND_API_KEY o LEADS_CORREO_DESTINO')
+  // Se nombra la que falta, no «alguna de estas tres». Un aviso que no sale es
+  // un lead que nadie contesta: quien lea este registro tiene que saber qué
+  // poner sin ir a leer el código.
+  const faltan = [
+    !clave   && 'RESEND_API_KEY',
+    !destino && 'LEADS_CORREO_DESTINO',
+    !remite  && 'LEADS_CORREO_REMITENTE (ej. "Integra Núcleo <avisos@send.integranucleo.com>", con el dominio verificado en Resend)',
+  ].filter(Boolean)
+
+  if (faltan.length) {
+    console.warn(`lead: no se avisó — falta configurar ${faltan.join(' · ')}`)
     return false
   }
 
