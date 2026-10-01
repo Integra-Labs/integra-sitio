@@ -125,11 +125,24 @@ function error(res, codigo, mensaje, datos = {}) {
 // es de configuración. Sin remitente **no se intenta**, y el registro dice
 // exactamente cuál de las tres falta.
 //
-// Y hay un paso que no es de Vercel: verificar el dominio. Medido el
-// 2026-09-25, `integranucleo.com` no tiene MX ni SPF y sí tiene DMARC en
-// `p=quarantine` — o sea que hoy un correo que diga venir de ahí falla las dos
-// comprobaciones contra una política que lo manda a cuarentena. El DNS está en
-// GoDaddy (`ns15/ns16.domaincontrol.com`), no en Vercel.
+// El dominio YA ESTÁ VERIFICADO — y lo que decía acá el 2026-09-25 estaba mal.
+//
+// Decía que `integranucleo.com` «falla SPF y DKIM contra una política que lo
+// manda a cuarentena». Medido el 2026-09-30: `resend._domainkey` tiene el DKIM
+// y `rsend`/`send` apuntan a `forge.rmta.net`. No hay un TXT de SPF en la raíz
+// —Resend lo resuelve por CNAME— pero **el DMARC es `aspf=r adkim=r`, y con
+// alineación relajada alcanza con que pase UNA de las dos**. Pasa por DKIM.
+// La prueba no es el `dig`: son tres correos `Delivered` en el panel de Resend.
+//
+// Lo verificó otra sesión el 2026-09-29, al destapar que producción llevaba
+// ~2 meses sin mandar un solo correo: el dominio vencido Y cero claves de API,
+// con el `200` de GoTrue tapando las dos cosas. El DNS vive en GoDaddy
+// (`ns15/ns16.domaincontrol.com`), no en Vercel.
+//
+// Para el remitente de ESTE aviso conviene una dirección propia —`avisos@`— y
+// una clave de API propia, no la de `supabase-smtp`: una clave nombrada para un
+// sistema y usada por dos se rota un día y se cae la otra sin que nadie
+// relacione las dos cosas.
 const AVISO_TIMEOUT_MS = 5000
 
 export async function avisar(lead) {
