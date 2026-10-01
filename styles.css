@@ -197,6 +197,29 @@
 .paso h3{font-size:1.1875rem;font-weight:600;margin:0 0 .3rem;letter-spacing:-.012em}
 .paso p{margin:0;color:var(--muted);font-size:1rem}
 
+/* ── El detalle de cada paso, plegado ──────────────────────────────────────
+   Un dueño de taller leyó esta sección y no la entendió. Medido contra los
+   tres competidores: los tres cuentan el día —Garage360 con horas iguales a
+   las nuestras— y los tres con mucho menos texto por paso. El nuestro iba de
+   16 a 55 palabras, y el de Diagnóstico tenía TRES argumentos adentro más una
+   comparación contra competidores que el lector no tiene contexto para
+   entender.
+   La hora se queda SIEMPRE visible a propósito: colapsar todo convertiría la
+   sección en la lista de funciones que su propia entrada dice no ser. Lo que
+   se pliega es el argumento, no el día.
+   `<details>` nativo, como el FAQ y el menú: cero bytes de JavaScript. */
+.paso-det summary{
+  cursor:pointer; list-style:none; display:flex; flex-wrap:wrap;
+  align-items:baseline; gap:.1rem .6rem; min-height:44px; padding:.1rem 0;
+}
+.paso-det summary::-webkit-details-marker{display:none}
+.paso-det summary h3{margin:0}
+.paso-det summary span{color:var(--muted);font-size:1rem;flex:1 1 20ch}
+.paso-det summary::after{content:"+";color:var(--acento);font-weight:700;flex:none;align-self:center}
+.paso-det[open] summary::after{content:"−"}
+.paso-det summary:focus-visible{outline:3px solid var(--acento);outline-offset:3px;border-radius:4px}
+.paso-det > p{margin:.5rem 0 .2rem;color:var(--muted);font-size:1rem;max-width:58ch}
+
 /* Rejilla de tres */
 .tres{display:grid;gap:1.25rem;grid-template-columns:1fr}
 @media(min-width:44rem){.tres{grid-template-columns:repeat(3,1fr);gap:1.5rem}}

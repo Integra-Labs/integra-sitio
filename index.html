@@ -67,47 +67,53 @@
     <section class="seccion" aria-labelledby="recorrido">
       <h2 id="recorrido">Un carro entra a las 8:00. A las 16:30 todo está cobrado.</h2>
       <p class="entrada">
-        No es una lista de funciones: es el día. Cada paso deja escrito quién lo
-        hizo y cuándo.
+        No es una lista de funciones: es el día. Toque cualquier paso para ver
+        el detalle.
       </p>
       <ol class="recorrido">
         <li class="paso">
           <span class="hora">8:00</span>
           <div>
-            <h3>Recepción</h3>
-            <p>Se abre la orden con la placa. El vehículo y el cliente ya tienen historial: lo que se capturó la visita pasada no se vuelve a preguntar.</p>
+            <details class="paso-det">
+              <summary><h3>Recepción</h3><span>Se abre la orden con la placa, y el historial del carro ya está ahí.</span></summary>
+              <p>Lo que se capturó la visita pasada no se vuelve a preguntar: ni los datos del cliente ni lo que se le hizo al vehículo.</p>
+            </details>
           </div>
         </li>
         <li class="paso">
           <span class="hora">8:20</span>
           <div>
-            <h3>Inspección digital</h3>
-            <p>El mecánico marca cada punto con foto y video. El cliente aprueba o rechaza <strong>ítem por ítem</strong>, no un documento entero.</p>
+            <details class="paso-det">
+              <summary><h3>Inspección digital</h3><span>El mecánico marca cada punto con foto y video.</span></summary>
+              <p>El cliente aprueba o rechaza <strong>ítem por ítem</strong>, no un documento entero. Lo que autoriza entra al trabajo; lo que no, queda anotado para la próxima visita.</p>
+            </details>
           </div>
         </li>
         <li class="paso">
           <span class="hora">9:40</span>
           <div>
-            <h3>Diagnóstico</h3>
-            <p>Ante un código de falla, ARIA sugiere a partir de lo que su propio técnico
-            confirmó antes — no de un promedio de otros talleres. Si no conoce el
-            código, lo dice: no se inventa una causa para mandar al técnico a perder
-            la mañana. <strong>La decisión sigue siendo suya y queda registrada como
-            suya.</strong></p>
+            <details class="paso-det">
+              <summary><h3>Diagnóstico</h3><span>Ante un código de falla, ARIA sugiere la causa probable.</span></summary>
+              <p>Sugiere a partir de lo que su propio técnico confirmó antes. Si no conoce el código, lo dice en vez de inventar una causa. La decisión sigue siendo del mecánico y queda registrada como suya — <a href="/aria">así medimos que acierte</a>.</p>
+            </details>
           </div>
         </li>
         <li class="paso">
           <span class="hora">10:15</span>
           <div>
-            <h3>Proforma y autorización</h3>
-            <p>Le llega al cliente por WhatsApp. Autoriza desde ahí, sin instalar nada ni crear una cuenta.</p>
+            <details class="paso-det">
+              <summary><h3>Proforma y autorización</h3><span>Le llega al cliente por WhatsApp y autoriza desde ahí.</span></summary>
+              <p>Sin instalar nada y sin crear una cuenta. Queda registrado qué autorizó y cuándo.</p>
+            </details>
           </div>
         </li>
         <li class="paso">
           <span class="hora">16:30</span>
           <div>
-            <h3>Cobro y cierre</h3>
-            <p>Efectivo, transferencia o SINPE, incluso partido entre varios. Lo que se cobró y el estado de la orden son el mismo dato: no hay dos versiones de lo que entró.</p>
+            <details class="paso-det">
+              <summary><h3>Cobro y cierre</h3><span>Efectivo, transferencia o SINPE, incluso partido entre varios.</span></summary>
+              <p>Lo que se cobró y el estado de la orden son el mismo dato: no hay dos versiones de lo que entró.</p>
+            </details>
           </div>
         </li>
       </ol>
