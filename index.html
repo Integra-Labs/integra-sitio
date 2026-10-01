@@ -33,15 +33,8 @@
         <p class="antetitulo">Gestión de taller · de recepción a cobro</p>
         <h1>Orden desde el primer día. Más inteligente cada semana.</h1>
         <p class="sub">
-          Recepción, inspección, proforma y cobro en un solo flujo: los carros
-          avanzan sin que nadie pregunte, el cliente aprueba desde su teléfono, y al
-          cerrar el día todo está cobrado.
-        </p>
-        <p class="puente">
-          <strong>La gestión captura el dato. Integra Intelligence lo lee.</strong>
-          Por eso mejora con el uso: ARIA sugiere el diagnóstico a partir de lo
-          que su taller confirmó, y las alertas del gerente salen de lo que la
-          operación ya registró.
+          Recepción, inspección, proforma y cobro en un solo flujo. Al cerrar el
+          día, todo está cobrado.
         </p>
         <div class="acciones">
           <a class="btn btn-1" href="/contacto?de=home">Pedir una demostración</a>
@@ -49,14 +42,13 @@
         </div>
 
         <p class="tipos">
-          ¿Qué tipo de taller tiene?
+          ¿Qué taller tiene?
           <a href="/para/taller-general">General</a> ·
           <a href="/para/centro-de-servicio">Centro de servicio</a> ·
-          <a href="/para/vehiculos-electricos">Eléctricos e híbridos</a>.
-          <span>¿El suyo no calza en ninguno? <a href="/para">Se configura.</a></span>
+          <a href="/para/vehiculos-electricos">Eléctricos e híbridos</a> ·
+          <a href="/para">¿otro? Se configura</a>.
         </p>
-        <p class="reaseguro">Desde ₡25.000 al mes por sucursal · <strong>mecánicos ilimitados</strong></p>
-        <p class="prueba">Hecho en Costa Rica · en colones · con SINPE y WhatsApp</p>
+        <p class="reaseguro">Hecho en Costa Rica<span class="solo-ancho"> · desde ₡25.000 al mes por sucursal</span>, <strong>mecánicos ilimitados</strong> · SINPE y WhatsApp</p>
       </div>
       <figure class="captura">
         <img src="/imagenes/board.webp" width="1400" height="836" decoding="async"
@@ -119,6 +111,12 @@
           </div>
         </li>
       </ol>
+      <p class="puente puente--centro">
+        <strong>La gestión captura el dato. Integra Intelligence lo lee.</strong>
+        Por eso mejora con el uso: ARIA sugiere el diagnóstico a partir de lo que
+        su taller confirmó, y las alertas del gerente salen de lo que la
+        operación ya registró.
+      </p>
       <div class="acciones" style="justify-content:center;margin-top:1.5rem">
         <a class="btn btn-2" href="/aria">Cómo medimos que ARIA acierte</a>
       </div>
@@ -206,33 +204,20 @@
     
     </section>
 
-    <!-- ── Migración ──────────────────────────────────────────────────── -->
-    <section class="seccion panel" aria-labelledby="migracion">
-      <h2 id="migracion">Cambiarse no es empezar de cero.</h2>
-      <p class="entrada">
-        Es la duda que frena al taller que ya usa algo: qué pasa con lo que tiene
-        hoy. La respuesta corta es que no lo pasa usted, y no se cobra aparte.
-      </p>
-      <div class="tres">
-        <div>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v10"/><path d="M8 9l4 4 4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-          <h3>Traemos lo que tenga</h3>
-          <p>Cuaderno, Excel o el programa que use hoy. Clientes, vehículos y su historial entran al arranque — nadie se sienta a retipear nada.</p>
-        </div>
-        <div>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="7" cy="18" r="2"/></svg>
-          <h3>Queda configurado a su taller</h3>
-          <p>Sus servicios, sus precios y sus permisos por persona, listos antes de que entre el primer carro. No arranca con un catálogo vacío.</p>
-        </div>
-        <div>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.5a3 3 0 0 1 0 5"/><path d="M17.5 14.5A6 6 0 0 1 21 20"/></svg>
-          <h3>La primera jornada es acompañada</h3>
-          <p>El día que empieza a operar no está solo. Se corre un carro real de punta a punta con su gente, y ahí se ajusta lo que haga falta.</p>
-        </div>
-      </div>
-      <p class="nota" style="margin-top:1.25rem">¿Todavía en papel? <a href="/plantillas">Llévese gratis la orden de trabajo y la hoja de inspección de 12 puntos</a> que usamos adentro.</p>
-      <p class="remate">Lo que no le vamos a decir es en cuántos días. Depende de qué tan ordenado esté lo que tiene, y prometerle una fecha sin verlo sería mentirle.</p>
-    </section>
+    <!-- ── La duda del que ya usa algo ─────────────────────────────────── -->
+    <!-- Esto era una sección de 175 palabras con su propia rejilla de tres.
+         Decía lo mismo que /precios abre diciendo desde el #34, en seis veces
+         el largo, y es un argumento de alguien que ya decidió: lo frena el
+         cambio, no la propuesta. Acá queda la pregunta contestada; el
+         desarrollo vive donde la persona está evaluando costo. -->
+    <p class="puente puente--centro">
+      <strong>¿Ya usa algo? Cambiarse no es empezar de cero.</strong>
+      Clientes, vehículos e historial entran al arranque, su catálogo queda
+      configurado antes del primer carro, y la primera jornada es acompañada.
+      <a href="/precios">Cómo es el alta</a>.
+    </p>
+    <p class="nota" style="margin:1rem 0 0;text-align:center">¿Todavía en papel? <a href="/plantillas">Llévese gratis la orden de trabajo y la hoja de inspección de 12 puntos</a> que usamos adentro.</p>
+
 
     <!-- ── Precios ────────────────────────────────────────────────────── -->
     <section class="seccion" aria-labelledby="precios">

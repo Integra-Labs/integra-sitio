@@ -298,12 +298,25 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
    no por persona—, así que se lee como afirmación, no como letra chica. */
 .reaseguro{margin:0;font-size:1rem;color:var(--muted)}
 .reaseguro strong{color:var(--tinta);font-weight:600}
+/* ── Lo propio y lo común, en las páginas de tipo de taller ────────────────
+   Medido: el 30 % del texto de /para/taller-general, /para/centro-de-servicio
+   y /para/vehiculos-electricos es idéntico entre las tres, y TRES de los seis
+   ítems de «Lo que el sistema le da» están en las tres palabra por palabra.
+   El lector los leía como propios de su tipo de taller y no lo son, mientras
+   /para promete «elija el suyo y vea qué cambia». Separarlos no borra nada:
+   deja de afirmar una diferencia que el producto no tiene. */
+.rotulo-lista{
+  font-size:.8125rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--muted); margin:1.1rem 0 .4rem;
+}
+.rotulo-lista:first-of-type{margin-top:.6rem}
+/* El precio vive en la barra fija cuando esa barra existe (< 44rem), así que
+   repetirlo acá lo mostraba DOS veces en la misma pantalla de teléfono, una
+   encima de la otra. Arriba de 44rem la barra no se rinde y el precio tiene
+   que estar en algún lado. */
+.solo-ancho{display:none}
+@media(min-width:44rem){.solo-ancho{display:inline}}
 
-/* Donde la competencia pone «7.000+ talleres · 99,9 % uptime · 24/7», nosotros
-   no tenemos ese número y no lo vamos a inventar. Lo que sí es cierto —y a un
-   dueño costarricense le pesa más que un uptime— es que esto habla su moneda y
-   sus canales. Va más liviana que el reaseguro: es contexto, no argumento. */
-.prueba{margin:.4rem 0 0;font-size:.875rem;color:var(--muted)}
 
 /* ── Corte de ritmo ────────────────────────────────────────────────────────
    Tres secciones seguidas —integridad, ARIA y Costa Rica— usaban la misma
