@@ -298,12 +298,13 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
    no por persona—, así que se lee como afirmación, no como letra chica. */
 .reaseguro{margin:0;font-size:1rem;color:var(--muted)}
 .reaseguro strong{color:var(--tinta);font-weight:600}
+/* El precio vive en la barra fija cuando esa barra existe (< 44rem), así que
+   repetirlo acá lo mostraba DOS veces en la misma pantalla de teléfono, una
+   encima de la otra. Arriba de 44rem la barra no se rinde y el precio tiene
+   que estar en algún lado. */
+.solo-ancho{display:none}
+@media(min-width:44rem){.solo-ancho{display:inline}}
 
-/* Donde la competencia pone «7.000+ talleres · 99,9 % uptime · 24/7», nosotros
-   no tenemos ese número y no lo vamos a inventar. Lo que sí es cierto —y a un
-   dueño costarricense le pesa más que un uptime— es que esto habla su moneda y
-   sus canales. Va más liviana que el reaseguro: es contexto, no argumento. */
-.prueba{margin:.4rem 0 0;font-size:.875rem;color:var(--muted)}
 
 /* ── Corte de ritmo ────────────────────────────────────────────────────────
    Tres secciones seguidas —integridad, ARIA y Costa Rica— usaban la misma
