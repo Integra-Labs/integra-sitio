@@ -93,6 +93,21 @@
   .btn-2:hover{background:var(--blanco)}
   .nota{font-size:.9375rem;color:var(--muted);margin:0}
 
+  /* ── Los tres tipos de taller, en UN renglón ───────────────────────────────
+     `/para` promete «elija el suyo y vea qué cambia» y vivía solo en el menú:
+     el home le pedía a los tres tipos que leyeran lo mismo.
+     Va como renglón y no como banda de tres tarjetas por dos razones medidas:
+     el home YA tiene dos rejillas de tres y una revisión anterior rechazó la
+     tercera por repetición (ver «El problema», abajo); y la versión en
+     renglones costaba 155 px que empujaban los enlaces ~900 px abajo del
+     pliegue en un teléfono — justo donde más falta hacen.
+     La segunda oración no es relleno: es la salida para el taller que no se
+     reconoce en ninguna de las tres etiquetas y, sin ella, concluye que el
+     producto no es para él. */
+  .tipos{font-size:1rem;line-height:1.7;color:var(--muted);margin:1.25rem 0 0;max-width:54ch}
+  .tipos a{font-weight:600}
+  .tipos span{display:block}
+
   /* El canal instantáneo. Va como renglón de texto y no como tercer botón: en
      /contacto compite con el formulario que está justo debajo, y tres botones
      iguales obligan a elegir sin decir en qué se diferencian. Acá la frase
