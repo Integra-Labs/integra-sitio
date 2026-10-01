@@ -41,9 +41,14 @@ más cara del sistema y está tomada a conciencia: se alojan acá y no en Google
 Fonts para no pagar dos conexiones a un tercero. **Agregar una tercera fuente
 es una decisión de presupuesto, no de tipografía.**
 
-Qué queda, hoy: el home va al 93 % (**14 897 B libres**) y `/funciones` al 88 %.
-Las páginas de `/para/*` y los artículos rondan el 51 % y tienen ~100 000 B.
-**Una captura nueva va a esas páginas, no al home.**
+Qué queda, medido el 2026-10-01: el home va al **94 %** (**11 871 B libres**) y
+`/funciones` al 90 %. Las páginas de `/para/*` y los artículos rondan el 51 % y
+tienen ~100 000 B. **Una captura nueva va a esas páginas, no al home.**
+
+Y un dato útil para no asustarse: **`og:image` no cuenta.** El candado suma los
+`href=` de CSS y fuentes y los `src=` de imágenes; la imagen de Open Graph vive
+en el `content=` de un `<meta>`, no la carga el navegador y no la mide nadie. La
+de 40 KB que se comparte por WhatsApp es gratis para el presupuesto.
 
 ---
 
