@@ -23,17 +23,36 @@
 
 const SALUDO_POR_DEFECTO = 'Hola, quiero ver Integra Núcleo para mi taller.'
 
+/** Etiqueta de procedencia: solo letras, dígitos y guiones, y corta. Viene de
+ *  la URL, así que no se confía: sin esto, cualquiera arma un enlace a nuestro
+ *  dominio que abre WhatsApp con el texto que se le ocurra a nombre nuestro. */
+function procedencia(url) {
+  const de = new URL(url, 'http://x').searchParams.get('de') || ''
+  return /^[a-z0-9-]{1,24}$/.test(de) ? de : ''
+}
+
 export default function handler(req, res) {
   const numero = (process.env.WHATSAPP_VENTAS || '').replace(/\D/g, '')
 
   if (!numero) {
-    res.setHeader('Location', '/contacto')
+    // Se conserva el `?de=`: si cae al formulario, el lead tiene que seguir
+    // diciendo de dónde vino. Sin esto, todo lo que llega por el botón de
+    // WhatsApp mientras falta el número se atribuye a la nada.
+    const de = procedencia(req.url || '')
+    res.setHeader('Location', de ? `/contacto?de=${de}` : '/contacto')
     res.statusCode = 302   // temporal: el día que haya número, deja de aplicar
     return res.end()
   }
 
+  // La procedencia viaja DENTRO del saludo, no en un parámetro aparte: wa.me
+  // solo reenvía `text`, así que cualquier otra cosa se pierde en el salto. Un
+  // lead que llega por WhatsApp es el único que no deja fila en `leads`, y sin
+  // esto no habría forma de saber qué página lo mandó.
+  const de     = procedencia(req.url || '')
   const saludo = process.env.WHATSAPP_SALUDO || SALUDO_POR_DEFECTO
-  res.setHeader('Location', `https://wa.me/${numero}?text=${encodeURIComponent(saludo)}`)
+  const texto  = de ? `${saludo} (${de})` : saludo
+
+  res.setHeader('Location', `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`)
   // Nunca 301 ni cacheable: el número puede cambiar y un 301 se queda pegado
   // en el navegador del taller para siempre.
   res.setHeader('Cache-Control', 'no-store')
