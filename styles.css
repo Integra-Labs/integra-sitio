@@ -760,7 +760,12 @@ main > .env:not(.texto) > .acciones{justify-content:center}
 
 /* La captura del reporte del cliente es una pantalla de teléfono: a todo el
    ancho se vería como un cartel y no como lo que es. Se limita y se centra. */
-.captura--telefono{max-width:18rem;margin-inline:auto}
+/* El `.seccion.panel > *{max-width:60rem}` de la línea 360 le gana por
+   especificidad y la captura del teléfono salía a 864 px: una pantalla de
+   celular estirada al ancho de la columna. Es el MISMO tropiezo que ya tiene
+   su nota en `.captura--tarjeta`, y se arregla igual — nombrando al padre. */
+.captura--telefono,
+.seccion.panel > .captura--telefono{max-width:18rem;margin-inline:auto}
 .captura--telefono img{border-radius:16px}
 .captura--telefono figcaption{text-align:center}
 
