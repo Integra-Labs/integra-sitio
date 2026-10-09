@@ -851,6 +851,63 @@ main > .env:not(.texto) > .nota,
 
    Cada lista incluye su propia página índice como primer ítem, para que abrir
    el desplegable no le quite al visitante el destino que el rótulo prometía. */
+/* ── El menú de teléfono ───────────────────────────────────────────────────
+   Medido el 2026-10-09: a 375 px la cabecera ocupaba 146 px —la marca en una
+   línea y los enlaces envueltos en dos— y empujaba la primera imagen del
+   producto a y=879, debajo del pliegue de 812. Un dueño abría el sitio en el
+   teléfono y no veía el sistema hasta bajar.
+
+   Se colapsa con <details>, que es lo que esta hoja ya usa para los
+   desplegables: cero JavaScript y el navegador gestiona el estado abierto.
+
+   A partir de 56rem (900 px) todo cabe en una línea —medido: la barra pasa de
+   146 a 45 px—, así que ahí el <details> se vuelve `display:contents` y el
+   menú desaparece: el nav queda EXACTAMENTE como estaba, sin una regla nueva
+   que mantener para el escritorio. */
+.menu > summary{
+  list-style:none; cursor:pointer; font-weight:600; font-size:.9375rem;
+  padding:.4rem .9rem; border:1px solid var(--linea); border-radius:999px;
+  display:inline-flex; align-items:center; gap:.4rem;
+  /* 44px es el mínimo táctil; con el padding solo daba 39 (medido). */
+  min-height:44px;
+}
+.menu > summary::-webkit-details-marker{display:none}
+.menu > summary::after{
+  content:""; width:.42em; height:.42em; border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor; transform:rotate(45deg) translate(-.06em,-.06em);
+}
+.menu[open] > summary::after{transform:rotate(225deg) translate(-.06em,-.06em)}
+.menu > summary:focus-visible{outline:3px solid var(--acento);outline-offset:3px}
+.menu-panel{
+  position:absolute; right:0; left:0; margin-top:.6rem; z-index:40;
+  display:flex; flex-direction:column; align-items:flex-start; gap:.25rem;
+  background:var(--blanco); border:1px solid var(--linea); border-radius:12px;
+  padding:.6rem; box-shadow:var(--sombra-alta);
+}
+.menu-panel > a,
+.menu-panel .desplegable > summary{padding:.55rem .6rem; min-height:44px; display:flex; align-items:center}
+/* Dentro del panel el submenú se abre en el flujo, no flotando sobre él. */
+.menu-panel .desplegable{position:static; width:100%}
+.menu-panel .desplegable-lista{position:static; box-shadow:none; border:0; padding-left:.9rem; min-width:0}
+.menu{position:static}
+.barra{position:relative}
+
+/* A 320 px la marca (199 px) y el botón (85) no caben en los 288 de la barra:
+   faltan 12 con el hueco de 1rem. El subtítulo «Costa Rica» mide 65 y aparece
+   otras tres veces en la página más la meta description, así que esconderlo
+   acá no pierde el posicionamiento y devuelve la cabecera a una sola línea. */
+@media(max-width:22rem){
+  .marca span{display:none}
+  .barra{gap:.5rem}
+}
+
+@media(min-width:56rem){
+  /* El <details> desaparece del layout y sus hijos vuelven a ser hijos del
+     <nav>: el escritorio queda byte por byte como antes del cambio. */
+  .menu, .menu-panel{display:contents}
+  .menu > summary{display:none}
+}
+
 .desplegable{position:relative}
 .desplegable > summary{
   display:inline-flex;align-items:center;gap:.3rem;min-height:44px;
