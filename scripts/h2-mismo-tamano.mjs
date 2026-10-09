@@ -16,7 +16,7 @@
 import { chromium } from 'playwright'
 
 const BASE = process.argv[2] || 'http://localhost:4173'
-const RUTAS = ['/', '/funciones', '/para', '/para/taller-general', '/para/centro-de-servicio',
+const RUTAS = ['/', '/funciones', '/para', '/para/taller-general', '/para/centro-de-servicio', '/para/llantera',
   '/para/vehiculos-electricos', '/recursos', '/recursos/recepcion-sin-reclamos',
   '/recursos/cobrar-la-inspeccion', '/recursos/que-preguntar-antes-de-comprar',
   '/recursos/cuadrar-la-caja', '/plantillas', '/plantillas/orden-de-trabajo',
