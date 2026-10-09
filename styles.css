@@ -851,6 +851,109 @@ main > .env:not(.texto) > .nota,
 
    Cada lista incluye su propia página índice como primer ítem, para que abrir
    el desplegable no le quite al visitante el destino que el rótulo prometía. */
+/* ── Maqueta de producto en HTML ───────────────────────────────────────────
+   Una pantalla del producto dibujada con marcado, no fotografiada.
+
+   Por qué, medido: `board.webp` dijo «DIAGNÓSTICO» tres semanas después de
+   que el producto renombrara esa columna a «En revisión», y corregirlo exigió
+   levantar Supabase local, sembrar once órdenes y rehacer la foto. Una
+   maqueta también se desactualiza —no miente menos—, pero arreglarla es
+   editar una línea en vez de reconstruir un entorno.
+
+   Lo que además gana: refluye sola a cualquier ancho (la captura era un PNG
+   de ancho fijo), el texto se puede buscar y leer con lector de pantalla, y
+   pesa ~2 KB de marcado contra los 29 828 B del WebP.
+
+   Los botones son <span>, no <button>: esto ilustra, no funciona. Un control
+   real acá sería enfocable y prometería una acción que no existe. */
+.maqueta{
+  max-width:20rem; margin-inline:auto; font-size:.8125rem; line-height:1.45;
+  border:1px solid var(--linea); border-radius:16px; overflow:hidden;
+  background:var(--blanco); box-shadow:var(--sombra-alta);
+}
+.maqueta-tope{background:var(--acento);color:var(--blanco);padding:.9rem 1rem}
+.maqueta-tope b{display:block;font-size:.875rem}
+.maqueta-tope span{display:block;opacity:.85;font-size:.75rem}
+.maqueta-tope p{margin:.7rem 0 0;font-size:1.0625rem;font-weight:700}
+.maqueta-tope .vence{margin:.35rem 0 0;font-size:.75rem;font-weight:400;opacity:.9}
+.maqueta-cuerpo{padding:.85rem;display:grid;gap:.7rem;background:var(--fondo-alt)}
+.maqueta-caja{background:var(--blanco);border:1px solid var(--linea);border-radius:12px;padding:.75rem}
+.maqueta-caja h4{margin:0;font-size:.8125rem}
+.maqueta-caja h4 + p{margin:.2rem 0 0;color:var(--muted);font-size:.75rem}
+.maqueta-linea{border-top:1px solid var(--linea);padding-top:.6rem;margin-top:.6rem}
+.maqueta-linea:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.maqueta-linea > div{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem}
+.maqueta-linea .monto{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.maqueta-ops{display:flex;gap:.4rem;margin-top:.45rem}
+.maqueta-ops span{
+  flex:1;text-align:center;border:1px solid var(--linea);border-radius:8px;
+  padding:.4rem;font-weight:600;font-size:.75rem;color:var(--muted);
+}
+.maqueta-pie{background:var(--blanco);border-top:1px solid var(--linea);padding:.8rem;text-align:center}
+.maqueta-pie .cuenta{margin:0 0 .5rem;font-size:.75rem;color:var(--muted)}
+.maqueta-pie .par{display:flex;gap:.5rem}
+.maqueta-pie .par span{flex:1;border-radius:8px;padding:.5rem;font-weight:700;font-size:.8125rem}
+.maqueta-pie .no{border:1px solid #FCA5A5;color:#B91C1C}
+.maqueta-pie .si{background:var(--acento);color:var(--blanco)}
+.maqueta-pie .aclara{margin:.6rem 0 0;font-size:.6875rem;color:var(--muted);line-height:1.4}
+
+/* ── El menú de teléfono ───────────────────────────────────────────────────
+   Medido el 2026-10-09: a 375 px la cabecera ocupaba 146 px —la marca en una
+   línea y los enlaces envueltos en dos— y empujaba la primera imagen del
+   producto a y=879, debajo del pliegue de 812. Un dueño abría el sitio en el
+   teléfono y no veía el sistema hasta bajar.
+
+   Se colapsa con <details>, que es lo que esta hoja ya usa para los
+   desplegables: cero JavaScript y el navegador gestiona el estado abierto.
+
+   A partir de 56rem (900 px) todo cabe en una línea —medido: la barra pasa de
+   146 a 45 px—, así que ahí el <details> se vuelve `display:contents` y el
+   menú desaparece: el nav queda EXACTAMENTE como estaba, sin una regla nueva
+   que mantener para el escritorio. */
+.menu > summary{
+  list-style:none; cursor:pointer; font-weight:600; font-size:.9375rem;
+  padding:.4rem .9rem; border:1px solid var(--linea); border-radius:999px;
+  display:inline-flex; align-items:center; gap:.4rem;
+  /* 44px es el mínimo táctil; con el padding solo daba 39 (medido). */
+  min-height:44px;
+}
+.menu > summary::-webkit-details-marker{display:none}
+.menu > summary::after{
+  content:""; width:.42em; height:.42em; border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor; transform:rotate(45deg) translate(-.06em,-.06em);
+}
+.menu[open] > summary::after{transform:rotate(225deg) translate(-.06em,-.06em)}
+.menu > summary:focus-visible{outline:3px solid var(--acento);outline-offset:3px}
+.menu-panel{
+  position:absolute; right:0; left:0; margin-top:.6rem; z-index:40;
+  display:flex; flex-direction:column; align-items:flex-start; gap:.25rem;
+  background:var(--blanco); border:1px solid var(--linea); border-radius:12px;
+  padding:.6rem; box-shadow:var(--sombra-alta);
+}
+.menu-panel > a,
+.menu-panel .desplegable > summary{padding:.55rem .6rem; min-height:44px; display:flex; align-items:center}
+/* Dentro del panel el submenú se abre en el flujo, no flotando sobre él. */
+.menu-panel .desplegable{position:static; width:100%}
+.menu-panel .desplegable-lista{position:static; box-shadow:none; border:0; padding-left:.9rem; min-width:0}
+.menu{position:static}
+.barra{position:relative}
+
+/* A 320 px la marca (199 px) y el botón (85) no caben en los 288 de la barra:
+   faltan 12 con el hueco de 1rem. El subtítulo «Costa Rica» mide 65 y aparece
+   otras tres veces en la página más la meta description, así que esconderlo
+   acá no pierde el posicionamiento y devuelve la cabecera a una sola línea. */
+@media(max-width:22rem){
+  .marca span{display:none}
+  .barra{gap:.5rem}
+}
+
+@media(min-width:56rem){
+  /* El <details> desaparece del layout y sus hijos vuelven a ser hijos del
+     <nav>: el escritorio queda byte por byte como antes del cambio. */
+  .menu, .menu-panel{display:contents}
+  .menu > summary{display:none}
+}
+
 .desplegable{position:relative}
 .desplegable > summary{
   display:inline-flex;align-items:center;gap:.3rem;min-height:44px;

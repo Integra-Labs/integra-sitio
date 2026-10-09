@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://integranucleo.com/imagenes/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="El tablero de órdenes de Integra Núcleo, con las columnas de recepción, diagnóstico y reparación.">
+<meta property="og:image:alt" content="El tablero de órdenes de Integra Núcleo, con sus cinco columnas: recepción, en revisión, en reparación, esperando repuestos y por cerrar.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="index,follow">
 <link rel="preload" href="/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -25,7 +25,7 @@
   <div class="env">
     <div class="barra">
       <a class="marca" href="/"><b>Integra Núcleo</b><span>Costa Rica</span></a>
-      <nav aria-label="Principal"><a href="/funciones">Funciones</a><details class="desplegable" name="menu"><summary aria-current="true">Tipos de taller</summary><div class="desplegable-lista"><a href="/para">Ver los tres</a><a href="/para/taller-general">Taller general</a><a href="/para/centro-de-servicio">Centro de servicio</a><a href="/para/vehiculos-electricos" aria-current="page">Eléctricos e híbridos</a></div></details><details class="desplegable" name="menu"><summary>Recursos</summary><div class="desplegable-lista"><a href="/recursos">Todos los recursos</a><a href="/plantillas">Plantillas para imprimir</a><a href="/aria">Cómo funciona nuestra IA</a></div></details><a href="/precios">Precios</a><a href="/contacto">Contacto</a><a class="entrar" href="https://integranucleo.app">Entrar</a></nav>
+      <nav aria-label="Principal"><details class="menu"><summary>Menú</summary><div class="menu-panel"><a href="/funciones">Funciones</a><details class="desplegable" name="menu"><summary aria-current="true">Tipos de taller</summary><div class="desplegable-lista"><a href="/para">Ver los tres</a><a href="/para/taller-general">Taller general</a><a href="/para/centro-de-servicio">Centro de servicio</a><a href="/para/vehiculos-electricos" aria-current="page">Eléctricos e híbridos</a></div></details><details class="desplegable" name="menu"><summary>Recursos</summary><div class="desplegable-lista"><a href="/recursos">Todos los recursos</a><a href="/plantillas">Plantillas para imprimir</a><a href="/aria">Cómo funciona nuestra IA</a></div></details><a href="/precios">Precios</a><a href="/contacto">Contacto</a><a class="entrar" href="https://integranucleo.app">Entrar</a></div></details></nav>
     </div>
   </div>
 </header>
@@ -116,12 +116,41 @@
           </ul>
         </div>
       </div>
-      <figure class="captura captura--telefono">
-        <img src="/imagenes/proforma-cliente.webp" width="420" height="1053" loading="lazy" decoding="async"
-             alt="La proforma como la abre el cliente en su teléfono. Dice hasta qué fecha vale el
-                  precio, lista cada repuesto con su monto y da dos botones por línea —«Lo quiero»
-                  y «Ahora no»—, con el aviso de que lo marcado «Ahora no» no se cobra ni se hace.">
-        <figcaption>La proforma que el cliente autoriza punto por punto, desde su teléfono. Datos de un taller de demostración.</figcaption>
+      <figure class="captura">
+        <div class="maqueta">
+          <div class="maqueta-tope">
+            <b>Taller Demostración</b><span>con tecnología de Integra Núcleo</span>
+            <p>Proforma de servicio</p>
+            <p class="vence">Este precio vale hasta el 21 de octubre.</p>
+          </div>
+          <div class="maqueta-cuerpo">
+            <div class="maqueta-caja">
+              <h4>Mitsubishi Montero 2017</h4>
+              <p>Placa: CPN163 · 121&#8239;700&nbsp;km</p>
+            </div>
+            <div class="maqueta-caja">
+              <h4>Repuestos y mano de obra</h4>
+              <div class="maqueta-linea" style="margin-top:.7rem">
+                <div><span>Alternador reconstruido 90A</span><span class="monto">₡96&#8239;000</span></div>
+                <p class="maqueta-ops"><span>Lo quiero</span><span>Ahora no</span></p>
+              </div>
+              <div class="maqueta-linea">
+                <div><span>Banda de accesorios</span><span class="monto">₡18&#8239;500</span></div>
+                <p class="maqueta-ops"><span>Lo quiero</span><span>Ahora no</span></p>
+              </div>
+              <div class="maqueta-linea">
+                <div><span>Batería 12V 75Ah</span><span class="monto">₡72&#8239;000</span></div>
+                <p class="maqueta-ops"><span>Lo quiero</span><span>Ahora no</span></p>
+              </div>
+            </div>
+          </div>
+          <div class="maqueta-pie">
+            <p class="cuenta">Te faltan <b>3</b> ítems por decidir</p>
+            <p class="par"><span class="no">Rechazar todo</span><span class="si">Aprobar todo</span></p>
+            <p class="aclara">Lo que marcaste «Ahora no» no se cobra ni se hace — el taller lo guarda por si lo querés después.</p>
+          </div>
+        </div>
+        <figcaption>La proforma que el cliente autoriza punto por punto, desde su teléfono. Reproducción de la pantalla del producto, con datos de un taller de demostración.</figcaption>
       </figure>
     </section>
 
