@@ -851,6 +851,52 @@ main > .env:not(.texto) > .nota,
 
    Cada lista incluye su propia página índice como primer ítem, para que abrir
    el desplegable no le quite al visitante el destino que el rótulo prometía. */
+/* ── Maqueta de producto en HTML ───────────────────────────────────────────
+   Una pantalla del producto dibujada con marcado, no fotografiada.
+
+   Por qué, medido: `board.webp` dijo «DIAGNÓSTICO» tres semanas después de
+   que el producto renombrara esa columna a «En revisión», y corregirlo exigió
+   levantar Supabase local, sembrar once órdenes y rehacer la foto. Una
+   maqueta también se desactualiza —no miente menos—, pero arreglarla es
+   editar una línea en vez de reconstruir un entorno.
+
+   Lo que además gana: refluye sola a cualquier ancho (la captura era un PNG
+   de ancho fijo), el texto se puede buscar y leer con lector de pantalla, y
+   pesa ~2 KB de marcado contra los 29 828 B del WebP.
+
+   Los botones son <span>, no <button>: esto ilustra, no funciona. Un control
+   real acá sería enfocable y prometería una acción que no existe. */
+.maqueta{
+  max-width:20rem; margin-inline:auto; font-size:.8125rem; line-height:1.45;
+  border:1px solid var(--linea); border-radius:16px; overflow:hidden;
+  background:var(--blanco); box-shadow:var(--sombra-alta);
+}
+.maqueta-tope{background:var(--acento);color:var(--blanco);padding:.9rem 1rem}
+.maqueta-tope b{display:block;font-size:.875rem}
+.maqueta-tope span{display:block;opacity:.85;font-size:.75rem}
+.maqueta-tope p{margin:.7rem 0 0;font-size:1.0625rem;font-weight:700}
+.maqueta-tope .vence{margin:.35rem 0 0;font-size:.75rem;font-weight:400;opacity:.9}
+.maqueta-cuerpo{padding:.85rem;display:grid;gap:.7rem;background:var(--fondo-alt)}
+.maqueta-caja{background:var(--blanco);border:1px solid var(--linea);border-radius:12px;padding:.75rem}
+.maqueta-caja h4{margin:0;font-size:.8125rem}
+.maqueta-caja h4 + p{margin:.2rem 0 0;color:var(--muted);font-size:.75rem}
+.maqueta-linea{border-top:1px solid var(--linea);padding-top:.6rem;margin-top:.6rem}
+.maqueta-linea:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.maqueta-linea > div{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem}
+.maqueta-linea .monto{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.maqueta-ops{display:flex;gap:.4rem;margin-top:.45rem}
+.maqueta-ops span{
+  flex:1;text-align:center;border:1px solid var(--linea);border-radius:8px;
+  padding:.4rem;font-weight:600;font-size:.75rem;color:var(--muted);
+}
+.maqueta-pie{background:var(--blanco);border-top:1px solid var(--linea);padding:.8rem;text-align:center}
+.maqueta-pie .cuenta{margin:0 0 .5rem;font-size:.75rem;color:var(--muted)}
+.maqueta-pie .par{display:flex;gap:.5rem}
+.maqueta-pie .par span{flex:1;border-radius:8px;padding:.5rem;font-weight:700;font-size:.8125rem}
+.maqueta-pie .no{border:1px solid #FCA5A5;color:#B91C1C}
+.maqueta-pie .si{background:var(--acento);color:var(--blanco)}
+.maqueta-pie .aclara{margin:.6rem 0 0;font-size:.6875rem;color:var(--muted);line-height:1.4}
+
 /* ── El menú de teléfono ───────────────────────────────────────────────────
    Medido el 2026-10-09: a 375 px la cabecera ocupaba 146 px —la marca en una
    línea y los enlaces envueltos en dos— y empujaba la primera imagen del
