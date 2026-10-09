@@ -897,6 +897,26 @@ main > .env:not(.texto) > .nota,
 .maqueta-pie .si{background:var(--acento);color:var(--blanco)}
 .maqueta-pie .aclara{margin:.6rem 0 0;font-size:.6875rem;color:var(--muted);line-height:1.4}
 
+/* El reporte de inspección reusa la maqueta de arriba y agrega solo lo suyo:
+   la cabecera clara (el reporte no lleva banda de color), el punto de
+   severidad y el fondo tenue de la tarjeta que requiere atención. */
+.maqueta--claro .maqueta-tope{background:var(--blanco);color:var(--tinta);border-bottom:1px solid var(--linea)}
+.maqueta--claro .maqueta-tope span{opacity:1;color:var(--muted)}
+.maqueta-sev{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.maqueta-sev b{display:flex;align-items:center;gap:.4rem;font-size:.8125rem}
+.maqueta-sev em{font-style:normal;font-size:.6875rem;color:var(--muted);white-space:nowrap}
+.punto{width:.5rem;height:.5rem;border-radius:50%;flex:none}
+.punto--rojo{background:#DC2626}
+.punto--ambar{background:#D97706}
+.maqueta-caja--ambar{background:#FFFBEB;border-color:#FDE68A}
+/* Cuando el cliente ya respondió, el producto reemplaza los tres botones por
+   lo que eligió. Las etiquetas salen de `app/inspeccion/[token]`, no de mi
+   cabeza: «Se cotizará» y «Para después». */
+.maqueta-elegido{display:inline-flex;align-items:center;gap:.35rem;margin:.45rem 0 0;
+  padding:.3rem .6rem;border-radius:999px;font-weight:700;font-size:.6875rem}
+.maqueta-elegido--si{background:#ECFDF5;color:#047857}
+.maqueta-elegido--luego{background:#FFFBEB;color:#B45309}
+
 /* ── El menú de teléfono ───────────────────────────────────────────────────
    Medido el 2026-10-09: a 375 px la cabecera ocupaba 146 px —la marca en una
    línea y los enlaces envueltos en dos— y empujaba la primera imagen del
