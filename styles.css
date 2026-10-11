@@ -897,6 +897,28 @@ main > .env:not(.texto) > .nota,
 .maqueta-pie .si{background:var(--acento);color:var(--blanco)}
 .maqueta-pie .aclara{margin:.6rem 0 0;font-size:.6875rem;color:var(--muted);line-height:1.4}
 
+/* Variante ancha: una lista del taller, no una pantalla de teléfono. Reusa
+   `.maqueta-tope` y `.maqueta-caja`; lo propio es la fila y el chip de estado.
+   Las tres etiquetas —Borrador, Publicada, Revisada por cliente— están
+   copiadas del producto, no redactadas acá. */
+.maqueta--ancha{max-width:38rem}
+.maqueta--ancha .maqueta-cuerpo{gap:0;padding:.75rem}
+.maqueta-fila{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.7rem .25rem;border-top:1px solid var(--linea)}
+.maqueta-fila:first-child{border-top:0}
+.maqueta-fila > div:first-child{min-width:0}
+.maqueta-fila b{font-size:.875rem}
+.maqueta-fila b span{font-weight:400;color:var(--muted);font-size:.8125rem}
+.maqueta-fila p{margin:.15rem 0 0;color:var(--muted);font-size:.8125rem}
+.maqueta-fila > div:last-child{text-align:right;flex:none}
+.chip-estado{display:inline-block;padding:.2rem .55rem;border-radius:999px;
+  font-size:.6875rem;font-weight:700;background:#EEF2FF;color:#3730A3}
+.maqueta-fila em{display:block;font-style:normal;font-size:.6875rem;color:var(--muted);margin-top:.2rem}
+@media(max-width:34rem){
+  .maqueta-fila{flex-direction:column;align-items:flex-start;gap:.35rem}
+  .maqueta-fila > div:last-child{text-align:left}
+}
+
 /* El reporte de inspección reusa la maqueta de arriba y agrega solo lo suyo:
    la cabecera clara (el reporte no lleva banda de color), el punto de
    severidad y el fondo tenue de la tarjeta que requiere atención. */
