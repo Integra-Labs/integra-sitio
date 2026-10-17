@@ -92,6 +92,28 @@ for ruta in "${PAGINAS[@]}"; do
   else
     ok "sin aggregateRating"
 
+  # ── Sin fechas absolutas dentro de las maquetas ─────────────────────────
+  #
+  # Las maquetas reproducen pantallas del producto, y el producto fecha lo que
+  # muestra. Una fecha copiada a mano envejece sola: el 2026-10-17 la proforma
+  # de /para/vehiculos-electricos decía «Este precio vale hasta el 21 de
+  # octubre» —cuatro días de vida— y dos maquetas de DVI decían «6 de octubre»,
+  # de once días antes. Nadie se entera hasta que un visitante ve una proforma
+  # vencida en la página de ventas.
+  #
+  # El arreglo no fue poner otra fecha: fue usar los estados del producto que
+  # NO llevan fecha —la proforma sin `vence_at`, el reporte con el nombre del
+  # inspector—. Este candado lo sostiene.
+  #
+  # Alcance declarado: mira las líneas con `maqueta` o `vence`, que es donde
+  # vivían las tres. Una fecha en otra línea de la maqueta se le escapa.
+  if grep -E 'class="(maqueta|vence)' /tmp/pagina.html 2>/dev/null \
+     | grep -qE '[0-9]{1,2} de (enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)'; then
+    fallo "una maqueta trae una fecha escrita a mano — envejece sola"
+  else
+    ok "sin fechas a mano en las maquetas"
+  fi
+
   # ── Sin restos del generador ────────────────────────────────────────────
   #
   # Existe porque el 2026-09-10 /funciones salió a producción con la
