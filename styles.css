@@ -368,7 +368,11 @@ footer p{display:flex;flex-wrap:wrap;align-items:center;gap:0 .15rem}
    palabra. El alto ya cumple el mínimo táctil por min-height, así que este
    espacio es por legibilidad, no por accesibilidad. */
 .barra nav{display:flex;gap:1rem}
-.barra nav a[aria-current="page"]{color:var(--tinta);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+/* `[aria-current]` a secas, no solo `="page"`: desde que el menú tiene seis
+   destinos, una sub-página como /para/llantera marca `="true"` sobre «Para su
+   taller» —es la sección, no la página—. Con el selector viejo esa marca no
+   pintaba nada y la señal de «usted está acá» desaparecía en nueve páginas. */
+.barra nav a[aria-current]{color:var(--tinta);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
 
 /* ── CTA persistente en móvil ──────────────────────────────────────────────
    El plan lo pedía como regla transversal del home y no se había construido.
@@ -994,11 +998,7 @@ main > .env:not(.texto) > .nota,
    submenú estático y desplegado —675 px colgando bajo la barra—. No se notaba
    porque el <details> cerrado lo tapaba todo; al destapar el menú, apareció. */
 @media(max-width:55.9375rem){
-  .menu-panel > a,
-  .menu-panel .desplegable > summary{padding:.55rem .6rem; min-height:44px; display:flex; align-items:center}
-  /* Dentro del panel el submenú se abre en el flujo, no flotando sobre él. */
-  .menu-panel .desplegable{position:static; width:100%}
-  .menu-panel .desplegable-lista{position:static; box-shadow:none; border:0; padding-left:.9rem; min-width:0}
+  .menu-panel > a{padding:.55rem .6rem; min-height:44px; display:flex; align-items:center}
 }
 .menu{position:static}
 .barra{position:relative}
@@ -1023,33 +1023,8 @@ main > .env:not(.texto) > .nota,
   .menu[open] + .menu-panel{display:contents}
 }
 
-.desplegable{position:relative}
-.desplegable > summary{
-  display:inline-flex;align-items:center;gap:.3rem;min-height:44px;
-  cursor:pointer;list-style:none;color:var(--acento);font-weight:inherit;
-}
-.desplegable > summary::-webkit-details-marker{display:none}
-.desplegable > summary::after{
-  content:"";width:.42em;height:.42em;border-right:2px solid currentColor;
-  border-bottom:2px solid currentColor;transform:rotate(45deg) translate(-.1em,-.1em);
-  transition:transform .15s ease;
-}
-.desplegable[open] > summary::after{transform:rotate(225deg) translate(-.06em,-.06em)}
-.desplegable > summary:focus-visible{outline:3px solid var(--acento);outline-offset:3px;border-radius:2px}
-.desplegable > summary[aria-current="true"]{text-decoration:underline;text-underline-offset:6px}
-
-.desplegable-lista{
-  position:absolute;top:calc(100% + .35rem);left:-.75rem;z-index:20;
-  min-width:14rem;display:flex;flex-direction:column;
-  background:var(--blanco);border:1px solid var(--linea);border-radius:12px;
-  padding:.4rem;box-shadow:var(--sombra-alta);
-}
-.desplegable-lista a{
-  display:flex;align-items:center;min-height:44px;padding:0 .75rem;
-  border-radius:8px;text-decoration:none;font-size:.9375rem;
-}
-.desplegable-lista a:hover{background:var(--fondo-alt)}
-.desplegable-lista a:first-child{color:var(--muted);font-weight:600}
+/* Los desplegables del menú se retiraron el 2026-10-16: el nav pasó de 14
+   destinos a 6, y «Tipos de taller» duplicaba la línea que el héroe ya trae. */
 
 /* En angosto el panel se ancla al NAV, no al ítem: un panel de 14rem colgado
    de «Recursos», que queda a media fila, se sale por la derecha.
@@ -1058,10 +1033,6 @@ main > .env:not(.texto) > .nota,
    de la pantalla gastado en el menú, antes del titular—. */
 @media(max-width:40rem){
   .barra nav{position:static}
-  /* El ítem deja de ser el bloque contenedor para que el panel se ancle al
-     nav. Sin esto el panel medía 77 px, el ancho del rótulo. */
-  .desplegable{position:static}
-  .desplegable-lista{left:0;right:0;min-width:0;top:calc(100% + .5rem)}
 }
 
 /* ── Guías ─────────────────────────────────────────────────────────────────
