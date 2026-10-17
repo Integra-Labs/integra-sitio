@@ -966,17 +966,40 @@ main > .env:not(.texto) > .nota,
 }
 .menu[open] > summary::after{transform:rotate(225deg) translate(-.06em,-.06em)}
 .menu > summary:focus-visible{outline:3px solid var(--acento);outline-offset:3px}
+/* El panel es HERMANO del <details>, no su hijo, y esa es la corrección del
+   2026-10-16. Mientras fue hijo, el escritorio dependía de que `display:contents`
+   sobre el <details> hiciera desaparecer su caja — y la caja desaparecía, pero
+   el contenido NO: un <details> cerrado esconde lo que lleva adentro, da igual
+   lo que valga su `display`. Resultado: siete días con el menú de escritorio
+   invisible en producción, el nav a 0 px de ancho y cada enlace reducido a 19.
+
+   Como hermano, quien manda es el combinador `+`, que es CSS de toda la vida y
+   no depende de cómo cada motor esconda el contenido de un <details>. */
 .menu-panel{
-  position:absolute; right:0; left:0; margin-top:.6rem; z-index:40;
-  display:flex; flex-direction:column; align-items:flex-start; gap:.25rem;
+  display:none;
+  /* `top:100%` y no la posición estática: como hermano, el panel es un ítem
+     flex del <nav>, que centra (`align-items:center`), y su posición estática
+     salía NEGATIVA —el panel de 305 px arrancaba 105 px arriba del borde de la
+     pantalla—. El bloque contenedor es `.barra`, así que 100% es «justo debajo
+     de la barra», que es lo que se quiere decir. */
+  position:absolute; top:100%; right:0; left:0; margin-top:.6rem; z-index:40;
+  flex-direction:column; align-items:flex-start; gap:.25rem;
   background:var(--blanco); border:1px solid var(--linea); border-radius:12px;
   padding:.6rem; box-shadow:var(--sombra-alta);
 }
-.menu-panel > a,
-.menu-panel .desplegable > summary{padding:.55rem .6rem; min-height:44px; display:flex; align-items:center}
-/* Dentro del panel el submenú se abre en el flujo, no flotando sobre él. */
-.menu-panel .desplegable{position:static; width:100%}
-.menu-panel .desplegable-lista{position:static; box-shadow:none; border:0; padding-left:.9rem; min-width:0}
+.menu[open] + .menu-panel{display:flex}
+/* Estas tres valen SOLO mientras el panel es panel. Iban sin media query, y el
+   2026-10-16 se vio por qué importa: en escritorio `.menu-panel` sigue estando
+   en el DOM aunque sea `display:contents`, así que seguían casando y dejaban el
+   submenú estático y desplegado —675 px colgando bajo la barra—. No se notaba
+   porque el <details> cerrado lo tapaba todo; al destapar el menú, apareció. */
+@media(max-width:55.9375rem){
+  .menu-panel > a,
+  .menu-panel .desplegable > summary{padding:.55rem .6rem; min-height:44px; display:flex; align-items:center}
+  /* Dentro del panel el submenú se abre en el flujo, no flotando sobre él. */
+  .menu-panel .desplegable{position:static; width:100%}
+  .menu-panel .desplegable-lista{position:static; box-shadow:none; border:0; padding-left:.9rem; min-width:0}
+}
 .menu{position:static}
 .barra{position:relative}
 
@@ -992,8 +1015,12 @@ main > .env:not(.texto) > .nota,
 @media(min-width:56rem){
   /* El <details> desaparece del layout y sus hijos vuelven a ser hijos del
      <nav>: el escritorio queda byte por byte como antes del cambio. */
-  .menu, .menu-panel{display:contents}
-  .menu > summary{display:none}
+  /* En escritorio el <details> entero se va —botón incluido— y el panel deja
+     de ser panel: sus enlaces pasan a ser hijos del <nav>. El `[open]` también
+     se neutraliza, por si alguien abre el menú en el teléfono y después ensancha. */
+  .menu{display:none}
+  .menu-panel,
+  .menu[open] + .menu-panel{display:contents}
 }
 
 .desplegable{position:relative}
