@@ -58,8 +58,8 @@ jobs:
 
       # Cuatro veces en dos días una regla con `>` dejó de aplicar al meter un
       # contenedor. Se mide el síntoma: títulos de sección que no miden igual.
-      - name: Los títulos de sección miden lo mismo
-        run: node scripts/h2-mismo-tamano.mjs http://localhost:4173
+      - name: Los títulos del mismo nivel miden lo mismo
+        run: node scripts/titulos-mismo-tamano.mjs http://localhost:4173
 
       - name: Accesibilidad (axe)
         run: |

@@ -124,10 +124,16 @@ La escala vive en `styles.css` con `clamp()` — se fluidifica entre teléfono y
 escritorio en vez de saltar por `@media`. Los títulos llevan `letter-spacing`
 negativo; el cuerpo no.
 
-**Un candado vigila que los `h2` del mismo nivel midan igual**
-(`scripts/h2-mismo-tamano.mjs`, a 1440 px). Existe porque una migración los
-había dejado de tres tamaños distintos en la misma página sin que nadie lo
-notara.
+**Un candado vigila que los títulos del mismo nivel midan igual**
+(`scripts/titulos-mismo-tamano.mjs`, a 1440 px). Nació por los `h2`, que una
+migración había dejado de tres tamaños distintos en la misma página sin que
+nadie lo notara. Desde el 2026-10-16 cubre también los `h3`, por un motivo
+distinto: ahí no se rompió ninguna regla, fue deriva — 19 px en `.paso`, 18 en
+`.tres`, 17 en `.dos-listas`. Un píxel de diferencia no es jerarquía, es ruido;
+se convergió en los **18 px** que diez páginas ya usaban.
+
+El título de `.cierre` queda excluido a propósito: es deliberadamente menor
+(32 px contra 38), y por eso el candado no lo cuenta.
 
 Nada en versales salvo el antetítulo y las etiquetas cortas. En español, con
 palabras largas y alguien leyendo en un taller, las versales cuestan
@@ -140,9 +146,16 @@ legibilidad.
 Ancho de lectura **60rem** (`.env`), un solo paso de espaciado (`--paso`,
 también con `clamp`). Dos niveles de sombra, los dos muy suaves.
 
-**Fondo plano, a propósito.** Las guías de landing modernas piden gradientes o
-imagen de fondo; acá pierden contra el techo de peso y contra el hecho de que el
-fondo compite con las capturas de producto, que son la prueba.
+**El fondo dejó de ser plano, y fue a propósito.** Hasta octubre de 2026 esta
+sección decía lo contrario: que las guías de landing piden gradientes y que acá
+perdían «contra el techo de peso». El argumento no sobrevivió a su propia
+premisa — el campo de gradientes de `main::before` cuesta **cero bytes**: ni una
+petición, ni un archivo. Lo que sí sigue en pie es la otra mitad del argumento,
+que el fondo no compita con las capturas: por eso el campo va enmascarado hacia
+abajo, se aclara en teléfono y no se imprime. Ver §2.
+
+Lo que **no** se usa de fondo sigue siendo lo mismo: imagen, y cualquier cosa
+que cueste una petición.
 
 ### Lo que NO se usa, y por qué
 

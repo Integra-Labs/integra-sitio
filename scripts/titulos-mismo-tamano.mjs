@@ -1,4 +1,4 @@
-// Los títulos de sección de una misma página tienen que medir lo mismo.
+// Los títulos de una misma página y del mismo nivel tienen que medir lo mismo.
 //
 // Cuatro veces en dos días una regla con `>` dejó de aplicar en cuanto se metió
 // un contenedor: `.prueba` en el héroe, los botones de /recursos, el titular al
@@ -13,6 +13,13 @@
 // Se excluye `.cierre`, cuyo título es deliberadamente menor (32 px), y se
 // mide a 1440 px: debajo de 60rem el `clamp()` los lleva a todos a su piso y
 // un desajuste quedaría escondido.
+//
+// Desde el 2026-10-16 también mide los `h3`, por un motivo distinto al de los
+// `h2`: ahí no se rompió ninguna regla, fue deriva. Salían a 19 px en el home
+// (`.paso`), 18 en `.tres`, 17 en `.dos-listas` — tres tamaños para el mismo
+// nivel, y un píxel de diferencia no es jerarquía, es ruido. Se convergió en
+// los 18 px que diez páginas ya usaban. El candado existe para que no vuelva
+// a abrirse de a un píxel por vez.
 import { chromium } from 'playwright'
 
 const BASE = process.argv[2] || 'http://localhost:4173'
@@ -28,34 +35,42 @@ let fallas = 0, sinSecciones = []
 
 for (const ruta of RUTAS) {
   await p.goto(BASE + ruta, { waitUntil: 'networkidle' })
-  const grupos = await p.evaluate(() => {
-    const tam = {}
-    for (const h of document.querySelectorAll('main .seccion:not(.cierre) h2')) {
-      const px = Math.round(parseFloat(getComputedStyle(h).fontSize))
-      ;(tam[px] = tam[px] || []).push(h.innerText.trim().slice(0, 40))
+  const porNivel = await p.evaluate(() => {
+    const leer = sel => {
+      const tam = {}
+      for (const h of document.querySelectorAll(sel)) {
+        const px = Math.round(parseFloat(getComputedStyle(h).fontSize))
+        ;(tam[px] = tam[px] || []).push(h.innerText.trim().slice(0, 40))
+      }
+      return tam
     }
-    return tam
+    return { h2: leer('main .seccion:not(.cierre) h2'), h3: leer('main h3') }
   })
-  const tamaños = Object.keys(grupos)
-  if (tamaños.length === 0) { sinSecciones.push(ruta); continue }
-  if (tamaños.length === 1) {
-    console.log(`  ✓ ${ruta} — ${grupos[tamaños[0]].length} títulos, todos a ${tamaños[0]}px`)
-  } else {
-    console.log(`  ✗ ${ruta} — títulos de sección con tamaños distintos:`)
-    for (const t of tamaños.sort((a, b) => b - a)) {
-      console.log(`      ${t}px · ${grupos[t].join(' · ')}`)
+  let vistos = 0
+  for (const [nivel, grupos] of Object.entries(porNivel)) {
+    const tamaños = Object.keys(grupos)
+    if (tamaños.length === 0) continue
+    vistos++
+    if (tamaños.length === 1) {
+      console.log(`  ✓ ${ruta} — ${grupos[tamaños[0]].length} ${nivel}, todos a ${tamaños[0]}px`)
+    } else {
+      console.log(`  ✗ ${ruta} — ${nivel} del mismo nivel con tamaños distintos:`)
+      for (const t of tamaños.sort((a, b) => b - a)) {
+        console.log(`      ${t}px · ${grupos[t].join(' · ')}`)
+      }
+      fallas++
     }
-    fallas++
   }
+  if (vistos === 0) sinSecciones.push(ruta)
 }
 await nav.close()
 
 // No se silencia lo que no se midió: decir cuántas rutas quedaron fuera.
 if (sinSecciones.length) {
-  console.log(`\n  (sin h2 dentro de .seccion, nada que comparar: ${sinSecciones.join(', ')})`)
+  console.log(`\n  (sin h2 de sección ni h3, nada que comparar: ${sinSecciones.join(', ')})`)
 }
 if (fallas) {
-  console.log(`\nFALLA · ${fallas} página(s) con títulos de sección desparejos`)
+  console.log(`\nFALLA · ${fallas} grupo(s) de títulos desparejos`)
   process.exit(1)
 }
 console.log(`\nOK · ${RUTAS.length - sinSecciones.length} rutas con títulos de sección parejos`)
