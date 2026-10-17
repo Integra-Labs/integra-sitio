@@ -1030,7 +1030,7 @@ main > .env:not(.texto) > .nota,
    a cada desplegable y la barra pasaba de 166 px a 265 —cuatro filas y un tercio
    de la pantalla gastado en el menú, antes del titular—. */
 @media(max-width:40rem){
-  .barra nav{position:relative}
+  .barra nav{position:static}
   /* El ítem deja de ser el bloque contenedor para que el panel se ancle al
      nav. Sin esto el panel medía 77 px, el ancho del rótulo. */
   .desplegable{position:static}
