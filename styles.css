@@ -194,7 +194,7 @@
 .paso{display:grid;grid-template-columns:4.5rem 1fr;gap:1rem;padding:1rem 0;border-top:1px solid var(--linea)}
 .paso:first-child{border-top:0}
 .paso .hora{font-variant-numeric:tabular-nums;font-weight:700;color:var(--acento);font-size:.9375rem;padding-top:.15rem}
-.paso h3{font-size:1.1875rem;font-weight:600;margin:0 0 .3rem;letter-spacing:-.012em}
+.paso h3{font-size:1.125rem;font-weight:600;margin:0 0 .3rem;letter-spacing:-.012em}
 .paso p{margin:0;color:var(--muted);font-size:1rem}
 
 /* ── El detalle de cada paso, plegado ──────────────────────────────────────
@@ -801,7 +801,7 @@ main > .env:not(.texto) > .acciones{justify-content:center}
 @media(min-width:44rem){.dos-listas{grid-template-columns:1fr 1fr;gap:1.5rem}}
 .dos-listas > div{background:var(--blanco);border:1px solid var(--linea);
   border-radius:12px;padding:1.5rem 1.4rem;box-shadow:var(--sombra)}
-.dos-listas h3{font-size:1.0625rem;font-weight:700;margin:0 0 .85rem;letter-spacing:-.012em}
+.dos-listas h3{font-size:1.125rem;font-weight:700;margin:0 0 .85rem;letter-spacing:-.012em}
 .dos-listas ul{list-style:none;margin:0;padding:0}
 .dos-listas li{position:relative;padding-left:1.15rem;margin-bottom:.55rem;color:var(--muted)}
 .dos-listas li::before{content:"";position:absolute;left:0;top:.6em;width:.4rem;height:.4rem;
@@ -895,7 +895,7 @@ main > .env:not(.texto) > .nota,
 .maqueta-pie .par span{flex:1;border-radius:8px;padding:.5rem;font-weight:700;font-size:.8125rem}
 .maqueta-pie .no{border:1px solid #FCA5A5;color:#B91C1C}
 .maqueta-pie .si{background:var(--acento);color:var(--blanco)}
-.maqueta-pie .aclara{margin:.6rem 0 0;font-size:.6875rem;color:var(--muted);line-height:1.4}
+.maqueta-pie .aclara{margin:.6rem 0 0;font-size:.75rem;color:var(--muted);line-height:1.4}
 
 /* Variante ancha: una lista del taller, no una pantalla de teléfono. Reusa
    `.maqueta-tope` y `.maqueta-caja`; lo propio es la fila y el chip de estado.
@@ -912,8 +912,8 @@ main > .env:not(.texto) > .nota,
 .maqueta-fila p{margin:.15rem 0 0;color:var(--muted);font-size:.8125rem}
 .maqueta-fila > div:last-child{text-align:right;flex:none}
 .chip-estado{display:inline-block;padding:.2rem .55rem;border-radius:999px;
-  font-size:.6875rem;font-weight:700;background:#EEF2FF;color:#3730A3}
-.maqueta-fila em{display:block;font-style:normal;font-size:.6875rem;color:var(--muted);margin-top:.2rem}
+  font-size:.75rem;font-weight:700;background:#EEF2FF;color:#3730A3}
+.maqueta-fila em{display:block;font-style:normal;font-size:.75rem;color:var(--muted);margin-top:.2rem}
 @media(max-width:34rem){
   .maqueta-fila{flex-direction:column;align-items:flex-start;gap:.35rem}
   .maqueta-fila > div:last-child{text-align:left}
@@ -926,7 +926,7 @@ main > .env:not(.texto) > .nota,
 .maqueta--claro .maqueta-tope span{opacity:1;color:var(--muted)}
 .maqueta-sev{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
 .maqueta-sev b{display:flex;align-items:center;gap:.4rem;font-size:.8125rem}
-.maqueta-sev em{font-style:normal;font-size:.6875rem;color:var(--muted);white-space:nowrap}
+.maqueta-sev em{font-style:normal;font-size:.75rem;color:var(--muted);white-space:nowrap}
 .punto{width:.5rem;height:.5rem;border-radius:50%;flex:none}
 .punto--rojo{background:#DC2626}
 .punto--ambar{background:#D97706}
@@ -935,7 +935,7 @@ main > .env:not(.texto) > .nota,
    lo que eligió. Las etiquetas salen de `app/inspeccion/[token]`, no de mi
    cabeza: «Se cotizará» y «Para después». */
 .maqueta-elegido{display:inline-flex;align-items:center;gap:.35rem;margin:.45rem 0 0;
-  padding:.3rem .6rem;border-radius:999px;font-weight:700;font-size:.6875rem}
+  padding:.3rem .6rem;border-radius:999px;font-weight:700;font-size:.75rem}
 .maqueta-elegido--si{background:#ECFDF5;color:#047857}
 .maqueta-elegido--luego{background:#FFFBEB;color:#B45309}
 
