@@ -67,8 +67,51 @@ antetítulo y las cifras de `/aria`. Está en 20 reglas.
 > se descartó por esto pintar la mitad de cada título de sección — el contraste
 > pasaba de sobra (7,03:1), el problema era la dilución.
 
-No hay modo oscuro, ni gradientes de marca, ni color semántico de estado: el
-sitio no tiene estados que comunicar.
+No hay modo oscuro: cero reglas de `prefers-color-scheme`, cero de `data-theme`
+(medido el 2026-10-16).
+
+### Las dos licencias de color, y por qué existen
+
+Hasta el 2026-10-16 esta sección decía también que no había «gradientes de marca,
+ni color semántico de estado: el sitio no tiene estados que comunicar». Las dos
+afirmaciones llevaban semanas vencidas y el documento no se enteró. Se corrigen
+acá en vez de arrancar el color, porque en los dos casos el color llegó por una
+razón que sigue en pie — pero cada una queda **acotada**, que es lo que las
+separa de una licencia abierta.
+
+**1 · El campo de gradientes (`main::before`) es marca, y es deliberado.**
+Cuatro radiales —el acento, `#22A8CE` y `#7C5CD6`— enmascarados hacia abajo,
+iguales en las 22 páginas. Cuesta **cero bytes**: ni una petición, ni un archivo.
+Existe para que la primera pantalla no se lea como folleto, y es la única
+licencia de color fuera del acento que el sitio se permite en su **propio cromo**.
+Se achica y se aclara en teléfono, donde el texto va encima, y no se imprime.
+
+**2 · Dentro de `.maqueta` el color reproduce estado del producto.**
+Las maquetas no son decoración: son reproducciones en HTML de pantallas que **sí**
+tienen estados —una inspección con hallazgos rojos y ámbar, una proforma con
+renglones aceptados y pospuestos—. Pintarlas en gris mentiría sobre el producto.
+
+| clase | color | qué reproduce |
+|---|---|---|
+| `.punto--rojo` | `#DC2626` | hallazgo de seguridad |
+| `.punto--ambar` | `#D97706` | hallazgo que puede esperar |
+| `.maqueta-caja--ambar` | `#FFFBEB` / `#FDE68A` | bloque de atención |
+| `.maqueta-elegido--si` | `#ECFDF5` / `#047857` | renglón aceptado |
+| `.maqueta-elegido--luego` | `#FFFBEB` / `#B45309` | renglón pospuesto |
+| `.maqueta-pie .no` | `#FCA5A5` / `#B91C1C` | rechazo |
+| `.chip-estado` | `#EEF2FF` / `#3730A3` | estado de la orden |
+
+Viven en cuatro páginas: `index`, `funciones`, `para/taller-general` y
+`para/vehiculos-electricos`.
+
+> **Regla:** el color de estado **no sale de `.maqueta`**. En el cromo del sitio
+> —botones, enlaces, insignias, avisos— sigue habiendo un solo acento. Si algo
+> fuera de una maqueta necesita rojo o verde para decirse, el problema es el
+> texto, no el color.
+
+Contraste medido el 2026-10-16: **19 elementos, ninguno bajo 4,5:1**; el más bajo,
+6,55:1. El color de estado nunca fue un problema de accesibilidad — era un
+problema de que este documento decía que no existía.
 
 ---
 
