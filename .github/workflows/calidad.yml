@@ -22,6 +22,12 @@ jobs:
         with:
           node-version: '22'
 
+      # Va antes de levantar nada: es una prueba pura y vale medio segundo. El
+      # filtro decide si un lead DESPIERTA a alguien, y un error acá se cobra
+      # en clientes que nadie contestó — conviene que falle antes que nada más.
+      - name: El filtro de spam no se calla un lead
+        run: node scripts/el-filtro-de-spam.mjs
+
       - name: Levantar el sitio
         run: |
           npx --yes serve@14 -l 4173 . &
