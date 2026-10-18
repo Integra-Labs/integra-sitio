@@ -32,6 +32,13 @@ export const ESQUEMA = [
   // es justo la falla que esto viene a cerrar. Con la columna, `where
   // notificado_en is null` enumera los leads de los que nadie se enteró.
   `alter table leads add column if not exists notificado_en timestamptz`,
+  // Por qué NO se avisó, cuando el filtro de spam decidió callarse. Va en la
+  // fila y no en un log: la pregunta que esto responde —«¿por qué no me
+  // avisaron de este?»— se hace semanas después, cuando el log ya rotó.
+  // `notificado_en is null and motivo_sin_aviso is null` sigue enumerando los
+  // avisos que fallaron de verdad, sin mezclarlos con los que se callaron a
+  // propósito.
+  `alter table leads add column if not exists motivo_sin_aviso text`,
 ]
 
 /** Deja la base lista. Idempotente: se puede llamar siempre sin efecto extra. */

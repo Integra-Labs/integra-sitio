@@ -8,6 +8,7 @@
 // conectar la base. No están en el repositorio ni viajan al navegador.
 
 import { neon } from '@neondatabase/serverless'
+import { evaluarLead } from './_spam.js'
 import { asegurarEsquema } from './_esquema.js'
 
 const LIMITES = { nombre: 120, telefono: 40, taller: 160, correo: 160, mensaje: 2000 }
@@ -242,7 +243,13 @@ export default async function handler(req, res) {
     // El lead ya está a salvo. De acá en adelante nada puede hacerle perder el
     // contacto al taller, así que todo va dentro de su propio try.
     try {
-      if (await avisar({ nombre, telefono, taller, correo, mensaje, origen })) {
+      // El filtro decide el AVISO, nunca el guardado: la fila de arriba ya está
+      // escrita y nada de acá la toca. Ver `_spam.js` para la asimetría.
+      const veredicto = evaluarLead({ nombre, taller, mensaje, telefono })
+      if (veredicto.sospechoso) {
+        await sql`update leads set motivo_sin_aviso = ${veredicto.senales.join(' · ')} where id = ${filas[0].id}`
+        console.warn('lead: guardado SIN avisar — parece spam', filas[0].id, veredicto.puntaje, veredicto.senales.join(','))
+      } else if (await avisar({ nombre, telefono, taller, correo, mensaje, origen })) {
         await sql`update leads set notificado_en = now() where id = ${filas[0].id}`
       }
     } catch (e) {
