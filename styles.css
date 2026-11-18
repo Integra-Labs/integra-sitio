@@ -148,6 +148,7 @@
 /* ── Precios ───────────────────────────────────────────────────────── */
 .planes{display:grid;gap:1.25rem;grid-template-columns:1fr;margin:2.5rem 0 0;align-items:start}
 @media(min-width:56rem){.planes{grid-template-columns:repeat(3,1fr);gap:1.5rem}}
+@media(min-width:56rem){.planes--dos{grid-template-columns:repeat(2,1fr);max-width:52rem;margin-inline:auto}}
 .plan{background:var(--blanco);border:1px solid var(--linea);border-radius:12px;padding:1.5rem}
 /* Apiladas —por debajo de 56rem— las tarjetas ocupaban todo el ancho y a 768 px
    los renglones llegaban a 85 caracteres. Se acotan y se centran: una tarjeta
@@ -232,7 +233,7 @@
 
 /* Resumen de precios */
 .precio-mini{display:grid;gap:1rem;grid-template-columns:1fr;margin-bottom:1.5rem}
-@media(min-width:44rem){.precio-mini{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:44rem){.precio-mini{grid-template-columns:repeat(2,1fr);max-width:40rem;margin-inline:auto}}
 .precio-mini div{background:var(--blanco);border:1px solid var(--linea);border-radius:12px;padding:1.15rem 1.25rem;box-shadow:var(--sombra);text-align:center}
 .precio-mini strong{display:block;font-size:.9375rem;font-weight:600}
 .precio-mini b{display:block;font-size:1.5rem;letter-spacing:-.02em;margin:.2rem 0 .1rem}
